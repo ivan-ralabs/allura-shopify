@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="cabinet-login-security">
+    <h1>Login & security</h1>
+
+    {% if customer %}
+      
+        <div class="mb-4">
+          <!-- Email Field -->
+          <label for="email" class="form-label">Email</label>
+          <div class="fake-input rounded">
+            <span class="form-text text-secondary">{{ customer.email }}</span>
+          </div>
+        </div>
+    
+        <div class="mb-4">
+          <!-- Password Field -->
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <div class="fake-input rounded-start flex-fill">
+              <span class="form-text text-secondary">********</span>
+            </div>
+            <a href="/account/login#recover" class="btn btn-outline-secondary rounded-end" type="button">Edit</a>
+          </div>
+        </div>
+      
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Login security",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Login security"
+      }
+    ]
+  }
+{% endschema %}

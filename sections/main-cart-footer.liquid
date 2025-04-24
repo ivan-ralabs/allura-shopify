@@ -1,0 +1,242 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
+  id="main-cart-footer"
+  data-id="{{ section.id }}"
+>
+  <div class="page-width">
+    <div class="cart__footer isolate section-{{ section.id }}-padding">
+      {%- if settings.show_cart_note -%}
+        <cart-note class="cart__note field">
+          <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+          <textarea
+            class="text-area field__input"
+            name="note"
+            form="cart"
+            id="Cart-note"
+            placeholder="{{ 'sections.cart.note' | t }}"
+          >{{ cart.note }}</textarea>
+        </cart-note>
+      {%- endif -%}
+
+
+      
+      <div class="cart__blocks">
+        {% for block in section.blocks %}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'subtotal' -%}
+<!--  -->
+              <div class="js-contents" {{ block.shopify_attributes }}>
+                <div>
+                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                      {%- for discount in cart.cart_level_discount_applications -%}
+                        <li class="discounts__discount discounts__discount--position">
+                          {{- 'icon-discount.svg' | inline_asset_content -}}
+                          {{ discount.title | escape }}
+                          (-{{ discount.total_allocated_amount | money }})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+<!--  -->
+                
+                {% assign has_bundler = false %}
+                {% assign total_compare_at_price = 0 %}
+                {% assign total_discount = 0 %}
+                
+                {% for item in cart.items %}
+                  {% if item.properties and item.properties["_bundler_558869"] %}
+                    {% assign has_bundler = true %}
+                    {% break %}
+                  {% endif %}
+
+                  {% if item.selling_plan_allocation %}
+                    {% assign item_compare_at_price = item.selling_plan_allocation.compare_at_price %}
+                    {% assign item_price = item.selling_plan_allocation.price %}
+                    {% assign item_quantity = item.quantity %}
+                    
+                    {% assign item_total_compare_at_price = item_compare_at_price | times: item_quantity %}
+                    {% assign item_discount = item_compare_at_price | minus: item_price %}
+                    {% assign item_total_discount = item_discount | times: item_quantity %}
+                
+                    {% assign total_compare_at_price = total_compare_at_price | plus: item_total_compare_at_price %}
+                    {% assign total_discount = total_discount | plus: item_total_discount %}
+                  {% else %}
+                    {% assign item_quantity = item.quantity %}
+                    {% assign item_price = item.price | divided_by: item_quantity %}
+    
+                    {% assign item_total_price = item_price | times: item_quantity %}
+                    
+                    {% assign total_compare_at_price = total_compare_at_price | plus: item_total_price %}
+                  {% endif %}
+                {% endfor %}
+                
+                <div class="totals">
+                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                  {% if has_bundler %}
+                    <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  {% else %}              
+                    <!-- totals__total-value bundler-cart-price-info-container -->
+                    <p class="totals__total-value">
+                      {% if total_compare_at_price > 0 %}
+                        {% if total_compare_at_price > cart.total_price %}
+                          <span class="bndlr-cart-values bndlr-cross-out bndlr-cart-orig-price bndlr-money conversion-bear-money  money " data-money-convertible="" data-currency-usd="US$160.00">
+                            {{ total_compare_at_price | money }}
+                          </span>
+                          <br>
+                        {% endif %}
+                      {% endif %}
+                      {% if total_discount > 0 %}
+                        <span class="bndlr-minus bndlr-cart-values bndlr-cart-discount-value bndlr-money conversion-bear-money  money " data-money-convertible="" data-currency-usd="US$52.00">
+                          {{ total_discount | money }}
+                        </span>
+                        <br>
+                      {% endif %}
+                      <span class="bndlr-cart-values bndlr-cart-discounted-value bndlr-money conversion-bear-money money " data-money-convertible="" data-currency-usd="US$108.00">
+                        {{ cart.total_price | money_with_currency }}
+                      </span>
+                    </p>
+                    <!-- <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p> -->
+                  {% endif %}
+                </div>
+
+                <small class="tax-note caption-large rte">
+                  {%- if cart.duties_included and cart.taxes_included -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included == false and cart.taxes_included -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.taxes_included_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.taxes_included_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included and cart.taxes_included == false -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
+                    {%- if shop.shipping_policy.body == blank -%}
+                      {{ 'sections.cart.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                    {%- else -%}
+                      {{
+                        'sections.cart.taxes_at_checkout_shipping_at_checkout_with_policy_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- endif -%}
+                  {%- endif -%}
+                </small>
+              </div>
+            {%- else -%}
+          
+            
+              <div class="cart__ctas" {{ block.shopify_attributes }}>
+                <button
+                  type="submit"
+                  id="checkout"
+                  class="cart__checkout-button button"
+                  name="checkout"
+                  {% if cart == empty %}
+                    disabled
+                  {% endif %}
+                  form="cart"
+                >
+                  {{ 'sections.cart.checkout' | t }}
+                </button>
+              </div>
+
+              <small class="tax-note caption-large rte">*Unfortunately, we are unable to ship orders to <b>Guam</b> and <b>Puerto Rico</b> at this time.</small>
+            
+          {%- endcase -%}
+        {% endfor %}
+
+        <div id="cart-errors"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-footer.name",
+  "class": "cart__footer-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subtotal",
+      "name": "t:sections.main-cart-footer.blocks.subtotal.name",
+      "limit": 1
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.main-cart-footer.blocks.buttons.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

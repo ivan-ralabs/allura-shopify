@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "account",
+  "sections": {
+    "main": {
+      "type": "main-account",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1732634212fb28f553": {
+      "type": "apps",
+      "blocks": {
+        "seal_subscriptions_subscriptions_link_YJ69dw": {
+          "type": "shopify://apps/seal-subscriptions/blocks/subscriptions-link/13b25004-a140-4ab7-b5fe-29918f759699",
+          "disabled": true,
+          "settings": {
+            "text": "Subscriptions"
+          }
+        }
+      },
+      "block_order": [
+        "seal_subscriptions_subscriptions_link_YJ69dw"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1732634212fb28f553"
+  ]
+}

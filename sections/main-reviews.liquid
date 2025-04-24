@@ -1,0 +1,255 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<div class="reviews-section mt-5 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col mb-4">
+        <h2 class="reviews-section__title">{{ section.settings.title }}</h2>
+      </div>
+    </div>
+    <div class="row" style="display: none;">
+      {% for review in section.blocks %}
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                  {% if review.settings.image %}
+                    <img src="{{ review.settings.image | img_url: 'medium' }}" alt="{{ review.settings.author }}" class="review__image">
+                  {% endif %}
+                <div class="review-title">
+                  <h5 class="mb-0">{{ review.settings.author }}</h5>
+                  {% assign rating = review.settings.rating | to_number %}
+                  <div class="text-warning">
+                    {% for i in (1..5) %}
+                      <i class="bi bi-star-fill">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.82968 15.5596C9.98858 15.4637 10.1875 15.4637 10.3464 15.5596L15.3081 18.5543C15.6868 18.7829 16.1539 18.4433 16.0534 18.0126L14.7366 12.3689C14.6944 12.1882 14.7558 11.9989 14.8961 11.8774L19.2803 8.07939C19.6147 7.78978 19.4359 7.24064 18.9952 7.20326L13.2233 6.71373C13.0385 6.69806 12.8776 6.5814 12.8052 6.41065L10.5484 1.08612C10.3761 0.679615 9.8 0.679616 9.6277 1.08612L7.37088 6.41065C7.29851 6.5814 7.13757 6.69806 6.95278 6.71373L1.18088 7.20326C0.74016 7.24064 0.561446 7.78978 0.895756 8.07939L5.28001 11.8774C5.42031 11.9989 5.48173 12.1882 5.43955 12.3689L4.12269 18.0126C4.02219 18.4433 4.48932 18.7829 4.86798 18.5543L9.82968 15.5596Z" fill="#316854"/>
+                        </svg>
+                      </i>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3">{{ review.settings.content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="swiper d-md-none">
+        <div class="swiper-wrapper">
+          {% for review in section.blocks %}
+            <div class="swiper-slide">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    {% if review.settings.image %}
+                      <img src="{{ review.settings.image | img_url: 'medium' }}" alt="{{ review.settings.author }}" class="review__image">
+                    {% endif %}
+                    <div class="review-title">
+                      <h5 class="mb-0">{{ review.settings.author }}</h5>
+                      <div class="text-warning">
+                        {% for i in (1..5) %}
+                          <i class="bi bi-star-fill">
+                            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9.82968 15.5596C9.98858 15.4637 10.1875 15.4637 10.3464 15.5596L15.3081 18.5543C15.6868 18.7829 16.1539 18.4433 16.0534 18.0126L14.7366 12.3689C14.6944 12.1882 14.7558 11.9989 14.8961 11.8774L19.2803 8.07939C19.6147 7.78978 19.4359 7.24064 18.9952 7.20326L13.2233 6.71373C13.0385 6.69806 12.8776 6.5814 12.8052 6.41065L10.5484 1.08612C10.3761 0.679615 9.8 0.679616 9.6277 1.08612L7.37088 6.41065C7.29851 6.5814 7.13757 6.69806 6.95278 6.71373L1.18088 7.20326C0.74016 7.24064 0.561446 7.78978 0.895756 8.07939L5.28001 11.8774C5.42031 11.9989 5.48173 12.1882 5.43955 12.3689L4.12269 18.0126C4.02219 18.4433 4.48932 18.7829 4.86798 18.5543L9.82968 15.5596Z" fill="#316854"/>
+                            </svg>
+                          </i>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3">{{ review.settings.content }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+                                
+      <div class="swiper-pagination d-md-none"></div>
+      
+      <div class="container d-none d-md-block">
+        <div class="row">
+          {% for review in section.blocks %}
+            <div class="col-12 col-md-6 col-lg-3 mb-4">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center">
+                    {% if review.settings.image %}
+                      <img src="{{ review.settings.image | img_url: 'medium' }}" alt="{{ review.settings.author }}" class="review__image">
+                    {% endif %}
+                    <div class="review-title">
+                      <h5 class="mb-0">{{ review.settings.author }}</h5>
+                      {% assign rating = review.settings.rating | to_number %}
+                      <div class="text-warning">
+                        {% for i in (1..5) %}
+                          <i class="bi bi-star-fill">
+                            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9.82968 15.5596C9.98858 15.4637 10.1875 15.4637 10.3464 15.5596L15.3081 18.5543C15.6868 18.7829 16.1539 18.4433 16.0534 18.0126L14.7366 12.3689C14.6944 12.1882 14.7558 11.9989 14.8961 11.8774L19.2803 8.07939C19.6147 7.78978 19.4359 7.24064 18.9952 7.20326L13.2233 6.71373C13.0385 6.69806 12.8776 6.5814 12.8052 6.41065L10.5484 1.08612C10.3761 0.679615 9.8 0.679616 9.6277 1.08612L7.37088 6.41065C7.29851 6.5814 7.13757 6.69806 6.95278 6.71373L1.18088 7.20326C0.74016 7.24064 0.561446 7.78978 0.895756 8.07939L5.28001 11.8774C5.42031 11.9989 5.48173 12.1882 5.43955 12.3689L4.12269 18.0126C4.02219 18.4433 4.48932 18.7829 4.86798 18.5543L9.82968 15.5596Z" fill="#316854"/>
+                            </svg>
+                          </i>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3">{{ review.settings.content }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+                          
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 10,
+    pagination: {
+      el: '.swiper-pagination', 
+      clickable: false,         
+    },
+  });
+</script>
+                                
+<style>
+  .swiper-pagination {
+    position: relative;
+    padding-top: 20px;
+  }
+
+  span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #316854;
+    width: 32px;
+    height: 8px;
+    border-radius: 32px;
+  }
+  
+  .swiper-slide {
+    flex-shrink: 0;
+    width: 80%; 
+    margin-right: 10px; 
+  }
+  
+  .swiper-wrapper {
+    padding-left: 0; 
+  }
+  
+  .swiper-slide-active {
+    transform: translateX(0) !important; 
+  }
+
+  
+  .reviews-section .card {
+    border: none;
+    background-color: #F5F3E7;
+    border-radius: 24px;
+  }
+
+  .reviews-section .review-title {
+    margin-left: 12px;  
+  }
+
+  .reviews-section .review-title h5 {
+    //styleName: Body/Body 2;
+    font-family: Avenir;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  
+  .reviews-section .card-body {
+    padding: 1.5rem;
+  }
+
+  .reviews-section .card-body p {
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  
+  .reviews-section .card img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .reviews-section .text-warning i {
+    color: #ffcc00;
+  }
+  
+  @media (max-width: 767px) {
+    .reviews-section .col-md-4 {
+      max-width: 100%;
+    }
+  }
+</style>
+
+{%- schema -%}
+{
+  "name": "Reviews",
+  "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Main page reviews"
+    }],
+  "presets": [{"name": "Main page reviews"}],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "rating",
+          "label": "Rating",
+          "options": [
+            {"value": "1", "label": "1 Star"},
+            {"value": "2", "label": "2 Stars"},
+            {"value": "3", "label": "3 Stars"},
+            {"value": "4", "label": "4 Stars"},
+            {"value": "5", "label": "5 Stars"}
+          ],
+          "default": "5"
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

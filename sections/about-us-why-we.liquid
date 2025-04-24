@@ -1,0 +1,213 @@
+<div class="about-us-why-we">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 order-2 order-md-1">
+        {% if section.settings.image %}
+          <img src="{{ section.settings.image | img_url: 'large' }}" alt="Why Us Image" class="img-fluid w-100">
+        {% endif %}
+      </div>
+      <div class="col-md-8 order-1 order-md-2">
+        {% if section.settings.title %}
+          <h2 class="section-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.description %}
+          <p class="section-description">{{ section.settings.description }}</p>
+        {% endif %}
+        <div class="title-wrap d-none d-lg-block">
+          <h3>
+            Discover our benefits
+          </h3>
+          <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z" fill="#5A8676"/>
+          </svg>
+        </div>
+    
+        <div class="row d-none d-lg-flex benefits">
+          {% for block in section.blocks %}
+            <div class="col-md-6 d-flex align-items-stretch">
+              <div class="benefit">
+                <h4 class="benefit-title">{{ block.settings.benefit_title }}</h4>
+                <p class="benefit-description">{{ block.settings.benefit_description }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-block d-lg-none">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="title-wrap">
+          <h3>
+            Discover our benefits
+          </h3>
+          <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z" fill="#5A8676"/>
+          </svg>
+        </div>
+
+        <div class="row benefits">
+          {% for block in section.blocks %}
+            <div class="col-md-6 d-flex align-items-stretch">
+              <div class="benefit">
+                <h4 class="benefit-title">{{ block.settings.benefit_title }}</h4>
+                <p class="benefit-description">{{ block.settings.benefit_description }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
+<style>
+  .about-us-why-we h2 {
+    font-family: Lora;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 44px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+
+  .about-us-why-we p {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  
+  .about-us-why-we h3 {
+    font-family: Nunito Sans;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 32px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+    margin-bottom: 24px;
+  }
+  
+  .about-us-why-we .container {
+    /* padding-top: 60px; */
+    /* padding-bottom: 60px; */
+  }
+  .about-us-why-we .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .about-us-why-we .section-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  .benefits .benefit {
+    margin-bottom: 20px;
+    background-color: #E3EBDF;
+    border-radius: 16px;
+    padding: 24px 24px 16px 56px;
+    position: relative;
+    z-index: -2;
+  }
+
+  .benefits .benefit:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    width: 78px;
+    background-image: url('{{ 'main-banner--background-patern.png' | asset_url }}'); 
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-position: top left;
+    z-index: -1;
+  }
+
+    
+  .benefit-title {
+    font-family: Nunito Sans;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 32px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #285445;
+    /* margin-bottom: 10px; */
+  }
+  .benefit-description {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  .btn {
+    margin-top: 20px;
+  }
+</style>
+{% schema %}
+  {
+    "name": "About Us Why We",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Add an image to display on the left."
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Why Choose Us"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description",
+        "default": "Here is why we stand out and why you should choose us."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "benefit",
+        "name": "Benefit",
+        "settings": [
+          {
+            "type": "text",
+            "id": "benefit_title",
+            "label": "Benefit Title",
+            "default": "Quality Services"
+          },
+          {
+            "type": "textarea",
+            "id": "benefit_description",
+            "label": "Benefit Description",
+            "default": "We offer the best services tailored to your needs."
+          }
+        ]
+      }
+    ],
+      "presets": [
+      {
+        "name": "About Us Why We Section"
+      }
+    ]
+  }
+{% endschema %}

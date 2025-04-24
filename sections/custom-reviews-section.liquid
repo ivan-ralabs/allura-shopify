@@ -1,0 +1,364 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css">
+
+<link rel="stylesheet" href="{{ 'raty.css' | asset_url }}">
+<script src="{{ 'raty.min.js' | asset_url }}"></script>
+<script src="{{ 'parsley.min.js' | asset_url }}"></script>
+
+<div class="container">
+
+{%- comment -%}
+  Capture the content for header containing the tracking data
+{%- endcomment -%}
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+
+{%- comment -%}
+  Use string splitting to pull the value from content_for_header and apply some string clean up
+{%- endcomment -%}
+{%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&' -%}
+
+{%- assign debug = false %}
+
+{%- assign product_id = pageUrl | split: "product_id=" | last | split: "&" | first -%}
+
+
+<div class="cabinet-product-review">
+  <h1>Leave review</h1>
+  {% if product_id %}
+    <div class="line-item-card" style="width: 100%; margin-bottom: 20px;">
+      {%- comment -%} Now use the product_id to get the product details {%- endcomment -%}
+      <!-- <p>Product id: {{ product_id }}</p> -->
+      {% assign product_id_number = product_id | plus: 0 %}
+      {% assign product = collections.all.products | where: "id", product_id_number | first %}
+      
+    
+      {% if product %}
+        <div class="line-item-card-body">
+          <div class="row line-item-product d-flex">
+            <div class="col-auto">
+              <img src="{{ product.images[0].src | image_url: width: 96 }}">
+            </div>
+            <div class="col">
+              <div class="line-item-product-description">
+                <h6 class="mb-1">{{ product.title }}</h6>
+                <p class="mb-1"><span>{{ product.type }}</span></p>
+                <p class="mb-1 d-flex">{{ product.price | money }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endif %}
+
+  {% if customer %}
+    <form id="reviewForm" method="POST" action="https://judge.me/api/v1/reviews" data_parsley_validate>
+      <input type="hidden" name="id" value="{{ product_id }}">
+      <input type="hidden" id="name" name="name" value="{{ customer.first_name }} {% if customer.last_name %}{{ customer.last_name | slice: 0, 1 }}.{% endif %}" readonly>
+
+      <input type="hidden" id="email" name="email" value="{{ customer.email }}" readonly>
+
+      <input type="hidden" id="url" name="url" value="886076-cc.myshopify.com">
+      <input type="hidden" id="shop_domain" name="shop_domain" value="886076-cc.myshopify.com">
+
+      <!-- <input type="hidden" id="url" name="url" value="{{ shop.url }}">
+      <input type="hidden" id="shop_domain" name="shop_domain" value="{{ shop.domain }}"> -->
+      
+      <input type="hidden" id="platform" name="platform" value="shopify">
+
+      <div class="review-form-group">
+        <h2>Your overall rating</h2>
+         
+         <div data-raty></div>
+        
+         <input type="number" id="ratingInput" class="d-none" name="rating" 
+           required 
+           data-parsley-errors-container="#rating-errors"
+           data-parsley-required-message="Please select a star rating.">
+         <div id="rating-errors"></div>
+      </div>
+
+      <div class="review-form-group">
+        <h2>What do you think about the product?</h2>
+        <div class="mb-3">
+          <input type="text" 
+            class="form-control" 
+            id="title" 
+            name="title" 
+            value="" 
+            placeholder="Review title" 
+            data-parsley-maxlength="100" 
+            data-parsley-trigger="input" 
+            data-parsley-errors-container="#title-errors">
+        </div>
+        <div id="title-errors"></div>
+      </div>
+
+      <div class="review-form-group">
+        <h2>Please, tell us more</h2>
+        <div class="mb-3">
+          <textarea class="form-control" id="body" name="body" rows="4" placeholder="It helped me with..."> </textarea>
+        </div>
+      </div>
+      <!-- <div class="review-form-group"> -->
+        <!-- <h2>Share your photos</h2> -->
+
+        <!-- Інпут для вибору файлу -->
+        <!-- <input type="file" id="photo-input" accept="image/*"> -->
+        
+        <!-- Блок для відображення прев'ю -->
+        <!-- <div id="photo-preview" style="margin-top: 15px;"> -->
+          <!-- Прев'ю зображення буде додане сюди -->
+        <!-- </div> -->
+
+
+         <!-- <input type="file" id="file-input" accept="image/*"> -->
+         <!-- <div id="upload-preview" style="margin-top: 15px;"></div> -->
+      <!-- </div>      -->
+      
+      <button type="submit" class="btn btn-primary">Send</button>
+       <a onclick="window.history.back()" class="btn btn-link text-center pointer">Cancel</a>
+    </form>
+    
+  {% else %} 
+    <p>Only authorized users can leave reviews for products.</p>
+    <p>You need to be logged in to leave a review. <a href="/account/login">Log in here</a>.</p>
+  {% endif %}
+    {% else %}
+      <p>No product ID found in URL.</p>
+  {% endif %}
+  
+</div>
+
+<style>
+  .custom-star-rating span {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+  }
+  .custom-star-rating span.selected {
+    color: gold;
+  }
+  .custom-star-rating span:hover,
+  .custom-star-rating span:hover ~ span {
+    color: gold;
+  }
+  
+  
+    
+  .cabinet-product-review .line-item-card {
+      border-bottom: 1px solid #BABABA!important;
+  }
+  
+  .cabinet-product-review h2 {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  @media (max-width: 768px) {
+    .cabinet-product-review .btn.btn-primary, .cabinet-product-review .btn.btn-link {
+      width: 100%;
+    }
+  }
+  .cabinet-product-review .btn.btn-primary {
+    border-radius: 32px;
+    padding: 12px 24px;
+    margin-right: 16px;
+    @media (max-width: 768px) {
+      margin-bottom: 16px;
+    }
+  }
+  
+  .cabinet-product-review .btn.btn-link {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #285445;
+  
+    padding: 8px 4px;
+    border-radius: 32px;
+  }
+  
+  .cabinet-product-review .review-form-group {
+    padding-bottom: 24px;
+  }
+  
+  .cabinet-product-review .review-form-group input, .cabinet-product-review .review-form-group textarea {
+      font-family: Nunito Sans;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: #1E1E1E;
+      
+      border: 1px solid #BABABA;
+      border-radius: 8px;
+      padding: 12px 16px;
+  }
+  
+  .cabinet-product-review .review-form-group input:focus, .cabinet-product-review .review-form-group textarea:focus {
+    box-shadow: none;
+    border-color: #1e1e1e;
+  }
+  
+  .star {
+    font-size: 2rem;
+    color: #ccc; /* Незаповнені зірки */
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .star.selected,
+  .star:hover,
+  .star:hover ~ .star {
+    color: #285445; /* Колір заповнених зірок */
+  }
+  
+  .cabinet-product-review-great-window {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  .cabinet-product-review-great-window p {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #626262;
+    width: 55%;
+  }
+  
+  .review-form-group .bi.bi-star-fill.custom-raty {
+    font-size: 22px!important;
+    color: #9E9E9E!important; 
+    margin-right: 12px;
+  }
+  
+  .review-form-group .bi.bi-star-fill.custom-raty.active {
+    color: #285445!important; 
+  }
+
+</style>
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    window.Parsley.options.errorsContainer = function (field) {
+        // Look for a custom container for errors based on field's ID
+        return document.querySelector(`#${field.element.id}-errors`) || field.$element.parentNode;
+    };
+
+    // Find the form element
+    const form = document.querySelector('#reviewForm');
+    console.log(typeof window.Parsley); // Check if Parsley.js is available
+
+    if (form) {
+        // Initialize Parsley manually using Factory
+        const parsleyInstance = new window.Parsley.Factory(form);
+        console.log('Parsley instance:', parsleyInstance);
+
+        // Add a submit event listener to the form
+        form.addEventListener('submit', (event) => {
+            // Prevent the default form submission only if the form is invalid
+            if (!parsleyInstance.isValid()) {
+                event.preventDefault(); // Stop form submission
+                console.log('Please fix the errors in the form.');
+            } else {
+                console.log('The form is valid. Submitting...');
+                // The form will be submitted as the default behavior
+            }
+        });
+    } else {
+        console.error('Form not found!');
+    }
+
+
+    
+    const ratyElement = document.querySelector('[data-raty]');
+    const ratingInput = document.querySelector('#ratingInput');
+
+    if (ratyElement && ratingInput) {
+      const parsleyInstance = $(ratingInput).parsley(); 
+      const raty = new Raty(ratyElement, {
+        score: ratingInput.value, // Початкове значення
+        starType: 'i', // Використовуємо тег `i` для іконок
+        starOff: 'bi bi-star-fill custom-raty', // Клас для неактивної зірки
+        starOn: 'bi bi-star-fill custom-raty active', // Клас для активної зірки
+        click: function (score) {
+          ratingInput.value = score; // Оновлюємо значення прихованого поля
+          parsleyInstance.validate(); 
+        },
+      });
+
+      raty.init();
+    }
+
+    
+    
+// Обробка форми
+  reviewForm.addEventListener("submit", function (e) {
+    console.log("Submit event triggered");
+    e.preventDefault(); // Запобігає перезавантаженню сторінки
+
+    // Збір даних форми
+    const formData = new FormData(reviewForm);
+
+    // Відправка через AJAX
+    fetch("https://judge.me/api/v1/reviews", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to submit review");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // Очищення форми або оновлення інтерфейсу
+        reviewForm.reset();
+        // Замінюємо контент після успішної відправки
+        const container = document.querySelector(".cabinet-product-review");
+        container.innerHTML = `
+            <div class="d-flex flex-column justify-content-center align-items-center text-center cabinet-product-review-great-window" style="height: 100%">
+              <h1 class="display-4">Thank you!</h1>
+              <p class="lead">Your review has been submitted. We appreciate your feedback!</p>
+              <a href="/account" class="btn btn-primary mx-auto mt-3">Back to order history</a>
+            </div>
+          `;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again.");
+      });
+  });
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "Custom product review",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Product Reviews Section"
+      }
+    ]
+  }
+{% endschema %}

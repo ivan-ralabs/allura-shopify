@@ -1,0 +1,312 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.settings.enable_shop_login_button == false -%}
+  {%- assign hide_shop_login_button = true -%}
+{%- endif -%}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 d-none d-md-block">
+      
+      {% for block in section.blocks %}
+        {% if block.type == 'custom_block' %}
+          <div class="form-banner-block">
+            <div class="block-banner-image-rectangle">
+              <img src="{{ block.settings.banner_image_rectangle | img_url: 'large' }}" alt="Original Image">
+            </div>
+
+            <div class="block-description" style="background-image: url('{{ block.settings.text_background | img_url: 'medium' }}');">
+              <div class="block-description-text">
+                <p>
+                  {{ block.settings.block_description }}
+                </p>
+              </div>
+            <!-- <div class="block-background" style="background-image: url('{{ block.settings.text_background | img_url: 'medium' }}');"> -->
+            <!-- <div class="block-background">
+              <img src="{{ block.settings.text_background | img_url: 'medium' }}" alt="Background Image">
+            </div> -->
+            </div>
+              
+            <div class="block-banner-image">
+              <img src="{{ block.settings.banner_image | img_url: 'large' }}" alt="Original Image">
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 offset-lg-1 login-from-main">
+      
+      <!-- Recovery password -->
+      <h2 id="recover" class="mb-3" tabindex="-1">
+        {{ 'customer.recover_password.title' | t }}
+      </h2>
+      
+      <div>
+        <p class="login-description">
+          {{ 'customer.recover_password.subtext' | t }}
+        </p>
+      
+        {%- form 'recover_customer_password' -%}
+          {% assign recover_success = form.posted_successfully? %}
+          
+          <div class="form-floating-label">
+            <input
+              type="email"
+              value=""
+              name="email"
+              id="RecoverEmail"
+              class="form-control"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="RecoverEmail-email-error"
+                autofocus
+              {% endif %}
+              placeholder=""
+            >
+            <label for="RecoverEmail">
+              {{ 'customer.login_page.email' | t }}
+            </label>
+          </div>
+
+          <!-- errors -->
+          {%- if form.errors -%}
+            <div class="form-errors-message mb-4">
+              {{ form.errors.messages.form }}
+            </div>
+          {%- endif -%}
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mb-4">
+              {{ 'customer.login_page.submit' | t }}
+            </button>
+          </div>
+          {% if customer %}
+            <div class="text-center">
+              <a class="btn btn-link" href="/pages/login-security">
+                {{ 'customer.login_page.cancel' | t }}
+              </a>
+            </div>
+          {%  else %}
+            <div class="text-center">
+              <a class="btn btn-link" href="#login">
+                {{ 'customer.login_page.cancel' | t }}
+              </a>
+            </div>
+          {%  endif %}
+
+        {%- endform -%}
+      </div>
+      
+      
+      <!-- login form -->      
+      <h2 id="login" class="mb-3" tabindex="-1">
+        {{ 'customer.login_page.title' | t }}
+      </h2>
+      <div>
+        <p class="login-description">
+          Don't have an account? 
+          <a class="btn btn-link" href="{{ routes.account_register_url }}">
+            {{ 'customer.login_page.create_account' | t }}
+          </a>
+        </p>
+        
+        {%- if recover_success == true -%}
+          <h3 class="form__message" tabindex="-1" autofocus>
+            <span class="svg-wrapper">
+              {{- 'icon-success.svg' | inline_asset_content -}}
+            </span>
+            {{ 'customer.recover_password.success' | t }}
+          </h3>
+        {%- endif -%}
+
+        
+        {%- form 'customer_login', novalidate: 'novalidate' -%}
+          {%- if form.errors -%}
+            <div class="form-errors-message mb-4">
+            {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+      
+          {%- if shop.features123.login_with_shop_classic_customer_accounts? -%}
+            <section name="sign-in-with-shop-provider">
+              {{ shop | login_button: hide_button: hide_shop_login_button }}
+      
+              {%- unless hide_shop_login_button -%}
+                <p>
+                  {{ 'customer.login_page.alternate_provider_separator' | t }}
+                </p>
+              {%- endunless -%}
+            </section>
+          {%- endif -%}
+      
+          <div class="form-floating-label">
+            <input
+              type="email"
+              name="customer[email]"
+              id="CustomerEmail"
+              class="form-control"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              {% if form.errors contains 'form' %}
+                aria-invalid="true"
+              {% endif %}
+              placeholder=""
+            >
+            <label for="CustomerEmail">
+              {{ 'customer.login_page.email' | t }}
+            </label>
+          </div>
+    
+          <div class="form-floating-label">
+            <input
+              type="password"
+              value=""
+              name="customer[password]"
+              id="CustomerPassword"
+              class="form-control"
+              autocomplete="current-password"
+              {% if form.errors contains 'form' %}
+                aria-invalid="true"
+              {% endif %}
+              placeholder=""
+            >
+            <label for="CustomerPassword">
+              {{ 'customer.login_page.password' | t }}
+            </label>
+          </div>
+      
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mb-4">
+              {{ 'customer.login_page.sign_in' | t }}
+            </button>
+          </div>
+          <div class="text-center">
+            <a class="btn btn-link" href="#recover">
+              {{ 'customer.login_page.forgot_password' | t }}
+            </a>
+          </div>
+        {%- endform -%}
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+<style>
+  @media (max-width: 767.98px) {
+    .login-from-main {
+      padding-top: 65px;
+      padding-bottom: 110px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .login-from-main {
+      padding-top: 106px;
+    }
+  }
+
+  .btn.btn-link {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #285445;
+  }
+  
+  .customer.login, #seal-login-helper {
+    display: none;
+  }
+</style>
+{% schema %}
+{
+  "name": "t:sections.main-login.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_shop_login_button",
+      "label": "t:sections.main-login.shop_login_button.enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "custom_block",
+      "name": "Form Banner Block",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "block_description",
+          "label": "Short Description",
+          "default": "Get back on track, your journey continues"
+        },
+        {
+          "type": "image_picker",
+          "id": "text_background",
+          "label": "Background for Text Section (PNG)"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image_rectangle",
+          "label": "Background rectangle (PNG)"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Main Banner Image (PNG)"
+        }
+      ]
+    }
+  ],
+}
+{% endschema %}

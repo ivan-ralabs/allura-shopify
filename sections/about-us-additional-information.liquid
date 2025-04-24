@@ -1,0 +1,141 @@
+<div class="about-us-additional-information">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 col-lg-4 offset-lg-1 position-relative">
+        <div class="description-container">
+          {% if section.settings.description %}
+            <p class="description">{{ section.settings.description }}</p>
+          {% endif %}
+        </div>
+  
+        <svg class="vertical-line" width="12" height="240" viewBox="0 0 12 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.82044 239.244C1.02357 236.932 7.38012 211.727 3.82045 183.285C-2.4119 133.489 0.00651893 93.1042 3.82044 54.9505C5.54902 37.6583 4.87389 18.143 4.30194 7.85539C4.06735 3.63574 7.2975 -1.53287 10.9398 0.610489C15.2623 3.15413 4.83751 68.3621 6.87161 119.927C8.50285 161.28 10.1341 213.042 10.7162 231.924C10.8509 236.291 7.18783 242.028 3.82044 239.244Z" fill="#5A8676"/>
+        </svg>
+      </div>
+  
+      <div class="col-md-6 col-lg-6 offset-lg-1 position-relative">
+        <div class="image-wrapper">
+          {% if section.settings.image %}
+            <img src="{{ section.settings.image | img_url: 'medium' }}" alt="About Us Image" class="img-fluid right-image w-100">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
+<style>
+  .about-us-additional-information {
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  .about-us-additional-information .description-container p {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+
+  .about-us-additional-information .description-container p b {
+    font-weight: 700;
+  }
+  
+  .description-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .description {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .vertical-line {
+    position: absolute;
+    top: 0px;
+    left: -5px;
+    transform: translateX(-100%);
+    height: 100%;
+    z-index: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    .vertical-line {
+      top: 0;
+    }
+  }
+
+  .image-wrapper {
+    position: relative;
+    overflow: hidden; 
+  }
+
+  .about-us-section {
+    padding-bottom: 0!important;
+  }
+
+  /* .image-wrapper:before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-bottom: 66%;
+  } */
+  
+  /* .right-image {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0; 
+    width: 130%; 
+    z-index: -1; 
+    height: auto;
+  } */
+
+  @media (max-width: 767px) {
+    .vertical-line {
+      display: none;
+    }
+
+    .col-md-6 {
+      width: 100%;
+    }
+
+    .image-wrapper {
+      width: 100%;
+    }
+
+    .right-image {
+      width: 100%;
+      right: 0;
+      top: 0;
+    }
+  }
+</style>
+
+          
+{% schema %}
+  {
+    "name": "About Us additional",
+    "settings": [
+    {
+      "type": "textarea",
+      "label": "Description",
+      "id": "description",
+      "default": "Enter your description here",
+      "info": "This is a text area where you can add a description."
+    },
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image",
+      "info": "Select an image to display."
+    }
+    ],
+    "presets": [{"name": "About Us additional information section"}]
+  }
+{% endschema %}

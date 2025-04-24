@@ -1,0 +1,64 @@
+.container.static-page {
+    padding-top: 40px;
+    padding-bottom: 112px;
+}
+
+.static-page i {
+  font-family: Nunito Sans;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.static-page p, .static-page ol li, .static-page ul li {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1E1E1E;
+  margin-bottom: 12px;
+}
+
+.static-page h1 {
+  font-family: Lora;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 44px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1E1E1E;
+  margin-bottom: 24px;
+}
+
+.static-page h2 {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1E1E1E;
+  margin-bottom: 8px;
+}
+
+.container.static-page ol, .container.static-page ul {
+  padding-left: 0;
+  margin-bottom: 24px;
+}
+
+.static-page ol li b {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+    display: inline-block;
+    padding-bottom: 8px;
+}

@@ -1,0 +1,55 @@
+{% schema %}
+  {
+    "name": "Product information",
+    "settings": [],
+    "presets": [{"name": "Product Information"}]
+  }
+{% endschema %}
+
+<div class="container product-information">
+
+  {% if product.description != blank %}
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mb-3">Description</h3>
+
+        <div class="mb-3 product__description rte">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+  {% if product.metafields.custom.ingredients != blank %}
+    <div class="product__ingredients">
+      <h3 class="mb-3">Ingredients</h3>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% assign ingredients = product.metafields.custom.ingredients.value | parse_json %}
+          {% for ingredient in ingredients %}
+            <tr {% if ingredient.marked %} style="background-color: #f0f8ff;" {% endif %}>
+              <td>{{ ingredient.key }}</td>
+              <td>{{ ingredient.value }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.how_to_apply != blank %}
+    <div class="product__how-to-apply">
+      <h3>How to apply</h3>
+      <p>{{ product.metafields.custom.how_to_apply }}</p>
+    </div>
+  {% endif %}
+  
+</div>

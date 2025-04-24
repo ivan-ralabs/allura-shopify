@@ -1,0 +1,202 @@
+<!-- Filter Multi-Select CSS -->
+{{ 'filter_multi_select.css' | asset_url | stylesheet_tag }}
+
+<!-- Filter Multi-Select JS -->
+<script src="{{ 'filter-multi-select-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<section class="blog-articles-tag-filer">
+  {% assign blog = blogs['news'] %}
+  {% assign articles = blog.articles %}
+  {% assign tags = blog.tags %}
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-5 offset-lg-1">
+        <h2>Let's explore</h2>
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-5">
+        {% if tags %}
+          {% if tags.size > 0 %}
+            <div class="product-filter d-flex align-items-center justify-content-end">
+              <select multiple name="product-types" id="product-types" class="filter-multi-select">
+                {% for tag in tags %}
+                  <option value="{{ tag }}">{{ tag|capitalize }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+        {% endif %}
+     </div> 
+    </div>
+  </div>
+</section>
+
+<section class="blog-articles">
+  
+  {% if request.params.tag %}
+    {% assign articles = blog.articles | where: "tags", request.params.tag %}
+  {% endif %}
+  
+  {% for article in articles %}
+    <div class="filtered-item w-100 border-bottom pt-5 pb-5" data-tags="{{ article.tags | join: ', ' }}">
+      <div class="container">
+        <div class="row">
+          <!-- <div class="article-ca"> -->
+          <div class="col-8 col-md-8 col-lg-7 offset-lg-1">
+            {% assign word_count = article.content | size %}
+            {% assign reading_time = word_count | divided_by: 200 | ceil %}
+            <time>
+              {{ article.published_at | date: "%b %d, %Y" }}
+              <span>
+                {{ reading_time }} min read
+              </span>
+            </time>
+            <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+            <p>{{ article.excerpt | strip_html | truncatewords: 30 }}</p>
+            <div class="tags">
+              {% for tag in article.tags %}
+                <span class="badge rounded-pill text-bg-light">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-4 col-md-4 col-lg-3 text-end">
+            <div class="image-container">
+              {% if article.image %}
+                <img src="{{ article.image | img_url: 'medium' }}" alt="{{ article.title }}">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+<script>
+  $(function () {
+    const productTypes = $('#product-types').filterMultiSelect({
+      placeholderText: 'All topics'
+    });
+
+    const firstElement = document.querySelector('#product-types .items.dropdown-item .dropdown-item.custom-control');
+    if (firstElement) {
+      firstElement.remove();
+    }
+    
+    function applyFilters() {
+      var selectedFilters = $('input[name="product-types"]:checked').map(function() {
+        return $(this).val().toLowerCase();
+      }).get();
+
+      console.log('Selected filters (lowercase):', selectedFilters);
+
+      if (selectedFilters.length === 0) {
+        console.log('No filters selected, showing all items.');
+        $('.filtered-item').show();
+      } else {
+        $('.filtered-item').each(function() {
+          var itemTags = $(this).data('tags')
+            ? $(this).data('tags').toLowerCase().split(',').map(tag => tag.trim())
+            : [];
+
+          var isVisible = selectedFilters.some(function(value) {
+            return itemTags.includes(value);
+          });
+
+          if (isVisible) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      }
+    }
+
+    $('#product-types').on('optionselected optiondeselected', function(e) {
+      applyFilters();
+    });
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "Blog Articles",
+    "settings": [
+      
+    ],
+    "presets": [{"name": "Blog Articles Section"}]
+  }
+{% endschema %}
+
+<style>
+  .blog-articles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 64px;
+  }
+
+  .blog-articles .filtered-item:last-child {
+    border-bottom: none!important;
+  }
+  
+  .blog-articles-tag-filer {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .blog-articles .tags {
+      overflow: hidden;
+      height: 30px;
+    }
+    
+    .blog-articles-tag-filer {
+      margin-bottom: 24px;
+    }
+  }
+  
+  .blog-articles-tag-filer h2 {
+    margin-bottom: 24px;
+  }
+  
+  .blog-articles .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+  
+  .blog-articles .image-container img {
+    height: auto; 
+    width: 100%; 
+    border-radius: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .blog-articles .image-container img {
+      height: 100%; 
+      width: auto; 
+    }
+  }
+  
+  .article-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+  }
+  .article-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .article-card img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+</style>

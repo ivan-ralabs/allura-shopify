@@ -1,0 +1,277 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="order-history">
+  <h1>Order history</h1>
+
+  {% paginate customer.orders by 20 %}
+    {%- if customer.orders.size > 0 -%}
+      {%- for order in customer.orders -%}
+        <div class="line-item-card" style="width: 100%; margin-bottom: 20px;">
+          <div class="line-item-card-body">
+            <h5 class="card-title d-flex">{{ 'customer.orders.order_number_link' | t: number: order.name }}<span class="order-status ms-auto">{{ order.fulfillment_status_label }}</span></h5>
+            <p class="card-text">Placed {{ order.created_at | date: '%d %b %Y' }}</p>
+            
+            {% for line_item in order.line_items %}
+              <div class="row line-item-product d-flex">
+                <div class="col-auto">
+                  <img src="{{ line_item.product.images[0].src | image_url: width: 96 }}">
+                </div>
+                <div class="col">
+                  <div class="line-item-product-description">
+                    <h6 class="mb-1">{{ line_item.product.title }}</h6>
+                    <p class="mb-1"><span>{{ line_item.product.type }}</span></p>
+                    <p class="mb-1 d-flex">{{ line_item.product.price | money }} <a href="/pages/product-review?product_id={{ line_item.product.id }}" class="ms-auto">Leave review</a></p>
+                  </div>
+                  </div>
+              </div>
+            {% endfor %}
+
+            <a
+              href="{{ order.customer_url }}"
+              class="btn btn-primary"
+              aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+            >
+              View details
+            </a>
+          </div>
+        </div>
+        
+      {%- endfor -%}
+      
+      <!-- <table role="table" class="order-history">
+        <caption class="visually-hidden">
+          {{ 'customer.orders.title' | t }}
+        </caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+            <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+            <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
+            <th id="ColumnFulfillment" scope="col" role="columnheader">
+              {{ 'customer.orders.fulfillment_status' | t }}
+            </th>
+            <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+
+          
+          {%- for order in customer.orders -%}
+            <tr role="row">
+              <td
+                id="RowOrder"
+                role="cell"
+                headers="ColumnOrder"
+                data-label="{{ 'customer.orders.order_number' | t }}"
+              >
+                <a
+                  href="{{ order.customer_url }}"
+                  aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                >
+                  {{ order.name }}
+                </a>
+              </td>
+              <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                {{ order.created_at | time_tag: format: 'date' }}
+              </td>
+              <td
+                headers="RowOrder ColumnPayment"
+                role="cell"
+                data-label="{{ 'customer.orders.payment_status' | t }}"
+              >
+                {{ order.financial_status_label }}
+              </td>
+              <td
+                headers="RowOrder ColumnFulfillment"
+                role="cell"
+                data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+              >
+                {{ order.fulfillment_status_label }}
+              </td>
+              <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                {{ order.total_net_amount | money_with_currency }}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table> -->
+    {%- else -%}
+      <p>{{ 'customer.orders.none' | t }}</p>
+    {%- endif -%}
+    
+    
+    {%- if paginate.pages > 1 -%}
+      {%- if paginate.parts.size > 0 -%}
+        <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+          <ul role="list">
+            {%- if paginate.previous -%}
+              <li>
+                <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                  <span class="svg-wrapper">
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </span>
+                </a>
+              </li>
+            {%- endif -%}
+
+            {%- for part in paginate.parts -%}
+              <li>
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                    {{- part.title -}}
+                  </a>
+                {%- else -%}
+                  {%- if part.title == paginate.current_page -%}
+                    <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                      {{- part.title -}}
+                    </span>
+                  {%- else -%}
+                    <span>{{ part.title }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+
+            {%- if paginate.next -%}
+              <li>
+                <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                  <span class="svg-wrapper">
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </span>
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    {%- endif -%}
+  {% endpaginate %}
+</div>
+
+<div class="customer account section-{{ section.id }}-padding" style="display: none;">
+<!-- <div class="customer account section-{{ section.id }}-padding"> -->
+  <div>
+    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+    <a href="{{ routes.account_logout_url }}">
+      <span class="svg-wrapper">
+        {{- 'icon-account.svg' | inline_asset_content -}}
+      </span>
+      {{ 'customer.log_out' | t }}
+    </a>
+  </div>
+
+  <div>
+    <div>
+      {% assign gender = customer.metafields.custom.gender %}
+      {% assign date_of_birth = customer.metafields.custom.date_of_birth %}
+
+      
+      <h2>{{ 'customer.orders.title' | t }}</h2>
+
+      <p>Gender: {{ gender | default: "Not specified" }}</p>
+      <p>Date of Birth: {{ date_of_birth | default: "Not specified" }}</p>
+      <!-- <p>TEST: {{ customer.metafields | json }}</p> -->
+
+      <form id="edit-profile" method="post" action="/account">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+    
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" name="customer[metafields][custom][gender]" value="{{ gender }}">
+    
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" id="date_of_birth" name="customer[metafields][custom][date_of_birth]" value="{{ date_of_birth }}">
+    
+        <button type="submit">Save Changes</button>
+    </form>
+          
+      <form method="POST" action="/account">
+        <input type="hidden" name="form_type" value="customer_update">
+        <input type="hidden" name="utf8" value="✓">
+
+        <input type="hidden" name="_method" value="put">
+        
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="customer[first_name]" value="{{ customer.first_name }}" required>
+      
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="customer[last_name]" value="{{ customer.last_name }}" required>
+      
+        <label for="email">Email</label>
+        <input type="email" id="email" name="customer[email]" value="{{ customer.email }}" required>
+      
+        <label for="gender">Gender</label>
+        <select id="gender" name="customer[metafields][custom_fields.gender]">
+          <option value="male" {% if customer.metafields.custom_fields.gender == "male" %}selected{% endif %}>Male</option>
+          <option value="female" {% if customer.metafields.custom_fields.gender == "female" %}selected{% endif %}>Female</option>
+          <option value="other" {% if customer.metafields.custom_fields.gender == "other" %}selected{% endif %}>Other</option>
+        </select>
+      
+        <label for="birth_date">Birth Date</label>
+        <input type="date" id="birth_date" name="customer[metafields][custom_fields.birth_date]" value="{{ customer.metafields.custom_fields.birth_date }}">
+      
+        <button type="submit">Save Changes</button>
+      </form>
+
+      
+
+
+    </div>
+
+    <div>
+      <h2>{{ 'customer.account.details' | t }}</h2>
+
+      {{ customer.default_address | format_address }}
+
+      <a href="{{ routes.account_addresses_url }}">
+        {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

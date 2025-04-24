@@ -1,0 +1,94 @@
+<style>
+  .blog-main-banner::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 330px;
+    top: 0;
+    bottom: 0;
+    left: 10%;
+
+    background-image: url('{{ 'main-banner--background-patern.png' | asset_url }}'); 
+    background-repeat: repeat;
+    background-size: initial;
+    background-position: top left;
+  }
+</style>
+
+<section class="blog-main-banner">
+  {% if section.settings.banner_image %}
+    <div class="blog-banner-image">
+      <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="Main Banner Image">
+    </div>
+  {% endif %}
+  <div class="blog-banner-caption">
+    <div class="blog-banner-caption-cover">
+      <img src="{{ section.settings.text_background | img_url: 'master' }}" alt="Main Banner caption">
+    </div>
+    <div class="container">
+      <div class="banner-text pb-5">
+        <b>{{ section.settings.banner_title }}</b>
+        <h1 class="mt-4">{{ section.settings.banner_description }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Title",
+      "default": "Welcome to Our Blog"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_description",
+      "label": "Short Description",
+      "default": "Discover the latest news, tips, and insights on our blog."
+    },
+    {
+      "type": "image_picker",
+      "id": "text_background",
+      "label": "Background for Text Section (PNG)"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Main Banner Image (PNG)"
+    }
+  ],
+  "presets": [{"name": "Blog Banner Section"}]
+}
+{% endschema %}
+
+<style>
+  .blog-banner {
+    text-align: center;
+    padding: 50px 20px;
+    background-size: cover;
+    background-position: center;
+    color: #fff; 
+  }
+  .blog-banner .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .blog-banner .banner-image img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .blog-banner .banner-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  .blog-banner .banner-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,238 @@
+<div class="about-us-team">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10  offset-lg-1 text-center">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for member in section.blocks %}
+        <div class="col-md-6 col-lg-5 mb-4 d-flex {% if forloop.first %}offset-lg-1{% endif %}">
+          <div class="team-member text-start">
+            <div class="team-avatar">
+              {% if member.settings.avatar %}
+                <img src="{{ member.settings.avatar | img_url: 'medium' }}" alt="{{ member.settings.initials }}" class="img-fluid rounded-circle">
+              {% endif %}
+            </div>
+            <div class="team-info">
+              <h5 class="team-name">{{ member.settings.initials }}</h5>
+              <p class="team-position">{{ member.settings.position }}</p>
+              <p class="team-description">{{ member.settings.description }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-us-section {
+    background-color: transparent;  
+  }
+  
+  .about-us-team {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .about-us-team::before,
+  .about-us-team::after {
+    content: '';
+    position: absolute;
+    background-color: #C7D7C0;
+    border-radius: 140px;
+    opacity: 1; 
+  }
+  
+  .about-us-team::before {
+    width: 334px;
+    height: 156px;
+    bottom: -50px;
+    left: -80px;
+  }
+  
+  .about-us-team::after {
+    width: 389px;
+    height: 200px;
+    top: 60px;
+    /* right: -85px; */
+    right: -10%;
+    z-index: -1;
+  }
+
+  @media (max-width: 991.98px) {
+    .about-us-team::before {
+      height: 156px;
+    }
+    
+    .about-us-team::after {
+      height: 180px;
+      top: 55px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-us-team::before {
+      height: 88px;
+      bottom: 0;
+    }
+    
+    .about-us-team::after {
+      height: 88px;
+      top: 130px;
+    }
+  }
+  
+  @media (max-width: 1050px) {
+    .about-us-team::after {
+       right: -15%; 
+    }
+  }
+
+  @media (max-width: 905px) {
+    .about-us-team::after {
+       right: -20%; 
+    }
+  }
+
+  @media (max-width: 860px) {
+    .about-us-team::after {
+       right: -25%; 
+    }
+  }
+
+
+  
+  .team-member {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #5A8676;
+    border-radius: 16px;
+  }
+
+  .team-avatar img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+
+  .team-info {
+    padding-top: 10px;
+  }
+
+  .team-info h2 {
+    font-family: Lora;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+
+  .team-info .team-position {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #626262;
+  }
+
+  .team-info  .team-description {
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  
+  .team-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .team-position {
+    font-size: 16px;
+    color: #777;
+  }
+
+  .team-description {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  @media (max-width: 767px) {
+    .team-member {
+      padding: 15px;
+    }
+
+    .team-avatar img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "About Us Team Section",
+      "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Our Team",
+      "info": "This is the title for the About Us Team section."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Avatar",
+          "id": "avatar",
+          "info": "Upload a team member's avatar image."
+        },
+        {
+          "type": "text",
+          "label": "Initials",
+          "id": "initials",
+          "default": "John Doe",
+          "info": "Enter the initials of the team member."
+        },
+        {
+          "type": "text",
+          "label": "Position",
+          "id": "position",
+          "default": "CEO",
+          "info": "Enter the team member's position."
+        },
+        {
+          "type": "textarea",
+          "label": "Description",
+          "id": "description",
+          "default": "Short description of the team member.",
+          "info": "Provide a brief description of the team member."
+        }
+      ]
+    }
+  ],
+    "presets": [{"name": "About Us Team Section"}]
+  }
+{% endschema %}

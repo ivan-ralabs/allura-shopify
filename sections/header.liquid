@@ -1,0 +1,660 @@
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{%- if settings.predictive_search_enabled -%}
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+{%- if section.settings.menu_type_desktop == 'mega' -%}
+  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+
+<style>
+  header-drawer {
+    justify-self: start;
+    margin-left: -1.2rem;
+  }
+
+  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
+    .scrolled-past-header .header__heading-logo-wrapper {
+      width: 75%;
+    }
+  {%- endif -%}
+
+  {%- if section.settings.menu_type_desktop != "drawer" -%}
+    @media screen and (min-width: 990px) {
+      header-drawer {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+  .menu-drawer-container {
+    display: flex;
+  }
+
+  .list-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  summary.list-menu__item {
+    padding-right: 2.7rem;
+  }
+
+  .list-menu__item {
+    display: flex;
+    align-items: center;
+    line-height: calc(1 + 0.3 / var(--font-body-scale));
+  }
+
+  .list-menu__item--link {
+    text-decoration: none;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
+  }
+
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+</style>
+
+{%- style -%}
+  .header {
+    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+  }
+
+  .section-header {
+    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .header {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_block = true
+    endif
+  endfor
+-%}
+
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+  {%- liquid
+    assign social_links = false
+    assign localization_forms = false
+
+    if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
+      assign social_links = true
+    endif
+
+    if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
+      assign localization_forms = true
+    endif
+  -%}
+
+
+  <header class="container py-3">
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-start align-items-start">
+          <!-- Логотип -->
+          <div>
+            <a href="/">
+                <!-- Логотип для мобільних -->
+                <!-- <img src="mobile-logo.png" alt="Mobile Logo" class="d-block d-md-none" style="height: 40px;"> -->
+                <svg id="b" class="logo-short d-block d-md-none" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+                  <defs>
+                    <style>
+                      .e11 {
+                        fill: none;
+                      }
+                
+                      .f11 {
+                        fill: #c79662;
+                      }
+                    </style>
+                  </defs>
+                  <g id="c" data-name="vctr">
+                    <g id="d" data-name="graphmark_color">
+                      <rect class="e11" width="120" height="120" rx="20" ry="20"/>
+                      <path class="f11" d="M97.66,46.32c-7.54-20.73-30.54-31.45-51.27-23.91-20.73,7.54-31.45,30.54-23.91,51.27,7.54,20.73,30.54,31.45,51.27,23.91,20.73-7.54,31.45-30.54,23.91-51.27ZM29.57,66.84h0c-4.53-12.46,1.89-26.23,14.34-30.76,12.46-4.53,26.23,1.89,30.76,14.34h0c4.53,12.46-1.89,26.23-14.34,30.76-12.46,4.53-26.23-1.89-30.76-14.34Z"/>
+                    </g>
+                  </g>
+                </svg>
+                <!-- Логотип для всіх інших розширень -->
+                <!-- <img src="desktop-logo.png" alt="Desktop Logo" class="d-none d-md-block" style="height: 50px;"> -->
+                <svg id="a" class="logo-expanded d-none d-md-block" data-name="vctr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 631.13 120">
+                  <defs>
+                    <style>
+                      .c1 {
+                        fill: #c79662;
+                      }
+                
+                      .d1 {
+                        fill: #264238;
+                      }
+                    </style>
+                  </defs>
+                  <g id="b" data-name="horizontal_color">
+                    <path class="c1" d="M97.66,46.32c-7.54-20.73-30.54-31.45-51.27-23.91-20.73,7.54-31.45,30.54-23.91,51.27,7.54,20.73,30.54,31.45,51.27,23.91,20.73-7.54,31.45-30.54,23.91-51.27ZM29.57,66.84h0c-4.53-12.46,1.89-26.23,14.34-30.76s26.23,1.89,30.76,14.34h0c4.53,12.46-1.89,26.23-14.34,30.76s-26.23-1.89-30.76-14.34Z"/>
+                    <g>
+                      <path class="d1" d="M120,93.64l16.98-50.4h6.9l16.67,50.4h-6.12l-5.27-15.51h-19.77l-5.27,15.51h-4.11ZM130.47,74.95h17.68l-8.76-27.21-8.92,27.21ZM166.44,93.64v-58l5.58-.31v58.31h-5.58ZM181.11,93.64v-58l5.58-.31v58.31h-5.58ZM198.59,91.27c-2.07-2.09-3.1-5.21-3.1-9.34v-27.06h5.66v25.9c0,6.36,2.69,9.54,8.06,9.54,1.86,0,3.46-.29,4.81-.89,1.34-.59,2.41-1.23,3.22-1.9.8-.67,1.2-1.06,1.2-1.16v-31.48h5.66v38.77h-4.73l-.78-3.72c-.67.93-1.91,1.91-3.72,2.95-1.81,1.03-4.32,1.55-7.52,1.55-3.77,0-6.69-1.04-8.76-3.14ZM233.12,54.87h4.19l.85,7.99c0-.31.3-1.2.89-2.67.59-1.47,1.51-2.86,2.75-4.15,1.24-1.29,2.84-1.94,4.81-1.94.98,0,2.09.17,3.33.5,1.24.34,2.04.58,2.4.74l-.54,4.26c-.36-.16-1.18-.39-2.44-.7s-2.39-.47-3.37-.47c-1.5,0-2.78.51-3.84,1.51-1.06,1.01-1.85,2.08-2.37,3.22-.52,1.14-.85,1.99-1.01,2.56v27.91h-5.66v-38.77ZM256.74,91.9c-2.07-1.68-3.1-4.02-3.1-7.02,0-7.6,7.31-12.17,21.94-13.72v-4.11c0-3.67-.6-6.18-1.78-7.52-1.19-1.35-3.28-2.02-6.28-2.02-1.34,0-2.71.25-4.11.74s-2.57,1.01-3.53,1.55-1.56.89-1.82,1.05l-.62-3.18c.26-.2.92-.59,1.98-1.16,1.06-.57,2.4-1.11,4.03-1.63,1.63-.52,3.27-.77,4.92-.77,4.44,0,7.7.93,9.77,2.79,2.07,1.86,3.1,5.14,3.1,9.84v19c0,2.07.19,3.46.58,4.19.39.72.86,1.08,1.43,1.08.46,0,1.03-.09,1.7-.27.67-.18,1.11-.32,1.32-.43l.23,2.64c-.42.15-1.29.44-2.64.85-1.34.41-2.48.62-3.41.62-1.34,0-2.38-.43-3.1-1.28-.72-.86-1.16-2.37-1.32-4.53h-.08c0,.2-.41.8-1.24,1.78-.83.98-2.05,1.9-3.68,2.75-1.63.85-3.66,1.28-6.09,1.28-3.41,0-6.15-.84-8.22-2.52ZM271.47,89.76c1.34-.83,2.36-1.73,3.06-2.71s1.05-1.55,1.05-1.71v-11.32c-4.7.52-8.57,1.53-11.59,3.02-3.02,1.5-4.53,3.88-4.53,7.13,0,2.22.65,3.92,1.94,5.08s3.05,1.74,5.27,1.74c1.86,0,3.46-.41,4.81-1.24ZM305.52,93.64l.23-50.4.16.23-.08-.23h7.21l17.75,43.19h.08l17.75-43.19h6.82l.23,50.4h-5.74l-.23-43.19h-.08l-17.45,43.19h-4.73l-17.52-43.19-.16,43.19h-4.26ZM368.27,89.57c-2.94-3.23-4.42-8.08-4.42-14.54s1.42-11.63,4.26-15.35c2.84-3.72,6.72-5.58,11.63-5.58,4.44,0,7.87,1.53,10.28,4.61,2.4,3.07,3.6,7.43,3.6,13.06,0,.98-.05,1.78-.15,2.4-.11.62-.18,1.01-.23,1.16h-23.49c0,10.44,3.77,15.66,11.32,15.66,2.07,0,3.84-.38,5.31-1.13s2.62-1.55,3.45-2.4,1.24-1.36,1.24-1.51l2.25,1.86c0,.21-.5.87-1.47,1.98-.98,1.11-2.43,2.16-4.34,3.14-1.92.98-4.26,1.47-7.06,1.47-5.17,0-9.23-1.61-12.18-4.85ZM388.35,72.09l.08-1.47c0-8.79-2.89-13.18-8.69-13.18-3.05,0-5.4,1.2-7.05,3.61-1.66,2.4-2.61,6.09-2.87,11.05h18.53ZM402.29,89.38c-2.84-3.36-4.26-8.04-4.26-14.03,0-6.46,1.38-11.62,4.15-15.47,2.77-3.85,6.65-5.78,11.67-5.78,2.12,0,3.9.27,5.35.81,1.44.54,2.56,1.14,3.33,1.78.78.65,1.16,1.02,1.16,1.13h.08v-22.18l5.58-.31v58.31h-4.81l-.62-4.58c-.57,1.14-1.68,2.32-3.33,3.53-1.66,1.22-3.98,1.82-6.98,1.82-4.71,0-8.48-1.68-11.32-5.04ZM419.65,89.42c1.35-.8,2.37-1.67,3.07-2.6.7-.93,1.04-1.47,1.04-1.63v-23.8c0-.1-.35-.46-1.04-1.08-.7-.62-1.66-1.19-2.87-1.71-1.22-.52-2.65-.77-4.31-.77-3.98,0-6.9,1.46-8.76,4.38-1.86,2.92-2.79,7.25-2.79,12.99,0,5.43.92,9.36,2.75,11.79s4.53,3.64,8.1,3.64c1.86,0,3.46-.4,4.81-1.2ZM439,46.19c-.67-.67-1.01-1.5-1.01-2.48s.34-1.81,1.01-2.48c.57-.57,1.32-.86,2.25-.86.98,0,1.76.26,2.32.78.62.67.93,1.53.93,2.56,0,.93-.31,1.76-.93,2.48-.72.57-1.5.86-2.32.86-.93,0-1.68-.29-2.25-.86ZM438.38,93.64v-38.77h5.66v38.77h-5.66ZM455.13,89.45c-2.9-3.31-4.34-8.24-4.34-14.81s1.43-11.7,4.3-15.24,7.07-5.31,12.6-5.31c1.81,0,3.51.25,5.12.74,1.6.49,2.96,1.03,4.07,1.62,1.11.6,1.67.92,1.67.97l-.7,3.18c-.2-.16-.76-.48-1.67-.97s-2.07-.97-3.49-1.43c-1.42-.47-2.89-.7-4.38-.7-3.98,0-6.9,1.32-8.76,3.95-1.86,2.64-2.79,7.01-2.79,13.11s.98,10.11,2.94,12.64,4.73,3.8,8.3,3.8c2.02,0,3.74-.36,5.16-1.08s2.52-1.49,3.29-2.29c.78-.8,1.17-1.28,1.17-1.44l2.48,1.63c0,.21-.47.87-1.4,1.98-.93,1.11-2.33,2.16-4.19,3.14-1.86.98-4.19,1.47-6.98,1.47-5.38,0-9.51-1.65-12.41-4.96ZM485.45,93.64v-38.77h5.66v38.77h-5.66ZM500.57,54.87h4.65l.7,3.72c.83-.98,2.12-1.98,3.88-2.98s4.29-1.51,7.6-1.51c3.72,0,6.61,1.04,8.68,3.14,2.07,2.09,3.1,5.21,3.1,9.34v27.06h-5.66v-25.9c0-3.31-.67-5.73-2.01-7.25-1.35-1.52-3.34-2.28-5.97-2.28-1.86,0-3.49.28-4.88.85s-2.5,1.19-3.3,1.86-1.2,1.06-1.2,1.16v31.56h-5.58v-38.77ZM537.9,91.9c-2.07-1.68-3.1-4.02-3.1-7.02,0-7.6,7.31-12.17,21.94-13.72v-4.11c0-3.67-.59-6.18-1.78-7.52-1.19-1.35-3.29-2.02-6.28-2.02-1.34,0-2.71.25-4.11.74s-2.57,1.01-3.53,1.55-1.56.89-1.82,1.05l-.62-3.18c.26-.2.92-.59,1.98-1.16,1.06-.57,2.4-1.11,4.03-1.63,1.62-.52,3.27-.77,4.92-.77,4.44,0,7.7.93,9.77,2.79,2.06,1.86,3.1,5.14,3.1,9.84v19c0,2.07.2,3.46.58,4.19.39.72.87,1.08,1.44,1.08.46,0,1.03-.09,1.71-.27.67-.18,1.11-.32,1.32-.43l.23,2.64c-.41.15-1.29.44-2.64.85-1.34.41-2.48.62-3.41.62-1.35,0-2.38-.43-3.1-1.28-.72-.86-1.16-2.37-1.32-4.53h-.08c0,.2-.41.8-1.24,1.78-.83.98-2.05,1.9-3.68,2.75-1.63.85-3.65,1.28-6.09,1.28-3.41,0-6.15-.84-8.22-2.52ZM552.63,89.76c1.35-.83,2.37-1.73,3.07-2.71.7-.98,1.04-1.55,1.04-1.71v-11.32c-4.7.52-8.57,1.53-11.59,3.02s-4.53,3.88-4.53,7.13c0,2.22.65,3.92,1.94,5.08,1.29,1.16,3.05,1.74,5.27,1.74,1.86,0,3.46-.41,4.81-1.24ZM573.14,93.64v-58l5.58-.31v58.31h-5.58ZM590.46,93.14c-1.89-.86-3.31-1.77-4.26-2.75-.95-.98-1.43-1.55-1.43-1.7l1.94-2.71c0,.1.41.59,1.24,1.47.83.88,1.96,1.69,3.41,2.44,1.45.75,3.15,1.13,5.12,1.13,2.89,0,5.08-.72,6.55-2.17,1.47-1.44,2.21-3.2,2.21-5.27,0-1.5-.38-2.74-1.12-3.72-.75-.98-1.68-1.74-2.79-2.29-1.11-.54-2.65-1.15-4.62-1.82-2.28-.83-4.08-1.59-5.43-2.29-1.34-.7-2.49-1.74-3.45-3.14s-1.43-3.2-1.43-5.43c0-3.31,1.2-5.93,3.61-7.87,2.4-1.94,5.49-2.91,9.27-2.91,1.65,0,3.24.22,4.77.66,1.52.44,2.75.9,3.68,1.4.93.49,1.53.81,1.78.97l-.93,3.34c-.21-.16-.72-.48-1.55-.97s-1.9-.97-3.22-1.43c-1.32-.47-2.68-.7-4.07-.7-2.38,0-4.3.6-5.78,1.78-1.47,1.19-2.21,2.69-2.21,4.5,0,1.5.39,2.75,1.16,3.76.78,1.01,1.74,1.8,2.91,2.37,1.16.57,2.73,1.22,4.69,1.94,2.27.77,4.12,1.54,5.54,2.29s2.62,1.82,3.61,3.22,1.47,3.2,1.47,5.43c0,3.36-1.16,6.16-3.49,8.41-2.32,2.25-5.73,3.37-10.23,3.37-2.74,0-5.05-.43-6.94-1.28Z"/>
+                      <path class="c1" d="M491.7,42.24c-.72-1.98-2.91-3-4.89-2.28s-3,2.91-2.28,4.89,2.91,3,4.89,2.28,3-2.91,2.28-4.89ZM485.21,44.2h0c-.43-1.19.18-2.5,1.37-2.93s2.5.18,2.93,1.37h0c.43,1.19-.18,2.5-1.37,2.93s-2.5-.18-2.93-1.37Z"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </a>
+          </path>
+          <!-- Меню -->
+          <nav>
+            <ul class="list-unstyled d-flex mb-0">
+              <li class="">
+                <a href="/pages/about-us" class="text-decoration-none {% if request.path contains 'pages/about-us' %}active{% endif %}">About us</a>
+              </li>
+              <li class="">
+                <a href="/pages/blog" class="text-decoration-none {% if request.path contains '/blog' %}active{% endif %}">Blog space</a>
+              </li>
+            </ul>
+          </nav>
+      
+          <div class="d-flex align-items-center ms-auto">
+            {%- if shop.customer_accounts_enabled -%}
+              <!-- mobile -->
+              {%- if customer -%}
+                <a href="" class="header__icon header__icon--account link focus-inset d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#accountOffcanvas" aria-controls="accountOffcanvas">
+                  {%- if section.settings.enable_customer_avatar -%}
+                    <account-icon>
+                      {%- if customer and customer.has_avatar? -%}
+                        {{ customer | avatar }}
+                      {%- else -%}
+                        <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                      {%- endif -%}
+                    </account-icon>
+                  {%- else -%}
+                    <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                  {%- endif -%}
+                  <span class="visually-hidden">
+                    {%- liquid
+                      if customer
+                        echo 'customer.account_fallback' | t
+                      else
+                        echo 'customer.log_in' | t
+                      endif
+                    -%}
+                  </span>
+                </a>
+              {%- else -%}
+                <a href="{{ routes.account_login_url }}" class="header__icon header__icon--account link focus-inset d-lg-none">
+                  {%- if section.settings.enable_customer_avatar -%}
+                    <account-icon>
+                      {%- if customer and customer.has_avatar? -%}
+                        {{ customer | avatar }}
+                      {%- else -%}
+                        <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                      {%- endif -%}
+                    </account-icon>
+                  {%- else -%}
+                    <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                  {%- endif -%}
+                  <span class="visually-hidden">
+                    {%- liquid
+                      if customer
+                        echo 'customer.account_fallback' | t
+                      else
+                        echo 'customer.log_in' | t
+                      endif
+                    -%}
+                  </span>
+                </a>
+                
+              {%- endif -%}
+              
+              
+              <a
+                href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                id="account-link"
+                class="header__icon header__icon--account link focus-inset d-none d-lg-inline-block"
+                rel="nofollow"
+              >
+                {%- if section.settings.enable_customer_avatar -%}
+                  <account-icon>
+                    {%- if customer and customer.has_avatar? -%}
+                      {{ customer | avatar }}
+                    {%- else -%}
+                      <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                    {%- endif -%}
+                  </account-icon>
+                {%- else -%}
+                  <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                {%- endif -%}
+                <span class="visually-hidden">
+                  {%- liquid
+                    if customer
+                      echo 'customer.account_fallback' | t
+                    else
+                      echo 'customer.log_in' | t
+                    endif
+                  -%}
+                </span>
+              </a>
+            {%- endif -%}
+            <!-- <a href="/account" class="text-decoration-none mx-2">
+              <i class="bi bi-person" style="font-size: 1.5rem;"></i>
+            </a> -->
+            <!-- Іконка корзини -->
+            <!-- <a href="/cart" class="text-decoration-none mx-2">
+              <i class="bi bi-cart" style="font-size: 1.5rem;"></i>
+            </a> -->
+                <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+                  {% if cart == empty %}
+                    <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
+                  {% else %}
+                    <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
+                  {% endif %}
+                <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+                {%- if cart != empty -%}
+                  <div class="cart-count-bubble">
+                    {%- if cart.item_count < 100 -%}
+                      <span aria-hidden="true">{{ cart.item_count }}</span>
+                    {%- endif -%}
+                    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                  </div>
+                {%- endif -%}
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+                     
+</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+
+{%- if settings.cart_type == "notification" -%}
+  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
+{%- endif -%}
+
+{% javascript %}
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.header = document.querySelector('.section-header');
+      this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+      this.headerBounds = {};
+
+      this.setHeaderHeight();
+
+      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
+
+      if (this.headerIsAlwaysSticky) {
+        this.header.classList.add('shopify-section-header-sticky');
+      };
+
+      this.currentScrollTop = 0;
+      this.preventReveal = false;
+      this.predictiveSearch = this.querySelector('predictive-search');
+
+      this.onScrollHandler = this.onScroll.bind(this);
+      this.hideHeaderOnScrollUp = () => this.preventReveal = true;
+
+      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.addEventListener('scroll', this.onScrollHandler, false);
+
+      this.createObserver();
+    }
+
+    setHeaderHeight() {
+      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    createObserver() {
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      });
+
+      observer.observe(this.header);
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        this.header.classList.add('scrolled-past-header');
+        if (this.preventHide) return;
+        requestAnimationFrame(this.hide.bind(this));
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        this.header.classList.add('scrolled-past-header');
+        if (!this.preventReveal) {
+          requestAnimationFrame(this.reveal.bind(this));
+        } else {
+          window.clearTimeout(this.isScrolling);
+
+          this.isScrolling = setTimeout(() => {
+            this.preventReveal = false;
+          }, 66);
+
+          requestAnimationFrame(this.hide.bind(this));
+        }
+      } else if (scrollTop <= this.headerBounds.top) {
+        this.header.classList.remove('scrolled-past-header');
+        requestAnimationFrame(this.reset.bind(this));
+      }
+
+      this.currentScrollTop = scrollTop;
+    }
+
+    hide() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      this.closeMenuDisclosure();
+      // this.closeSearchModal();
+    }
+
+    reveal() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.add('shopify-section-header-sticky', 'animate');
+      this.header.classList.remove('shopify-section-header-hidden');
+    }
+
+    reset() {
+      if (this.headerIsAlwaysSticky) return;
+      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+    }
+
+    closeMenuDisclosure() {
+      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
+      this.disclosures.forEach(disclosure => disclosure.close());
+    }
+
+    // closeSearchModal() {
+    //   this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+    //   this.searchModal.close(false);
+    // }
+  }
+
+  customElements.define('sticky-header', StickyHeader);
+{% endjavascript %}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "t:sections.header.settings.logo_position.options__2.label"
+        },
+        {
+          "value": "top-center",
+          "label": "t:sections.header.settings.logo_position.options__3.label"
+        },
+        {
+          "value": "middle-left",
+          "label": "t:sections.header.settings.logo_position.options__1.label"
+        },
+        {
+          "value": "middle-center",
+          "label": "t:sections.header.settings.logo_position.options__4.label"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sections.header.settings.logo_position.label",
+      "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "select",
+      "id": "menu_type_desktop",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
+        },
+        {
+          "value": "mega",
+          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        }
+      ],
+      "default": "dropdown",
+      "label": "t:sections.header.settings.menu_type_desktop.label",
+      "info": "t:sections.header.settings.menu_type_desktop.info"
+    },
+    {
+      "type": "select",
+      "id": "sticky_header_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
+        },
+        {
+          "value": "on-scroll-up",
+          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
+        },
+        {
+          "value": "always",
+          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
+        },
+        {
+          "value": "reduce-logo-size",
+          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
+        }
+      ],
+      "default": "on-scroll-up",
+      "label": "t:sections.header.settings.sticky_header_type.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__1.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__3.content",
+      "info": "t:sections.header.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": false,
+      "label": "t:sections.header.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__5.content",
+      "info": "t:sections.header.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": false,
+      "label": "t:sections.header.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__7.content",
+      "info": "t:sections.header.settings.header__7.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_customer_avatar",
+      "default": true,
+      "label": "t:sections.header.settings.enable_customer_avatar.label",
+      "info": "t:sections.header.settings.enable_customer_avatar.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.mobile_layout.content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_logo_position",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.header.settings.mobile_logo_position.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.settings.margin_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,324 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  <div class="row">
+    <div class="col mt-5 text-start mb-4">
+      <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+    </div>
+  </div>
+</div>
+
+<article class="article-default-templete">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+        <div class="tags">
+          {% for tag in article.tags %}
+            <span class="badge rounded-pill text-bg-light">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        <div class="article-header">
+          <h1 class="article-template__title">
+            {{ article.title | escape }}
+          </h1>
+          {% assign word_count = article.content | size %}
+          {% assign reading_time = word_count | divided_by: 200 | ceil %}
+          
+          <time>
+            {{- article.published_at | date: "%b %e, %Y" -}}
+            <span>
+              {{ reading_time }} min read
+            </span>
+          </time>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="page-width page-width--narrow">
+                {% render block %}
+              </div>
+            {%- when 'featured_image' -%}
+              {%- if article.image -%}
+                <div class="">
+                  <div class="article-media">
+                    <img
+                      srcset="
+                        {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                        {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                        {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                        {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                        {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                        {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                        {{ article.image | image_url }} {{ article.image.width }}w
+                      "
+                      sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                      src="{{ article.image | image_url: width: 1100 }}"
+                      loading="eager"
+                      fetchpriority="high"
+                      width="{{ article.image.width }}"
+                      height="{{ article.image.height }}"
+                      alt="{{ article.image.alt | escape }}"
+                    >
+                  </div>
+                </div>
+              {%- endif -%}
+      
+            {{ article.content }}
+      
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  
+</article>
+
+<style>
+  article {
+    padding-bottom: 64px;
+  }
+  
+  article .tags {
+    margin-bottom: 24px;
+  }
+
+  article .tags .badge.rounded-pill {
+    font-family: Nunito Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #285445!important;
+    padding: 4px 12px;
+    background-color: #EEF3EC!important;
+    border-radius: 32px!important;
+    border: 1px solid #285445;
+    margin-right: 8px;
+  }
+
+  article .article-header {
+      margin-bottom: 24px;
+  }
+  
+  article .article-header h1 {
+    font-family: Lora;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 64px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+    padding-bottom: 24px;
+    margin-bottom: 16px!important;
+    border-bottom: 1px solid #BABABA;
+  }
+
+  @media (max-width: 991.98px) {
+    article .article-header h1 {
+      font-size: 32px;
+      line-height: 44px;
+    }
+  }
+
+  article  .article-header time {
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #626262;
+  }
+
+  article  .article-header time span {
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #757575;
+    padding-left: 8px;
+    border-left: 1px solid #9E9E9E;
+    margin-left: 8px;
+  }
+  
+  .article-media img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    padding-bottom: 0!important;
+  }
+
+  article p, .article-default-templete p {
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+    margin-bottom: 24px;
+  }
+
+  .article-default-templete h2, .article-default-templete h3 {
+    font-family: Nunito Sans;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+    margin-bottom: 8px;
+  }
+  
+  .article-default-templete h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  .article-default-templete h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  .article-default-templete ul, .article-default-templete ol {
+    padding-left: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .article-default-templete ul li, .article-default-templete ol li {
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+
+  .article-default-templete iframe {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .article-default-templete img {
+    padding-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .article-default-templete .col-12 hr {
+    height: 0!important;
+    margin: 0!important;
+    opacity: 1!important;
+    border-bottom: 1px solid #BABABA;
+  }
+</style>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "t:sections.main-article.blocks.share.settings.text.default"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

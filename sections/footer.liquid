@@ -1,0 +1,692 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-7">
+        <a href="{{ routes.root_url }}">
+          <svg id="b21"  class="logo-short d-block d-md-none"  data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+            <defs>
+              <style>
+                .e21 {
+                  fill: none;
+                }
+          
+                .f21 {
+                  fill: #fff;
+                }
+              </style>
+            </defs>
+            <g id="c21" data-name="vctr">
+              <g id="d21" data-name="graphmark_white">
+                <rect class="e21" width="120" height="120" rx="20" ry="20"/>
+                <path class="f21" d="M97.66,46.32c-7.54-20.73-30.54-31.45-51.27-23.91s-31.45,30.54-23.91,51.27c7.54,20.73,30.54,31.45,51.27,23.91s31.45-30.54,23.91-51.27ZM29.57,66.84h0c-4.53-12.46,1.89-26.23,14.34-30.76s26.23,1.89,30.76,14.34h0c4.53,12.46-1.89,26.23-14.34,30.76s-26.23-1.89-30.76-14.34Z"/>
+              </g>
+            </g>
+          </svg>
+                  
+          <svg id="a" class="logo-expanded d-none d-md-block" data-name="vctr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 631.12 120">
+            <defs>
+              <style>
+                .c2 {
+                  fill: #fff;
+                }
+              </style>
+            </defs>
+            <g id="b2" data-name="horizontal_mono_white">
+              <path class="c2" d="M97.66,46.32c-7.54-20.73-30.54-31.45-51.27-23.91-20.73,7.54-31.45,30.54-23.91,51.27,7.54,20.73,30.54,31.45,51.27,23.91,20.73-7.54,31.45-30.54,23.91-51.27ZM29.57,66.84h0c-4.53-12.46,1.89-26.23,14.34-30.76s26.23,1.89,30.76,14.34h0c4.53,12.46-1.89,26.23-14.34,30.76s-26.23-1.89-30.76-14.34Z"/>
+              <g>
+                <path class="c2" d="M120,93.64l16.98-50.4h6.9l16.67,50.4h-6.12l-5.27-15.51h-19.77l-5.27,15.51h-4.11ZM130.47,74.95h17.68l-8.76-27.21-8.92,27.21ZM166.44,93.64v-58l5.58-.31v58.31h-5.58ZM181.11,93.64v-58l5.58-.31v58.31h-5.58ZM198.59,91.27c-2.07-2.09-3.1-5.21-3.1-9.34v-27.06h5.66v25.9c0,6.36,2.69,9.54,8.06,9.54,1.86,0,3.46-.29,4.81-.89,1.34-.59,2.41-1.23,3.22-1.9.8-.67,1.2-1.06,1.2-1.16v-31.48h5.66v38.77h-4.73l-.78-3.72c-.67.93-1.91,1.91-3.72,2.95-1.81,1.03-4.32,1.55-7.52,1.55-3.77,0-6.69-1.04-8.76-3.14ZM233.12,54.87h4.19l.85,7.99c0-.31.3-1.2.89-2.67.59-1.47,1.51-2.86,2.75-4.15,1.24-1.29,2.84-1.94,4.81-1.94.98,0,2.09.17,3.33.5,1.24.34,2.04.58,2.4.74l-.54,4.26c-.36-.16-1.18-.39-2.44-.7s-2.39-.47-3.37-.47c-1.5,0-2.78.51-3.84,1.51-1.06,1.01-1.85,2.08-2.37,3.22-.52,1.14-.85,1.99-1.01,2.56v27.91h-5.66v-38.77ZM256.74,91.9c-2.07-1.68-3.1-4.02-3.1-7.02,0-7.6,7.31-12.17,21.94-13.72v-4.11c0-3.67-.6-6.18-1.78-7.52-1.19-1.35-3.28-2.02-6.28-2.02-1.34,0-2.71.25-4.11.74s-2.57,1.01-3.53,1.55-1.56.89-1.82,1.05l-.62-3.18c.26-.2.92-.59,1.98-1.16,1.06-.57,2.4-1.11,4.03-1.63,1.63-.52,3.27-.77,4.92-.77,4.44,0,7.7.93,9.77,2.79,2.07,1.86,3.1,5.14,3.1,9.84v19c0,2.07.19,3.46.58,4.19.39.72.86,1.08,1.43,1.08.46,0,1.03-.09,1.7-.27.67-.18,1.11-.32,1.32-.43l.23,2.64c-.42.15-1.29.44-2.64.85-1.34.41-2.48.62-3.41.62-1.34,0-2.38-.43-3.1-1.28-.72-.86-1.16-2.37-1.32-4.53h-.08c0,.2-.41.8-1.24,1.78-.83.98-2.05,1.9-3.68,2.75-1.63.85-3.66,1.28-6.09,1.28-3.41,0-6.15-.84-8.22-2.52ZM271.47,89.76c1.34-.83,2.36-1.73,3.06-2.71s1.05-1.55,1.05-1.71v-11.32c-4.7.52-8.57,1.53-11.59,3.02-3.02,1.5-4.53,3.88-4.53,7.13,0,2.22.65,3.92,1.94,5.08s3.05,1.74,5.27,1.74c1.86,0,3.46-.41,4.81-1.24ZM305.52,93.64l.23-50.4.16.23-.08-.23h7.21l17.75,43.19h.08l17.75-43.19h6.82l.23,50.4h-5.74l-.23-43.19h-.08l-17.45,43.19h-4.73l-17.52-43.19-.16,43.19h-4.26ZM368.27,89.57c-2.94-3.23-4.42-8.08-4.42-14.54s1.42-11.63,4.26-15.35c2.84-3.72,6.72-5.58,11.63-5.58,4.44,0,7.87,1.53,10.28,4.61,2.4,3.07,3.6,7.43,3.6,13.06,0,.98-.05,1.78-.15,2.4-.11.62-.18,1.01-.23,1.16h-23.49c0,10.44,3.77,15.66,11.32,15.66,2.07,0,3.84-.38,5.31-1.13s2.62-1.55,3.45-2.4,1.24-1.36,1.24-1.51l2.25,1.86c0,.21-.5.87-1.47,1.98-.98,1.11-2.43,2.16-4.34,3.14-1.92.98-4.26,1.47-7.06,1.47-5.17,0-9.23-1.61-12.18-4.85ZM388.35,72.09l.08-1.47c0-8.79-2.89-13.18-8.69-13.18-3.05,0-5.4,1.2-7.05,3.61-1.66,2.4-2.61,6.09-2.87,11.05h18.53ZM402.29,89.38c-2.84-3.36-4.26-8.04-4.26-14.03,0-6.46,1.38-11.62,4.15-15.47,2.77-3.85,6.65-5.78,11.67-5.78,2.12,0,3.9.27,5.35.81,1.44.54,2.56,1.14,3.33,1.78.78.65,1.16,1.02,1.16,1.13h.08v-22.18l5.58-.31v58.31h-4.81l-.62-4.58c-.57,1.14-1.68,2.32-3.33,3.53-1.66,1.22-3.98,1.82-6.98,1.82-4.71,0-8.48-1.68-11.32-5.04ZM419.65,89.42c1.35-.8,2.37-1.67,3.07-2.6.7-.93,1.04-1.47,1.04-1.63v-23.8c0-.1-.35-.46-1.04-1.08-.7-.62-1.66-1.19-2.87-1.71-1.22-.52-2.65-.77-4.31-.77-3.98,0-6.9,1.46-8.76,4.38-1.86,2.92-2.79,7.25-2.79,12.99,0,5.43.92,9.36,2.75,11.79s4.53,3.64,8.1,3.64c1.86,0,3.46-.4,4.81-1.2ZM439,46.19c-.67-.67-1.01-1.5-1.01-2.48s.34-1.81,1.01-2.48c.57-.57,1.32-.86,2.25-.86.98,0,1.76.26,2.32.78.62.67.93,1.53.93,2.56,0,.93-.31,1.76-.93,2.48-.72.57-1.5.86-2.32.86-.93,0-1.68-.29-2.25-.86ZM438.38,93.64v-38.77h5.66v38.77h-5.66ZM455.13,89.45c-2.9-3.31-4.34-8.24-4.34-14.81s1.43-11.7,4.3-15.24,7.07-5.31,12.6-5.31c1.81,0,3.51.25,5.12.74,1.6.49,2.96,1.03,4.07,1.62,1.11.6,1.67.92,1.67.97l-.7,3.18c-.2-.16-.76-.48-1.67-.97s-2.07-.97-3.49-1.43c-1.42-.47-2.89-.7-4.38-.7-3.98,0-6.9,1.32-8.76,3.95-1.86,2.64-2.79,7.01-2.79,13.11s.98,10.11,2.94,12.64,4.73,3.8,8.3,3.8c2.02,0,3.74-.36,5.16-1.08s2.52-1.49,3.29-2.29c.78-.8,1.17-1.28,1.17-1.44l2.48,1.63c0,.21-.47.87-1.4,1.98-.93,1.11-2.33,2.16-4.19,3.14-1.86.98-4.19,1.47-6.98,1.47-5.38,0-9.51-1.65-12.41-4.96ZM485.45,93.64v-38.77h5.66v38.77h-5.66ZM500.57,54.87h4.65l.7,3.72c.83-.98,2.12-1.98,3.88-2.98s4.29-1.51,7.6-1.51c3.72,0,6.61,1.04,8.68,3.14,2.07,2.09,3.1,5.21,3.1,9.34v27.06h-5.66v-25.9c0-3.31-.67-5.73-2.01-7.25-1.35-1.52-3.34-2.28-5.97-2.28-1.86,0-3.49.28-4.88.85s-2.5,1.19-3.3,1.86-1.2,1.06-1.2,1.16v31.56h-5.58v-38.77ZM537.9,91.9c-2.07-1.68-3.1-4.02-3.1-7.02,0-7.6,7.31-12.17,21.94-13.72v-4.11c0-3.67-.59-6.18-1.78-7.52-1.19-1.35-3.29-2.02-6.28-2.02-1.34,0-2.71.25-4.11.74s-2.57,1.01-3.53,1.55-1.56.89-1.82,1.05l-.62-3.18c.26-.2.92-.59,1.98-1.16,1.06-.57,2.4-1.11,4.03-1.63,1.62-.52,3.27-.77,4.92-.77,4.44,0,7.7.93,9.77,2.79,2.06,1.86,3.1,5.14,3.1,9.84v19c0,2.07.2,3.46.58,4.19.39.72.87,1.08,1.44,1.08.46,0,1.03-.09,1.71-.27.67-.18,1.11-.32,1.32-.43l.23,2.64c-.41.15-1.29.44-2.64.85-1.34.41-2.48.62-3.41.62-1.35,0-2.38-.43-3.1-1.28-.72-.86-1.16-2.37-1.32-4.53h-.08c0,.2-.41.8-1.24,1.78-.83.98-2.05,1.9-3.68,2.75-1.63.85-3.65,1.28-6.09,1.28-3.41,0-6.15-.84-8.22-2.52ZM552.63,89.76c1.35-.83,2.37-1.73,3.07-2.71.7-.98,1.04-1.55,1.04-1.71v-11.32c-4.7.52-8.57,1.53-11.59,3.02s-4.53,3.88-4.53,7.13c0,2.22.65,3.92,1.94,5.08,1.29,1.16,3.05,1.74,5.27,1.74,1.86,0,3.46-.41,4.81-1.24ZM573.14,93.64v-58l5.58-.31v58.31h-5.58ZM590.46,93.14c-1.89-.86-3.31-1.77-4.26-2.75-.95-.98-1.43-1.55-1.43-1.7l1.94-2.71c0,.1.41.59,1.24,1.47.83.88,1.96,1.69,3.41,2.44,1.45.75,3.15,1.13,5.12,1.13,2.89,0,5.08-.72,6.55-2.17,1.47-1.44,2.21-3.2,2.21-5.27,0-1.5-.38-2.74-1.12-3.72-.75-.98-1.68-1.74-2.79-2.29-1.11-.54-2.65-1.15-4.62-1.82-2.28-.83-4.08-1.59-5.43-2.29-1.34-.7-2.49-1.74-3.45-3.14s-1.43-3.2-1.43-5.43c0-3.31,1.2-5.93,3.61-7.87,2.4-1.94,5.49-2.91,9.27-2.91,1.65,0,3.24.22,4.77.66,1.52.44,2.75.9,3.68,1.4.93.49,1.53.81,1.78.97l-.93,3.34c-.21-.16-.72-.48-1.55-.97s-1.9-.97-3.22-1.43c-1.32-.47-2.68-.7-4.07-.7-2.38,0-4.3.6-5.78,1.78-1.47,1.19-2.21,2.69-2.21,4.5,0,1.5.39,2.75,1.16,3.76.78,1.01,1.74,1.8,2.91,2.37,1.16.57,2.73,1.22,4.69,1.94,2.27.77,4.12,1.54,5.54,2.29s2.62,1.82,3.61,3.22,1.47,3.2,1.47,5.43c0,3.36-1.16,6.16-3.49,8.41-2.32,2.25-5.73,3.37-10.23,3.37-2.74,0-5.05-.43-6.94-1.28Z"/>
+                <path class="c2" d="M491.7,42.24c-.72-1.98-2.91-3-4.89-2.28s-3,2.91-2.28,4.89,2.91,3,4.89,2.28,3-2.91,2.28-4.89ZM485.21,44.2h0c-.43-1.19.18-2.5,1.37-2.93s2.5.18,2.93,1.37h0c.43,1.19-.18,2.5-1.37,2.93s-2.5-.18-2.93-1.37Z"/>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+    
+      <div class="col-md-5">
+        <ul class="footer-menu d-flex justify-content-start">
+          <li><a href="/pages/about-us">About us</a></li>
+          <li><a href="/pages/blog">Blog space</a></li>
+        </ul>
+      </div>
+    
+      <div class="col-md-2" style="display: none;">
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5109 1.46387C3.44816 1.60673 2.81348 1.87764 2.34556 2.34556C1.87767 2.81345 1.60674 3.44831 1.46388 4.51122C1.31847 5.59303 1.31707 7.01544 1.31707 9C1.31707 10.985 1.31847 12.4074 1.46387 13.4891C1.60673 14.5518 1.87764 15.1865 2.34556 15.6544C2.81345 16.1223 3.44831 16.3933 4.51122 16.5361C5.59303 16.6815 7.01544 16.6829 9 16.6829C10.985 16.6829 12.4074 16.6815 13.4891 16.5361C14.5518 16.3933 15.1865 16.1224 15.6544 15.6544C16.1223 15.1866 16.3933 14.5517 16.5361 13.4888C16.6815 12.407 16.6829 10.9846 16.6829 9C16.6829 7.01499 16.6815 5.59259 16.5361 4.5109C16.3933 3.44816 16.1224 2.81348 15.6544 2.34556C15.1866 1.87767 14.5517 1.60674 13.4888 1.46388C12.407 1.31847 10.9846 1.31707 9 1.31707C7.01499 1.31707 5.59259 1.31847 4.5109 1.46387ZM8.9498 2.06435e-07H9.05018C10.9736 -1.17261e-05 12.4845 -2.1039e-05 13.6642 0.15854C14.873 0.321017 15.8323 0.660771 16.5858 1.41425C17.3392 2.16769 17.679 3.12667 17.8415 4.33544C18 5.51502 18 7.02596 18 8.94979V9.05014C18 10.9736 18 12.4845 17.8415 13.6642C17.679 14.873 17.3392 15.8323 16.5858 16.5858C15.8323 17.3392 14.8733 17.679 13.6646 17.8415C12.485 18 10.974 18 9.05021 18H8.94986C7.02642 18 5.51547 18 4.33578 17.8415C3.12696 17.679 2.16772 17.3392 1.41425 16.5858C0.6608 15.8323 0.321026 14.8733 0.158541 13.6646C-2.1039e-05 12.485 -1.17261e-05 10.974 2.06435e-07 9.0502V8.94982C-1.17261e-05 7.0264 -2.1039e-05 5.51547 0.15854 4.33578C0.321017 3.12696 0.660771 2.16772 1.41425 1.41425C2.1677 0.6608 3.12667 0.321026 4.33544 0.158541C5.51502 -2.1039e-05 7.02596 -1.17261e-05 8.9498 2.06435e-07Z" fill="#F5F3E7"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1689 4.17074C13.1689 3.80704 13.4637 3.51221 13.8274 3.51221H13.8362C14.1999 3.51221 14.4947 3.80704 14.4947 4.17074C14.4947 4.53444 14.1999 4.82928 13.8362 4.82928H13.8274C13.4637 4.82928 13.1689 4.53444 13.1689 4.17074ZM8.99989 5.70733C8.12662 5.70733 7.28911 6.05424 6.67161 6.67173C6.05412 7.28923 5.70721 8.12674 5.70721 9.00001C5.70721 9.87329 6.05412 10.7108 6.67161 11.3283C7.28911 11.9458 8.12662 12.2927 8.99989 12.2927C9.87317 12.2927 10.7107 11.9458 11.3282 11.3283C11.9457 10.7108 12.2926 9.87329 12.2926 9.00001C12.2926 8.12674 11.9457 7.28923 11.3282 6.67173C10.7107 6.05424 9.87317 5.70733 8.99989 5.70733ZM5.7403 5.74042C6.6048 4.87593 7.77731 4.39026 8.99989 4.39026C10.2225 4.39026 11.395 4.87593 12.2595 5.74042C13.124 6.60492 13.6096 7.77743 13.6096 9.00001C13.6096 10.2226 13.124 11.3951 12.2595 12.2596C11.395 13.1241 10.2225 13.6098 8.99989 13.6098C7.77731 13.6098 6.6048 13.1241 5.7403 12.2596C4.87581 11.3951 4.39014 10.2226 4.39014 9.00001C4.39014 7.77743 4.87581 6.60492 5.7403 5.74042Z" fill="#F5F3E7"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5109 4.46387C6.44816 4.60673 5.81348 4.87764 5.34556 5.34556C4.87767 5.81345 4.60674 6.44831 4.46388 7.51122C4.31847 8.59303 4.31707 10.0154 4.31707 12C4.31707 13.985 4.31847 15.4074 4.46387 16.4891C4.60673 17.5518 4.87764 18.1865 5.34556 18.6544C5.81345 19.1223 6.44831 19.3933 7.51122 19.5361C8.59303 19.6815 10.0154 19.6829 12 19.6829C13.985 19.6829 15.4074 19.6815 16.4891 19.5361C17.5518 19.3933 18.1865 19.1224 18.6544 18.6544C19.1223 18.1866 19.3933 17.5517 19.5361 16.4888C19.6815 15.407 19.6829 13.9846 19.6829 12C19.6829 10.015 19.6815 8.59259 19.5361 7.5109C19.3933 6.44816 19.1224 5.81348 18.6544 5.34556C18.1866 4.87767 17.5517 4.60674 16.4888 4.46388C15.407 4.31847 13.9846 4.31707 12 4.31707C10.015 4.31707 8.59259 4.31847 7.5109 4.46387ZM11.9498 3H12.0502C13.9736 2.99999 15.4845 2.99998 16.6642 3.15854C17.873 3.32102 18.8323 3.66077 19.5858 4.41425C20.3392 5.16769 20.679 6.12667 20.8415 7.33544C21 8.51502 21 10.026 21 11.9498V12.0501C21 13.9736 21 15.4845 20.8415 16.6642C20.679 17.873 20.3392 18.8323 19.5858 19.5858C18.8323 20.3392 17.8733 20.679 16.6646 20.8415C15.485 21 13.974 21 12.0502 21H11.9499C10.0264 21 8.51547 21 7.33578 20.8415C6.12696 20.679 5.16772 20.3392 4.41425 19.5858C3.6608 18.8323 3.32103 17.8733 3.15854 16.6646C2.99998 15.485 2.99999 13.974 3 12.0502V11.9498C2.99999 10.0264 2.99998 8.51547 3.15854 7.33578C3.32102 6.12696 3.66077 5.16772 4.41425 4.41425C5.1677 3.6608 6.12667 3.32103 7.33544 3.15854C8.51502 2.99998 10.026 2.99999 11.9498 3Z" fill="#F5F3E7"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7856 6C13.9561 6 14.1196 6.06654 14.2402 6.18499C14.3607 6.30343 14.4285 6.46407 14.4285 6.63158C14.4288 7.21385 14.6337 7.77815 15.0085 8.22921C15.3833 8.68027 15.905 8.99045 16.4856 9.10737C16.6527 9.14087 16.7994 9.23821 16.8934 9.37797C16.9874 9.51774 17.0211 9.68848 16.987 9.85263C16.9529 10.0168 16.8538 10.1609 16.7116 10.2533C16.5693 10.3457 16.3955 10.3788 16.2285 10.3453C15.5587 10.2104 14.9375 9.90305 14.4285 9.45474V14.8421C14.4285 15.4667 14.24 16.0772 13.8868 16.5965C13.5336 17.1158 13.0316 17.5206 12.4443 17.7596C11.857 17.9986 11.2107 18.0612 10.5872 17.9393C9.96367 17.8175 9.39095 17.5167 8.94143 17.0751C8.49191 16.6334 8.18578 16.0708 8.06176 15.4582C7.93774 14.8456 8.00139 14.2107 8.24467 13.6336C8.48795 13.0566 8.89993 12.5634 9.4285 12.2164C9.95708 11.8694 10.5785 11.6842 11.2142 11.6842C11.3847 11.6842 11.5482 11.7508 11.6688 11.8692C11.7894 11.9876 11.8571 12.1483 11.8571 12.3158C11.8571 12.4833 11.7894 12.6439 11.6688 12.7624C11.5482 12.8808 11.3847 12.9474 11.2142 12.9474C10.8328 12.9474 10.4599 13.0585 10.1428 13.2667C9.82565 13.4749 9.57847 13.7708 9.4325 14.117C9.28653 14.4632 9.24834 14.8442 9.32275 15.2117C9.39717 15.5793 9.58084 15.9169 9.85055 16.1819C10.1203 16.4469 10.4639 16.6273 10.838 16.7004C11.2121 16.7735 11.5999 16.736 11.9523 16.5926C12.3047 16.4492 12.6059 16.2064 12.8178 15.8948C13.0297 15.5832 13.1428 15.2168 13.1428 14.8421V6.63158C13.1428 6.46407 13.2105 6.30343 13.3311 6.18499C13.4516 6.06654 13.6151 6 13.7856 6Z" fill="#F5F3E7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <nav class="footer-links d-flex justify-content-center text-start">
+          <li>
+            <a href="/pages/terms-conditions">Terms & Conditions</a>
+          </li>
+          <li>
+            <a href="/pages/privacy-policy">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="/pages/refund-return-policy">Refund & Return Policy</a>
+          </li>
+          <li>
+            <a href="/pages/telehealth-consent">Telehealth Consent</a>
+          </li>
+          <!-- <li>
+            <a href="/pages/consumer-health-data-privacy-policy">Consumer Health Data Privacy Policy</a>
+          </li>
+          <li>
+            <a href="/pages/medical-notice-of-privacy-practices">Medical Notice of Privacy Practices</a>
+          </li> -->
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="footer__copyright caption">
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          </small>
+          {%- if section.settings.show_policy123 -%}
+            <ul class="policies list-unstyled">
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}
+                  <li>
+                    <small class="copyright__content"
+                      ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                    >
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  {%- liquid
+    assign has_social_icons = true
+    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+      assign has_social_icons = false
+    endif
+
+    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
+      assign brand_empty = true
+    endif
+
+    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
+      assign only_empty_brand = true
+    endif
+  -%}
+  {%- if section.blocks.size > 0
+    or section.settings.newsletter_enable
+    or section.settings.show_social
+    and has_social_icons == true
+    or section.settings.enable_follow_on_shop
+  -%}
+    {%- unless only_empty_brand -%}
+      <div class="footer__content-top page-width">
+        {%- if section.blocks.size > 0 -%}
+          {%- liquid
+            if section.blocks.size == 9
+              assign footer_grid_class = 'grid--3-col-tablet'
+            elsif section.blocks.size > 6
+              assign footer_grid_class = 'grid--4-col-desktop'
+            elsif section.blocks.size > 4
+              assign footer_grid_class = 'grid--3-col-tablet'
+            endif
+          -%}
+          <div
+            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+            {% endif %}
+          >
+            {%- for block in section.blocks -%}
+              <div
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                {%- endif -%}
+
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+                  {%- when 'text' -%}
+                    <div class="footer-block__details-content rte">
+                      {{ block.settings.subtext }}
+                    </div>
+                  {%- when 'link_list' -%}
+                    {%- if block.settings.menu != blank -%}
+                      <ul class="footer-block__details-content list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  {%- when 'brand_information' -%}
+                    <div class="footer-block__brand-info">
+                      {%- if settings.brand_image != blank -%}
+                        {%- assign brand_image_height = settings.brand_image_width
+                          | divided_by: settings.brand_image.aspect_ratio
+                        -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
+                        >
+                          {{
+                            settings.brand_image
+                            | image_url: width: 1100
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                              height: brand_image_height,
+                              width: settings.brand_image_width
+                          }}
+                        </div>
+                      {%- endif -%}
+                      {%- if settings.brand_headline != blank -%}
+                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
+                      {%- endif -%}
+                      {%- if settings.brand_description != blank -%}
+                        <div class="rte">{{ settings.brand_description }}</div>
+                      {%- endif -%}
+                      {%- if block.settings.show_social and has_social_icons -%}
+                        {%- render 'social-icons', class: 'footer__list-social' -%}
+                      {%- endif -%}
+                    </div>
+                  {%- when 'image' -%}
+                    <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                        >
+                          <img
+                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                            src="{{ block.settings.image | image_url: width: 760 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </div>
+                      {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {%- endif -%}
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div
+          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- if section.settings.newsletter_enable123 -%}
+            <div class="footer-block__newsletter">
+              {%- if section.settings.newsletter_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="ContactFooter-error"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="ContactFooter-success"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="ContactFooter-success"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-success.svg' | inline_asset_content -}}
+                    </span>
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+
+          {%- if shop.features123.follow_on_shop? and section.settings.enable_follow_on_shop123 -%}
+            <div class="footer__follow-on-shop">
+              {{ shop | login_button: action: 'follow' }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endunless -%}
+  {%- endif -%}
+
+  <div
+    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate">
+        {%- if section.settings.enable_country_selector123 and localization.available_countries123.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+
+        {%- if section.settings.enable_language_selector123 and localization.available_languages123.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+      <div class="footer__column footer__column--info">
+        {%- if section.settings.payment_enable123 -%}
+          <div class="footer__payment">
+            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <ul class="list list-payment" role="list">
+              {%- for type in shop.enabled_payment_types -%}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector123 == false and section.settings.enable_language_selector123 == false %} footer__content-bottom-wrapper--center{% endif %}">
+      <div class="footer__copyright caption">
+        <!-- <small class="copyright__content"
+          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+        </small> -->
+        <!-- <small class="copyright__content">{{ powered_by_link }}</small> -->
+        {%- if section.settings.show_policy123 -%}
+          <ul class="policies list-unstyled">
+            {%- for policy in shop.policies -%}
+              {%- if policy123 != blank -%}
+                <li>
+                  <small class="copyright__content"
+                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                  >
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.link_list.settings.heading.default",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "t:sections.footer.blocks.brand_information.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.brand_information.settings.header__1.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.text.settings.heading.default",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "t:sections.footer.blocks.text.settings.subtext.default",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment on large screen",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content",
+      "info": "t:sections.footer.settings.header__9.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_follow_on_shop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__2.content",
+      "info": "t:sections.footer.settings.header__2.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__3.content",
+      "info": "t:sections.footer.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__5.content",
+      "info": "t:sections.footer.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__7.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__8.content",
+      "info": "t:sections.footer.settings.header__8.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.footer.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}

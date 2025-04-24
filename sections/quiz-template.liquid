@@ -1,0 +1,1314 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+{% comment %} <div class="quiz-container" style="display: none;"> {% endcomment %}
+<div class="quiz-container">
+  <div class="container">
+    <div class="row">
+      <div class="col mt-5 text-start mb-4">
+        <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+        <h1>Let's find a perfect pairing for you...</h1>
+
+        <div class="progress-bar-container">
+          <span id="progress-text">1/3</span>
+          <div class="progress-bar-background">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+        </div>
+      
+        <div class="quiz-question">
+          <h2>{{ question_title }}</h2> 
+          <form id="quiz-form">
+          </form>
+
+          <fieldset class="w-100 d-none">
+            <legend class="d-flex align-items-center">
+              <span class="ms-auto">
+                <!-- * -->
+                <button type="button" class="btn btn-link" id="liveToastBtn">*What does it mean?</button>
+              </span>
+              
+            </legend>
+            
+            <div class="position-relative">
+              <div class="toast-container bottom-0 end-0">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                  <div class="toast-header">
+                    <strong class="me-auto">Topical steroids meaning</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body">
+                    <p>Topical steroids are a very effective means of controlling itching and flaking of the scalp. When used as prescribed these medications are generally very safe, but some patients will want to avoid topical steroids due to personal preference, allergy, or past experience. For these situations we offer steroid free alternatives that contain tacrolimus, a safe non steroidal anti-inflammatory medication. These alternatives are slightly more expensive though due to the higher cost of the tacrolimus as compared to topical steroids.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="quiz-navigation">
+          <button id="previous-button" onclick="navigateQuestion('previous')" style="display: none;">
+            <i class="bi bi-caret-left-fill"></i>
+            Previous
+          </button>
+          <button id="next-button" onclick="navigateQuestion('next')" disabled="disabled">
+            Next
+            <i class="bi bi-caret-right-fill"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- {% comment %} <div id="result-page" style="display: none;"> {% endcomment %} -->
+<div id="result-page" style="display: none;">
+<!-- <div id="result-page"> -->
+  <div class="container">
+    <div class="row">
+      <div class="col mt-5 text-start mb-4">
+        <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% assign all_products = collections.all.products %}
+      
+      <div class="col-lg-4 offset-lg-1 text-start quiz-result-title">
+        <h2>Congrats!</h2>
+        <svg width="416" height="12" viewBox="0 0 416 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z" fill="#5A8676"/>
+        </svg>
+        <p class="mb-4">This is a special set, carefully selected for you</p>
+
+
+        <!-- mobile result products slider -->
+        <div class="products-for-mobile d-md-none">
+          <div class="swiper-wrapper">
+            {%- for card_product in all_products -%}
+              <div class="swiper-slide" data-product-id="{{ card_product.id }}">
+                  <!-- <div class="product-wrap col-6 mb-4"> -->
+                  <div class="col mb-4">
+                    <div class="card product-card h-100 w-100">
+                      <div class="card-media">
+                         <img
+                          srcset="
+                            {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                          "
+                          src="{{ card_product.featured_media | image_url: width: 533 }}"
+                          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                          alt="{{ card_product.featured_media.alt | escape }}"
+                          class="motion-reduce"
+                          {% unless lazy_load == false %}
+                            loading="lazy"
+                          {% endunless %}
+                          width="{{ card_product.featured_media.width }}"
+                          height="{{ card_product.featured_media.height }}"
+                        >
+                      </div>
+                      <div class="card-body product-card-body d-flex flex-column text-start">
+                        <h2 class="card-title">{{ card_product.title | escape }}</h2>
+                        <div class="card-text">
+                          <!-- <p>{{ card_product.description | truncatewords: 20 }}</p> -->
+                          <p>{{ card_product.description }}</p>
+                        </div>
+                      </div>
+                      <div class="card-footer text-start">
+                        <a class="pointer" data-bs-toggle="modal" data-bs-target="#product-details-{{ card_product.id }}">View details</a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+
+
+        <div class="row d-none d-md-flex d-lg-none">
+          {%- for card_product in all_products -%}
+            <div class="product-tablet-wrap col-5 mb-4" data-product-id="{{ card_product.id }}">
+              <div class="card product-card h-100 w-100">
+                <div class="card-media">
+                   <img
+                    srcset="
+                      {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                      {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                    "
+                    src="{{ card_product.featured_media | image_url: width: 533 }}"
+                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                    alt="{{ card_product.featured_media.alt | escape }}"
+                    class="motion-reduce"
+                    {% unless lazy_load == false %}
+                      loading="lazy"
+                    {% endunless %}
+                    width="{{ card_product.featured_media.width }}"
+                    height="{{ card_product.featured_media.height }}"
+                  >
+                </div>
+                <div class="card-body product-card-body d-flex flex-column text-start">
+                  <h2 class="card-title">{{ card_product.title | escape }}</h2>
+                  <div class="card-text">
+                    <p>{{ card_product.description }}</p>
+                  </div>
+                </div>
+                <div class="card-footer text-start">
+                  <a class="pointer" data-bs-toggle="modal" data-bs-target="#product-details-{{ card_product.id }}">View details</a>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+
+            
+        <p class="mb-4">We recommend to use these products together, as they work to cleanse, hydrate, and soothe your scalp, leaving your hair healthier and flake-free.</p>
+
+        <!-- <div class="test-variant" style="display: none;"> -->
+        <div class="test-variant">
+
+            <!-- Option to buy -->
+            <div class="customn-add-to-cart-block">
+              <div class="custom-radio-group">
+                <div class="custom-radio-item">
+                  <input type="radio" id="add-bundle" name="add-option" class="custom-radio" value="bundle" checked="checked" />
+                  <label for="add-bundle" class="custom-label bundle-products">
+                    <span class="radio-circle"></span> Add bundle <span class="price">$00.00</span>
+                  </label>
+                </div>
+                <div class="custom-radio-item">
+                  <input type="radio" id="add-only-shampoo" name="add-option" class="custom-radio" />
+                  <label for="add-only-shampoo" class="custom-label one-product">
+                    <span class="radio-circle"></span> Add only shampoo <span class="price">$00.00</span>
+                  </label>
+                </div>
+                <div class="custom-radio-item">
+                  <input type="radio" id="add-only-scalp-serum" name="add-option" class="custom-radio" />
+                  <label for="add-only-scalp-serum" class="custom-label one-product">
+                    <span class="radio-circle"></span> Add only scalp serum <span class="price">$00.00</span>
+                  </label>
+                </div>
+              </div>
+            
+              <!-- Subscription checkbox -->
+              <div class="custom-checkbox mt-3">
+                <input type="checkbox" id="subscribe-save" class="custom-checkbox-input" checked="checked">
+                <label for="subscribe-save" class="custom-checkbox-label">
+                  <span class="checkbox-square"></span>
+                  Subscribe & Save 25%
+                </label>
+                <p class="text-muted">Receive product every 2 month.</p>
+                <p class="text-muted">Edit or cancel your subscription anytime in personal account.</p>
+              </div>
+            </div>      
+
+          <!-- Bundle one time or subscription -->
+          <!-- <div class="bundler-button-wrapper bundler-target-element" data-bndlr-ccid="bunl"></div> -->
+          <!-- Bundle discount -->
+          <div class="bundler-button-wrapper bundler-target-element" data-bndlr-ccid="bz85"></div>
+          
+
+          <!-- <div class="bundler-button-wrapper bundler-target-element" data-bndlr-ccid="bz7z"></div> -->
+
+          {%- assign product_form_id = 'product-form-' | append: section.id -%}
+          
+          <!-- One time or subscriptione One item -->
+          <div class="one-item-buy-button-wrapper" style="display: none;">
+            {%- for product in all_products -%}
+      
+              <div class="buy-product-{{ product.id }}">
+                  {%- for variant in product.variants -%}
+                    <div>product-id: {{ product.id }}</div>
+                    <div class="product-variant-{{ variant.title | downcase }}">{{ variant.id }}</div>
+                  {%- endfor -%}
+                  {%- render 'buy-buttons', 
+                     product: product, 
+                     product_form_id: product_form_id, 
+                     section_id: section.id, 
+                     show_pickup_availability: true 
+                  -%}
+                </div>
+              {%- endfor-%}
+          </div>
+        </div>
+
+        <div id="validation-cart-items" class="toast align-items-center text-bg-primary w-100 border-0" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body">
+              You already have this shampoo as part of a bundle in your cart. Click Add to cart and we will replace the scalp serum in your bundle
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+            
+        <a id="quizz-result-add-to-cart" class="btn btn-primary me-3 pointer">Add to cart</a>
+              
+        <a href="/" class="btn btn-outline-light">Let me think more</a>   
+              
+      </div>
+      <div class="col-md-6 offset-md-1 d-none d-lg-block">
+        <div class="row">
+          {%- for card_product in all_products -%}
+            
+            {% assign selling_plan = card_product.variants.first.selling_plan_allocations.first %}
+            {% assign discount_price = selling_plan.price %}
+            
+            <div class="product-wrap col-6 mb-4" data-product-id="{{ card_product.id }}" data-product-type="{{ card_product.type }}" data-product-price="{{ card_product.price }}" data-discount-price="{{ discount_price }}" data-tags="{{ card_product.tags | join: ', ' }}">
+              <!-- <pre>{{ card_product | json }}</pre> -->
+              <div class="card product-card h-100 w-100">
+                <div class="card-media">
+                   <img
+                    srcset="
+                      {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                      {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                      {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                    "
+                    src="{{ card_product.featured_media | image_url: width: 533 }}"
+                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                    alt="{{ card_product.featured_media.alt | escape }}"
+                    class="motion-reduce"
+                    {% unless lazy_load == false %}
+                      loading="lazy"
+                    {% endunless %}
+                    width="{{ card_product.featured_media.width }}"
+                    height="{{ card_product.featured_media.height }}"
+                  >
+                </div>
+                <div class="card-body product-card-body d-flex flex-column text-start">
+                  <h2 class="card-title">{{ card_product.title | escape }}</h2>
+                  <div class="card-text">
+                    <p>{{ card_product.description }}</p>
+                  </div>
+                </div>
+                <div class="card-footer text-start">
+                  <a class="pointer" data-bs-toggle="modal" data-bs-target="#product-details-{{ card_product.id }}">View details</a>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+{%- for card_product in all_products -%}
+  <!-- Modal bootstrap 5 -->
+  <div class="modal fade" id="product-details-{{ card_product.id }}" tabindex="-1" aria-labelledby="productModalLabel{{ card_product.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable full-width-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">View details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Product -->
+          <div class="product product-container">
+            <div class="container-fluid mb-5">
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  {% assign product = card_product %}
+                  {% assign product_images = product.images %}
+        
+                  {% if product_images.size == 1 %}
+                    <img class="w-100" src="{{ product_images.first.src | img_url: 'large' }}" alt="{{ product.title }}">
+                  {% else %}
+                    <div class="swiper-container swiper product-images-slider">
+          
+                      <div class="swiper-wrapper">
+                        {% for image in product_images %}
+                          <div class="swiper-slide">
+                            <img class="w-100" src="{{ image.src | img_url: 'large' }}" alt="{{ product.title }}">
+                          </div>
+                        {% endfor %}
+                      </div>
+                      
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-button-prev"></div>
+                    </div>
+                    
+                    <div class="swiper-container product-image-thumbnails mt-3">
+                      <div class="swiper-wrapper">
+                        {% for image in product_images %}
+                          <div class="swiper-slide">
+                            <img class="img-thumbnail" src="{{ image.src | img_url: '100x100' }}" alt="{{ product.title }}">
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+          
+                  {% endif %}
+                  
+                </div>
+                <div class="col-12 col-md-8 text-start">
+                  <h1 id="productModalLabel{{ card_product.id }}">{{ product.title | escape }}</h1>
+          
+                  <p class="product-weight">
+                    <span>
+                      <!-- {%- if product.variants.first.weight != blank -%}
+                        {%- assign weight_in_grams = product.variants.first.weight -%}
+                        {%- assign weight_in_oz = weight_in_grams | divided_by: 28.3495 | round: 2 -%}
+                        {{ weight_in_oz }} oz
+                      {%- else -%}
+                        No weight information available.
+                      {%- endif -%} -->
+                      {%- if product.variants.first.weight != blank -%}
+                        {{ product.variants.first.weight | times: 0.03527396 | round: 1 }} oz
+                      {%- else -%}
+                        No weight information available.
+                      {%- endif -%}
+                    </span>
+                  </p>
+
+                  {%- for option in product.options_with_values -%}
+                      {% if product.type == "Scalp serum" %}
+                        <variant-selects>
+                          <fieldset class="js row product-form__input product-form__input--pill">
+                            <legend class="form__label d-flex align-items-center">
+                              {{ option.name }}:
+                              <span>
+                                {{ option.values }}
+                              </span>
+                              <button type="button" class="btn btn-link ms-auto show-toast" data-bs-target="#scalp-serum-{{ card_product.id }}">What does it mean?</button>
+                            </legend>
+                          </fieldset>
+                        </variant-selects>
+                        
+                        
+                        <div class="position-relative">
+                          <div class="toast-container top-0 end-0">
+                            <div id="scalp-serum-{{ card_product.id }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                              <div class="toast-header">
+                                <strong class="me-auto">Scalp serum base meaning</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                              </div>
+                              <div class="toast-body">
+                                <p>If you use an oil based product as part of your regular hair care routine then we recommend using an oil based <b>scalp serum</b> in place of that oil to provide all day relief from itching and flaking.</p>
+                                <p>If you typically wear your hair dry, without oil in it, then we recommend the water based <b>scalp serums</b> for relief.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+                  {%- endfor -%}
+                  <!-- <pre>{{ card_product | json }}</pre> -->
+      
+                  {% assign variants = product.variants %}
+      
+                  {% if variants.size > 0 %}
+                    <p class="one-time-price">
+                      <b>{{ card_product.price | money }}</b> one-time
+                    </p>
+                  
+                    {% for variant in variants %}
+                      {% assign selling_plan_allocations = variant.selling_plan_allocations %}
+                      
+                      {% if selling_plan_allocations.size > 0 %}
+                        {% for allocation in selling_plan_allocations %}
+                          {% assign price = allocation.price %}
+                          <p class="subscription-price">
+                            <b>{{ price | money }}</b> with subscription
+                          </p>
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    <p class="regular-price">
+                      <b>{{ product.price | money }}</b>
+                    </p>
+                  {% endif %}
+                  
+                  <section
+                    id="ProductInfo-{{ section.id }}"
+                    class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+                  >
+                    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+          
+                    {%- for block in section.blocks -%}
+                      {%- case block.type -%}
+                        {%- when '@app123' -%}
+                          {% render block %}
+                        {%- when 'text123' -%}
+                          <p
+                            class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                            {{ block.shopify_attributes }}
+                          >
+                            {{- block.settings.text -}}
+                          </p>
+                        
+                        {%- when 'variant_picker' -%}
+                          {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                        {%- when 'buy_buttons123' -%}
+                          {%- render 'buy-buttons',
+                            block: block,
+                            product: product,
+                            product_form_id: product_form_id,
+                            section_id: section.id,
+                            show_pickup_availability: true
+                          -%}
+                      {%- endcase -%}
+                    {%- endfor -%}
+               
+                  </section>
+                  
+                  
+                  <!-- Description -->
+                  {% if product.description != blank %}
+                    <div class="porudct-details">
+                      <h2>Description</h2>
+            
+                      {{ product.description }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            
+            <!-- DescrIngredientsiption -->
+            {% if product.metafields.custom.ingredients != blank %}
+              <div class="porudct-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h2>Ingredients</h2>
+          
+                      <table class="table table-bordered">
+                        <!-- <thead>
+                          <tr>
+                            <th>Ingredient</th>
+                            <th>Details</th>
+                          </tr>
+                        </thead> -->
+                        <tbody>
+                          {% assign ingredients = product.metafields.custom.ingredients.value | parse_json %}
+                          {% for ingredient in ingredients %}
+                            <tr {% if ingredient.marked %} class="marked-row" {% endif %}>
+                              <td>{{ ingredient.key }}</td>
+                              <td>{{ ingredient.value }}</td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+              
+          <!-- How to apply -->
+            {% if product.metafields.custom.how_to_apply != blank %}
+              <div class="porudct-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h2>How to apply</h2>
+          
+                      <p>{{ product.metafields.custom.how_to_apply }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+            <!-- Other important information -->
+            {% if product.metafields.custom.other_important_information != blank %}
+              <div class="porudct-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h2>Other important information</h2>
+                    
+                      <p>{{ product.metafields.custom.other_important_information }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+  </div>
+{%- endfor -%}
+
+<style>
+  @media (max-width: 992px) {
+    .full-width-md {
+      max-width: 100%;
+      margin: 0; /* Center align */
+    }
+  }
+  
+  /* product images */
+  .swiper-container.product-images-slider {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    min-height: 300px;
+    width: 100%;
+    height: auto; /* або конкретна висота, наприклад, 400px */
+    display: block; /* Впевніться, що контейнер не прихований */
+  }
+
+  .modal.show .swiper-slide {
+    display: block !important;
+  }
+    
+  .swiper-container.product-images-slider .swiper-button-next, .swiper-container.product-images-slider .swiper-button-prev {
+    width: 24px;
+    height: 24px;
+    background-color: #285445;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2;
+    display: block!important;
+    top: 55%;
+    transform: translateY(-55%);
+  }
+
+  .swiper-container.product-images-slider .swiper-button-next {
+    right: 8px;
+  }
+  
+  .swiper-container.product-images-slider .swiper-button-prev {
+    left: 8px;  
+  }
+
+  .swiper-container.product-images-slider .swiper-button-next:after, .swiper-container.product-images-slider .swiper-button-prev:after {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    padding-top: 0px;
+    line-height: 24px;
+    position: absolute;
+  }
+
+  .swiper-container.product-images-slider .swiper-button-next:after {
+    right: 7px;
+  }
+
+  .swiper-container.product-images-slider .swiper-button-prev:after {
+    left: 8px;
+  }
+
+  .swiper-container.product-image-thumbnails .swiper-slide-thumb-active img {
+    border: 2px solid #285445!important;
+    padding: 0;
+  }
+
+  .product-container .swiper-container.product-image-thumbnails img {
+    border-radius: 8px!important;  
+  }
+  
+  .product-images-slider img {
+    max-height: 500px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .swiper-container.product-image-thumbnails img {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .swiper-container.product-image-thumbnails .swiper-slide-thumb-active img {
+    opacity: 1;
+    border: 2px solid #007bff;
+  }
+
+  
+
+  
+  #quizz-result-add-to-cart {
+      position: relative;
+  }
+  
+  #quizz-result-add-to-cart.loading {
+      pointer-events: none; /* Prevent clicks while loading */
+      opacity: 0.7; /* Make the button appear less clickable */
+  }
+  
+  #quizz-result-add-to-cart.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spinner 0.6s linear infinite;
+  }
+  
+  @keyframes spinner {
+      from {
+          transform: translate(-50%, -50%) rotate(0deg);
+      }
+      to {
+          transform: translate(-50%, -50%) rotate(360deg);
+      }
+  }
+
+  @media (max-width: 767px) {
+    .products-for-mobile.swiper {
+      padding-top: 24px;
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+      background-color: #F5F3E7;
+    }
+
+    .products-for-mobile.swiper:before {
+      content: ''
+      display: block;
+      background-color: #F5F3E7;
+    }
+  }
+  
+  .quiz-result-title .swiper-pagination {
+    position: relative;
+    padding-top: 20px;
+  }
+
+  .quiz-result-title span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #316854;
+    width: 32px;
+    height: 8px;
+    border-radius: 32px;
+  }
+  
+  .products-for-mobile .swiper-slide {
+    flex-shrink: 0;
+    width: 80%; 
+    margin-right: 10px; 
+  }
+
+  .products-for-mobile .swiper-slide .product-card .card-footer {
+    box-sizing: border-box;
+  }
+  
+  .products-for-mobile .swiper-wrapper {
+    padding-left: 0; 
+  }
+  
+  .products-for-mobile .swiper-slide-active {
+    transform: translateX(0) !important; 
+  }
+  
+  .bndlr-products-container {
+    display: none !important;
+  }
+  
+  .bndlr-mnm-selected-products-title, .bndlr-mnm-selected-products {
+      display: none!important;
+    }
+  
+  .customn-add-to-cart-block .custom-radio-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 8px; 
+    overflow: hidden;
+    border: 1px solid #BABABA; 
+  }
+  
+  .customn-add-to-cart-block .custom-radio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #BABABA; 
+  }
+  
+  .customn-add-to-cart-block .custom-radio {
+    display: none;
+  }
+  
+  .customn-add-to-cart-block .custom-radio + .custom-label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffffff;
+    
+    cursor: pointer;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  
+  }
+  
+  .customn-add-to-cart-block .custom-radio:checked + .custom-label {
+    background-color: #F8FAF7;
+    color: #1E1E1E;
+  }
+  
+  .radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #626262;
+    margin-right: 15px;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .customn-add-to-cart-block .custom-radio:checked + .custom-label .radio-circle {
+    border-color: #316854;
+  }
+  
+  .customn-add-to-cart-block .custom-radio:checked + .custom-label .radio-circle:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #316854;
+    border-radius: 50%;
+    margin: 2px;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 20px;
+  
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: right;
+  
+    color: #1E1E1E;
+    margin-left: auto;
+  }
+  
+  .custom-checkbox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #F8FAF7;
+    padding-bottom: 10px;
+  }
+  
+  .custom-checkbox-input {
+    display: none!important; 
+  }
+  
+  .custom-checkbox-label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #1E1E1E;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  
+  .custom-checkbox-input:checked + .custom-checkbox-label {
+    /* background-color: #316854;  */
+    /* color: #fff;  */
+  }
+  
+  .checkbox-square {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #626262;
+    border-radius: 4px; 
+    margin-right: 15px;
+    background-color: #fff;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-checkbox-input:checked + .custom-checkbox-label .checkbox-square {
+    background-color: #316854; 
+    border-color: #316854;
+  }
+  
+  .custom-checkbox-input:checked + .custom-checkbox-label .checkbox-square::before {
+    content: ''; 
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23FFFFFF' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .custom-checkbox p {
+    font-family: Nunito Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    color: #1E1E1E;
+    margin-left: 50px;
+    margin-bottom: 0;
+  }
+
+  #next-button {
+    margin-left: auto;
+  }
+
+  .modal-dialog .porudct-details {
+    z-index: 111;
+  }
+
+  .modal-dialog .porudct-details h2 {
+    padding-left: 0;
+  }
+
+  .quiz-question .btn-link:hover {
+    color: #285445;
+  }
+  
+  .modal-dialog .porudct-details h2:before {
+    left: 40px;
+  }
+  
+  .modal-dialog .product-container h1 {
+    font-family: Lora;
+    font-size: 20px!important;
+    font-weight: 700!important;
+    line-height: 28px!important;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+  
+  .porudct-details h2:before {
+    background-image: url('{{ 'description-header-patern.png' | asset_url }}'); 
+    background-repeat: repeat-x; 
+    background-size: auto; 
+    background-position: left top;
+  }
+
+  .container.product-information, product-info {
+  /* .container.product-information { */
+    display: none;
+  }
+  .product-form__buttons, .sls-purchase-options-label {
+    display: none!important;
+  }
+  
+  .quiz-container {
+    /* max-width: 600px; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+  }
+
+  .quiz-question h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .quiz-navigation button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+
+  .quiz-navigation button:disabled {
+    background-color: #ccc;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .quiz-navigation button:not(:disabled) {
+    background-color: #5B814B;
+    color: white;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 5px;
+    justify-content: flex-start;
+  }
+
+  #progress-text {
+    font-size: 16px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .progress-bar-background {
+    width: 100%;
+    background-color: #C7D7C0;
+    height: 4px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background-color: #5B814B;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+    display: block!important;
+  }
+
+  .quiz-question label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px 0;
+    flex-direction: row;
+  }
+
+  .quiz-question input[type="radio"] {
+    display: none;
+  }
+
+  .quiz-question label {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: #1E1E1E;
+  }
+
+  .quiz-question .custom-radio {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #5B814B;
+    margin-right: 10px;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+
+  .quiz-question input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: green;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #result-page {
+    text-align: center;
+  }
+
+  .result-options button {
+    padding: 10px 20px;
+    background-color: #5B814B;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .result-options button:hover {
+    background-color: #4A6A39;
+  }
+  
+  .result-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .card {
+    width: 200px;
+    height: 150px;
+    background-color: #C7D7C0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    border-radius: 10px;
+  }
+  
+  #result-page::before {
+    background-image: url('{{ 'main-banner--background-patern.png' | asset_url }}'); 
+    background-repeat: repeat;
+    background-size: 30%;
+    background-position: top left;
+    transform: rotate(45deg);
+  }
+</style>
+
+<script src="{{ 'products_quizz.js' | asset_url }}"></script>
+<script src="{{ 'cart_storage.js' | asset_url }}"></script>
+<script src="{{ 'add_to_cart.js' | asset_url }}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if the page was loaded from cache
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        // If the page was loaded from the browser cache, reload it
+        window.location.reload();
+      }
+    });
+  
+    // Alternative check using the Performance Navigation API
+    if (performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+      // If the page was navigated via back/forward buttons, reload it
+      window.location.reload();
+    }
+  });
+
+
+  
+  const toastTrigger = document.getElementById('liveToastBtn')
+  const toastLiveExample = document.getElementById('liveToast')
+  
+  if (toastTrigger) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+      toastBootstrap.show()
+    })
+  }
+
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Тумбнейли
+    const thumbsSwiper = new Swiper('.product-image-thumbnails', {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      watchSlidesProgress: true,
+    });
+  
+    // Основний слайдер
+    const mainSwiper = new Swiper('.product-images-slider', {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: thumbsSwiper, // Прив'язуємо тумбнейли
+      },
+    });
+  });
+  
+  // Product slider
+  const swiper = new Swiper('.products-for-mobile', {
+    slidesPerView: 'auto',
+    centeredSlides: false,
+    spaceBetween: 17,
+  });
+  
+document.addEventListener('DOMContentLoaded', function () {
+  // Збираємо всі пари слайдерів
+  const sliders = document.querySelectorAll('.slider-wrapper');
+
+  sliders.forEach(sliderWrapper => {
+    const thumbsSwiper = new Swiper(sliderWrapper.querySelector('.product-image-thumbnails'), {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      watchSlidesProgress: true,
+    });
+
+    const mainSwiper = new Swiper(sliderWrapper.querySelector('.product-images-slider'), {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: sliderWrapper.querySelector('.swiper-button-next'),
+        prevEl: sliderWrapper.querySelector('.swiper-button-prev'),
+      },
+      thumbs: {
+        swiper: thumbsSwiper, // Прив'язуємо тумбнейли
+      },
+      observer: true, // Слідкує за змінами в DOM
+      observeParents: true, // Дозволяє враховувати зміни в батьківських елементах
+    });
+
+    // Оновлюємо слайдер при відкритті модального вікна
+    // const modal = sliderWrapper.closest('.modal');
+    // if (modal) {
+    //   modal.addEventListener('shown.bs.modal', () => {
+    //     mainSwiper.update();
+    //     thumbsSwiper.update();
+    //   });
+    // }
+  });
+
+  // Product slider
+  const swiper = new Swiper('.products-for-mobile', {
+    slidesPerView: 'auto',
+    centeredSlides: false,
+    spaceBetween: 17,
+  });
+});
+
+  // Знайдемо всі кнопки, які викликають тостери
+  const toastButtons = document.querySelectorAll('.show-toast');
+
+  toastButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      // Отримуємо ID тостера з атрибута data-bs-target кнопки
+      const targetId = button.getAttribute('data-bs-target');
+      console.log('targetId:', targetId);
+      // Знаходимо сам тостер за його ID
+      const toastEl = document.querySelector(targetId);
+      console.log('toastEl:', toastEl)
+      if (toastEl) {
+        // Створюємо новий тостер і показуємо його
+        const toast = new bootstrap.Toast(toastEl);
+
+        toast.show();
+      }
+    });
+  });
+
+
+
+
+
+
+  (function() {
+    // Метод для отримання айтемів із корзини
+    function getCartItems(callback) {
+        fetch('/cart.js', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (callback && typeof callback === 'function') {
+                callback(data);
+            } else {
+                console.log('Cart items:', data);
+            }
+        })
+        .catch(error => console.error('Error fetching cart items:', error));
+    }
+
+    // Метод для оновлення знижок через updateCartDiscounts
+    function updateCartDiscounts() {
+        if (typeof window.bndlr !== 'undefined' && typeof window.bndlr.updateCartDiscounts === 'function') {
+            window.bndlr.updateCartDiscounts();
+            console.log('Cart discounts updated using updateCartDiscounts.');
+        } else {
+            console.log('Bundler is not loaded or updateCartDiscounts is unavailable.');
+        }
+    }
+
+    // Метод для оновлення знижок через updateCartWithDiscounts
+    function updateCartWithDiscounts() {
+        if (typeof window.bndlr !== 'undefined' && typeof window.bndlr.updateCartWithDiscounts === 'function') {
+            getCartItems(function(cart) {
+                window.bndlr.updateCartWithDiscounts(cart);
+                console.log('Cart discounts updated with provided cart items:', cart);
+            });
+        } else {
+            console.log('Bundler is not loaded or updateCartWithDiscounts is unavailable.');
+        }
+    }
+
+    // Додавання можливості виклику з консолі
+    window.updateCartDiscounts = updateCartDiscounts;
+    window.updateCartWithDiscounts = updateCartWithDiscounts;
+
+    console.log('Methods updateCartDiscounts and updateCartWithDiscounts are ready. You can call them from the console.');
+})();
+
+</script>             
+
+
+{% schema %}
+{
+  "name": "Quiz Template",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "subscription_widget",
+      "name": "Subscription Widget",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product for widget"
+        }
+      ]
+    },
+    {
+      "type": "apps",
+      "name": "App Block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz Template",
+      "category": "Pages",
+      "blocks": [
+        {
+          "type": "subscription_widget"
+        },
+        {
+          "type": "apps"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
