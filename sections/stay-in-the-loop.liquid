@@ -32,24 +32,10 @@
 
         {%- for block in section.blocks -%}
           {%- if block.type == 'subscribe_form' -%}
-              <form id="subscribe-form" class="subscribe-form mb-3">
-                <input type="hidden" name="form_type" value="customer" />
-                <input type="hidden" name="utf8" value="✓" />
-                <input type="hidden" name="contact[tags]" value="Coming Soon" />
-                <input type="hidden" name="contact[body]" value="{{ block.settings.form_success_message }}" />
-                <div class="input-group mb-3">
-                  <input type="email" name="contact[email]" class="form-control" placeholder="{{ block.settings.form_placeholder }}" aria-label="{{ block.settings.form_placeholder }}" required>
-                  <button class="btn btn-primary" type="submit"> {{ block.settings.button_text }}</button>
-                </div>
-                <!-- Success Message (hidden by default) -->
-                <p class="alert alert-success" role="alert" id="success-message">
-                  {{ block.settings.form_success_message }}
-                </p>
-              </form>
+            {%- render 'klaviyo-form', form_placeholder: block.settings.form_placeholder, button_text: block.settings.button_text, form_success_message: block.settings.form_success_message, list_id: block.settings.list_id -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
-
       <!-- Right side (Image and Tag) -->
       <div class="col-md-6 col-lg-5 offset-lg-1 column-right">
         <div class="coming-soon">
@@ -166,6 +152,11 @@
         "type": "subscribe_form",
         "name": "Subscribe form",
         "settings": [
+          {
+            "type": "text",
+            "id": "list_id",
+            "label": "Klaviyo List ID"
+          },
           {
             "type": "text",
             "id": "form_placeholder",

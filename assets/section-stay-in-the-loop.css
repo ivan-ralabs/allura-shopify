@@ -52,12 +52,6 @@
   font-family: Nunito Sans, sans-serif;
 }
 
-/* .stay-in-the-loop-section .text-container h2 {
- p {
-  letter-spacing: 0;
- }
-} */
-
 .stay-in-the-loop-section .subscribe-form {
   position: relative;
 }
@@ -70,6 +64,16 @@
   letter-spacing: 0;
   margin-top: 17px;
   border-radius: 4px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+  will-change: max-height, opacity;
+}
+
+.stay-in-the-loop-section .alert.show {
+  opacity: 1;
+  max-height: 500px; /* має бути більше, ніж фактична висота блоку */
 }
 
 .stay-in-the-loop-section .mt--10 {
