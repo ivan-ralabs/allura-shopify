@@ -17,9 +17,23 @@
   letter-spacing: 0;
   margin-bottom: 24px;
 }
+
 .stay-in-the-loop-section h2 {
   position: relative;
 }
+
+.stay-in-the-loop-section p,
+.stay-in-the-loop-section a,
+.stay-in-the-loop-section input,
+.stay-in-the-loop-section button {
+  font-family: Nunito Sans, sans-serif;
+}
+
+/* .stay-in-the-loop-section .text-container h2 {
+ p {
+  letter-spacing: 0;
+ }
+} */
 
 .stay-in-the-loop-section .subscribe-form {
   position: relative;
@@ -31,7 +45,7 @@
   padding: 12px 16px;
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: 0.52px;
+  letter-spacing: 0;
   margin-top: 12px;
   border-radius: 4px;
 }
@@ -47,9 +61,6 @@
   border-radius: 80px;
 }
 
-.stay-in-the-loop-section .text-container p {
-  line-height: 24px;
-}
 
 .stay-in-the-loop-section p.mb-7px {
   margin-bottom: 7px;
@@ -58,12 +69,16 @@
 .stay-in-the-loop-section .text-container {
   margin-bottom: 24px;
 }
+.stay-in-the-loop-section .text-container p {
+  line-height: 24px;
+  letter-spacing: 0;
+}
 .stay-in-the-loop-section .text-container strong {
-  letter-spacing: 0.48px;
+  letter-spacing: 0;
 }
 
 .stay-in-the-loop-section .input-group {
-  gap: 16px;
+  gap: 17px;
 }
 
 .stay-in-the-loop-section input.form-control {
