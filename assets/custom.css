@@ -1,3 +1,21 @@
+/* default styles reset */
+
+a {
+  color: #285445;
+}
+
+a:hover {
+  color: #5B814B;
+}
+
+a:active {
+  color: #264238;
+}
+
+a:disabled {
+  color: #757575;
+}
+
 /* animate arrowTop arrowLeft open */
 body .flatpickr-calendar .flatpickr-monthDropdown-months, body .flatpickr-calendar .numInputWrapper {
   font-family: Nunito Sans;
