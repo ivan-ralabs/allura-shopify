@@ -1,1 +1,175 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"Revive your scalp, renew your confidence","heading_size":"h0"}},"button":{"type":"buttons","settings":{"button_label_1":"Shop all","button_link_1":"shopify:\/\/collections\/all","button_style_secondary_1":true,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading","button"],"settings":{"image":"shopify:\/\/shop_images\/main-banner-picture.png","image_overlay_opacity":20,"image_height":"large","desktop_content_position":"bottom-center","show_text_box":false,"desktop_content_alignment":"center","color_scheme":"scheme-1","image_behavior":"none","mobile_content_alignment":"center","stack_images_on_mobile":false,"show_text_below":false}},"featured_collection":{"type":"featured-collection","settings":{"title":"Our products","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"all","products_to_show":8,"columns_desktop":3,"full_width":false,"show_view_all":false,"view_all_style":"link","enable_desktop_slider":false,"color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"1","swipe_on_mobile":false,"padding_top":44,"padding_bottom":36}},"about_us_e9Xzm7":{"type":"about-us","settings":{"title":"Explore our concept","section_image":"shopify:\/\/shop_images\/Bottles_1.jpg","description":"<p><b>Dr. Beasley<\/b> and <b>Dr. Ritchie<\/b> have been practising as <b>Board Certified Dermatologists<\/b> for a combined 20 years and have treated thousands of patients who suffer from an itchy and flakey scalp.<\/p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"\/\/886076-cc.myshopify.com\/cdn\/shop\/t\/3\/assets\/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"><\/div>\n<p>During that time we realized <b>two things<\/b>: the commercial medications to treat an itchy or flakey scalp are often ineffective, and even if they were effective it's really hard to get in to see a dermatologist. Allura Medicinals exists to <b>eliminate both<\/b> of these problems.<\/p>\n<svg class=\"d-none d-md-block\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"><\/path>\n        <\/svg>\n<p>The result? The <b>fast and effective relief<\/b> you've been searching for so you can look and feel the way you want to.<\/p>","button_link":"shopify:\/\/pages\/about-us","button_text":"Read More"}},"main_reviews_f8YEyx":{"type":"main-reviews","blocks":{"review_QFcGDU":{"type":"review","settings":{"content":"\"I’ve been using Allura products for a few months now, and I can honestly say it’s the best hair care brand I’ve come across. My scalp feels healthier than ever.\"","author":"Michael L.","image":"shopify:\/\/shop_images\/2b046f34fdfab35d204c6168ea13e163.jpg","rating":"5"}},"review_G3fHY7":{"type":"review","settings":{"content":"\"Allura has completely transformed my scalp care routine. I love that their products are gentle yet effective, especially for sensitive skin like mine. The quality and results are unmatched, and the customer service is top-notch!\"","author":"Emily P.","image":"shopify:\/\/shop_images\/209d36ae4646119c9fabd3c3497f7252.jpg","rating":"5"}},"review_MHnACE":{"type":"review","settings":{"content":"\"Allura is a brand I trust. Their products have made a huge difference in my scalp health, and I love that they offer subscription options for convenience.\"","author":"Anna S.","image":"shopify:\/\/shop_images\/ef01a8cce66ca169aa294b2c6fad5ae4.jpg","rating":"5"}},"review_DJxUcR":{"type":"review","settings":{"content":"\"What I love most about Allura is how professional and knowledgeable they are. You can tell they’re really dedicated to creating quality solutions that actually work.\"","author":"Peter M.","image":"shopify:\/\/shop_images\/e66ab70db9f859ab425ab728a760f1a1.jpg","rating":"5"}}},"block_order":["review_QFcGDU","review_G3fHY7","review_MHnACE","review_DJxUcR"],"settings":{"title":"What our clients say"}}},"order":["image_banner","featured_collection","about_us_e9Xzm7","main_reviews_f8YEyx"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Revive your scalp, renew your confidence",
+            "heading_size": "h0"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/main-banner-picture.png",
+        "image_overlay_opacity": 20,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "stay_in_the_loop_99p6K8": {
+      "type": "stay-in-the-loop",
+      "blocks": {
+        "subscribe_form_3bU3B6": {
+          "type": "subscribe_form",
+          "settings": {
+            "form_placeholder": "Your email",
+            "button_text": "Notify me",
+            "form_success_message": "Thank you! We'll notify you as soon as our products are available."
+          }
+        }
+      },
+      "block_order": [
+        "subscribe_form_3bU3B6"
+      ],
+      "name": "Stay in the Loop",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": "stay-in-the-loop",
+        "section_title": "Stay in the loop",
+        "section_text": "<p class=\"mb-7px\">We're almost ready to launch our premium line of prescription compounded medicines to treat severe dandruff. We're excited to be able to offer these products directly to patients without the need to see a dermatologist in person.</p>\n<p><strong>Sign up here to receive a notification when we launch, and be sure to check out <a href=\"/pages/blog\">our blogs</a> in the meantime to learn more.</strong></p>",
+        "coming_soon_badge": "Coming soon",
+        "coming_soon_image": "shopify://shop_images/image_28_1.png"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Our products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "about_us_e9Xzm7": {
+      "type": "about-us",
+      "settings": {
+        "title": "Explore our concept",
+        "section_image": "shopify://shop_images/Bottles_1.jpg",
+        "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined 20 years and have treated thousands of patients who suffer from an itchy and flakey scalp.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>During that time we realized <b>two things</b>: the commercial medications to treat an itchy or flakey scalp are often ineffective, and even if they were effective it's really hard to get in to see a dermatologist. Allura Medicinals exists to <b>eliminate both</b> of these problems.</p>\n<svg class=\"d-none d-md-block\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>\n<p>The result? The <b>fast and effective relief</b> you've been searching for so you can look and feel the way you want to.</p>",
+        "button_link": "shopify://pages/about-us",
+        "button_text": "Read More"
+      }
+    },
+    "main_reviews_f8YEyx": {
+      "type": "main-reviews",
+      "blocks": {
+        "review_QFcGDU": {
+          "type": "review",
+          "settings": {
+            "content": "\"I’ve been using Allura products for a few months now, and I can honestly say it’s the best hair care brand I’ve come across. My scalp feels healthier than ever.\"",
+            "author": "Michael L.",
+            "image": "shopify://shop_images/2b046f34fdfab35d204c6168ea13e163.jpg",
+            "rating": "5"
+          }
+        },
+        "review_G3fHY7": {
+          "type": "review",
+          "settings": {
+            "content": "\"Allura has completely transformed my scalp care routine. I love that their products are gentle yet effective, especially for sensitive skin like mine. The quality and results are unmatched, and the customer service is top-notch!\"",
+            "author": "Emily P.",
+            "image": "shopify://shop_images/209d36ae4646119c9fabd3c3497f7252.jpg",
+            "rating": "5"
+          }
+        },
+        "review_MHnACE": {
+          "type": "review",
+          "settings": {
+            "content": "\"Allura is a brand I trust. Their products have made a huge difference in my scalp health, and I love that they offer subscription options for convenience.\"",
+            "author": "Anna S.",
+            "image": "shopify://shop_images/ef01a8cce66ca169aa294b2c6fad5ae4.jpg",
+            "rating": "5"
+          }
+        },
+        "review_DJxUcR": {
+          "type": "review",
+          "settings": {
+            "content": "\"What I love most about Allura is how professional and knowledgeable they are. You can tell they’re really dedicated to creating quality solutions that actually work.\"",
+            "author": "Peter M.",
+            "image": "shopify://shop_images/e66ab70db9f859ab425ab728a760f1a1.jpg",
+            "rating": "5"
+          }
+        }
+      },
+      "block_order": [
+        "review_QFcGDU",
+        "review_G3fHY7",
+        "review_MHnACE",
+        "review_DJxUcR"
+      ],
+      "settings": {
+        "title": "What our clients say"
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "stay_in_the_loop_99p6K8",
+    "featured_collection",
+    "about_us_e9Xzm7",
+    "main_reviews_f8YEyx"
+  ]
+}
