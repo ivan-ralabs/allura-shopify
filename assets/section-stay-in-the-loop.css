@@ -22,6 +22,25 @@
   position: relative;
 }
 
+/* default styles reset */
+
+.stay-in-the-loop-section a {
+  color: #285445;
+  text-underline-offset: 2px;
+}
+
+.stay-in-the-loop-section a:hover {
+  color: #5B814B;
+}
+
+.stay-in-the-loop-section a:active {
+  color: #264238;
+}
+
+.stay-in-the-loop-section a:disabled {
+  color: #757575;
+}
+
 .stay-in-the-loop-section p,
 .stay-in-the-loop-section a,
 .stay-in-the-loop-section input,
