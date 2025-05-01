@@ -55,6 +55,7 @@
         "subscribe_form_3bU3B6": {
           "type": "subscribe_form",
           "settings": {
+            "list_id": "UGyA6F",
             "form_placeholder": "Your email",
             "button_text": "Notify me",
             "form_success_message": "Thank you! We'll notify you as soon as our products are available."
@@ -69,9 +70,9 @@
         "padding_top": 50,
         "padding_bottom": 64,
         "padding_top_tablet": 40,
-        "padding_bottom_tablet": 144,
+        "padding_bottom_tablet": 64,
         "padding_top_desktop": 40,
-        "padding_bottom_desktop": 110,
+        "padding_bottom_desktop": 64,
         "section_id": "stay-in-the-loop",
         "section_title": "Stay in the loop",
         "section_text": "<p class=\"mb-7px\">We're almost ready to launch our premium line of prescription compounded medicines to treat severe dandruff. We're excited to be able to offer these products directly to patients without the need to see a dermatologist in person.</p>\n<p><strong>Sign up here to receive a notification when we launch, and be sure to check out <a href=\"/pages/blog\">our blogs</a> in the meantime to learn more.</strong></p>",
