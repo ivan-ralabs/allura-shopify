@@ -317,7 +317,7 @@
       >
     {%- endif -%}
 
-    <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}" type="text/css" />
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
 
     <script>
       if (Shopify.designMode) {
