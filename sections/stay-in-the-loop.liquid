@@ -1,15 +1,22 @@
 {{ 'section-stay-in-the-loop.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top }}px !important;
     padding-bottom: {{ section.settings.padding_bottom }}px !important;
+    background-image: url('{{ 'spot-bg-mobile.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top_tablet }}px !important;
       padding-bottom: {{ section.settings.padding_bottom_tablet }}px !important;
+      background-image: url('{{ 'spot-bg-tablet.png' | asset_url }}');
+      background-size: 63%;
     }
   }
 
@@ -17,6 +24,8 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top_desktop }}px !important;
       padding-bottom: {{ section.settings.padding_bottom_desktop }}px !important;
+      background-image: url('{{ 'spot-bg-desktop.png' | asset_url }}');
+      background-size: 34%;
     }
   }
 {%- endstyle -%}
