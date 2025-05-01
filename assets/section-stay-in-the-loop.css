@@ -64,16 +64,11 @@
   letter-spacing: 0;
   margin-top: 17px;
   border-radius: 4px;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.6s ease, opacity 0.6s ease;
-  will-change: max-height, opacity;
+  display: none;
 }
 
 .stay-in-the-loop-section .alert.show {
-  opacity: 1;
-  max-height: 500px; /* має бути більше, ніж фактична висота блоку */
+  display: block;
 }
 
 .stay-in-the-loop-section .mt--10 {
@@ -225,6 +220,7 @@
   .stay-in-the-loop-section .alert {
     margin-top: 12px;
     width: calc(100% - 10px);
+    position: absolute;
   }
 
   .stay-in-the-loop-section .input-group {
