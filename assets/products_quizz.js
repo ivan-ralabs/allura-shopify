@@ -807,7 +807,7 @@ function navigateQuestion(direction) {
     if (currentQuestionIndex == 0) {
       previousButton.style.display = 'none';
     } else {
-      previousButton.style.display = 'inline-block';
+      previousButton.removeAttribute('style');
     }
     
   } else if (direction === 'previous' && currentQuestionIndex > 0) {

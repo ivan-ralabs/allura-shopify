@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row">
       <div class="col mt-5 text-start mb-4">
-        <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+        <a onclick="window.history.back()" class="btn btn-tertiary arrow-left pointer">Back</a>
       </div>
     </div>
   </div>
@@ -14,7 +14,6 @@
     <div class="row">
       <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
         {% assign product_images = product.images %}
-        
         {% if product_images.size == 1 %}
           <img class="w-100" src="{{ product_images.first.src | img_url: 'original' }}" alt="{{ product.title }}">
         {% else %}
