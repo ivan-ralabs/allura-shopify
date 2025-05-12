@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row">
       <div class="col mt-5 text-start mb-4">
-        <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+        <a onclick="window.history.back()" class="btn btn-tertiary arrow-left pointer">Back</a>
       </div>
     </div>
   </div>
@@ -55,11 +55,11 @@
         </div>
 
         <div class="quiz-navigation">
-          <button id="previous-button" onclick="navigateQuestion('previous')" style="display: none;">
+          <button class="btn btn-secondary" id="previous-button" onclick="navigateQuestion('previous')" style="display: none;">
             <i class="bi bi-caret-left-fill"></i>
             Previous
           </button>
-          <button id="next-button" onclick="navigateQuestion('next')" disabled="disabled">
+          <button class="btn btn-primary" id="next-button" onclick="navigateQuestion('next')" disabled="disabled">
             Next
             <i class="bi bi-caret-right-fill"></i>
           </button>
@@ -75,7 +75,7 @@
   <div class="container">
     <div class="row">
       <div class="col mt-5 text-start mb-4">
-        <a onclick="window.history.back()" class="arrow-left pointer">Back</a>
+        <a onclick="window.history.back()" class="btn btn-tertiary arrow-left pointer">Back</a>
       </div>
     </div>
   </div>
@@ -263,7 +263,7 @@
             
         <a id="quizz-result-add-to-cart" class="btn btn-primary me-3 pointer">Add to cart</a>
               
-        <a href="/" class="btn btn-outline-light">Let me think more</a>   
+        <a href="/" class="btn btn-secondary">Let me think more</a>   
               
       </div>
       <div class="col-md-6 offset-md-1 d-none d-lg-block">
@@ -952,13 +952,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-  }
-
-  .quiz-navigation button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    gap: 16px;
   }
 
   .quiz-navigation button:disabled {
@@ -966,11 +960,6 @@
     color: #fff;
     cursor: not-allowed;
     opacity: 0.5;
-  }
-
-  .quiz-navigation button:not(:disabled) {
-    background-color: #5B814B;
-    color: white;
   }
 
   .progress-bar-container {
