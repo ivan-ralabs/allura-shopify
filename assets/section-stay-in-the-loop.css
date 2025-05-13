@@ -1,0 +1,248 @@
+.coming-soon--badge {
+  font-family: Lora;
+  font-size: 24px;
+  line-height: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  text-align: center;
+  background-color: #7A5C3C;
+  max-width: 164px;
+  border-radius: 48px;
+  padding: 20px 6px;
+  left: -1px;
+  top: -11px;
+}
+
+.stay-in-the-loop-section {
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.stay-in-the-loop-section h2 {
+  letter-spacing: 0;
+  margin-bottom: 24px;
+  font-size: 32px;
+  line-height: 44px;
+  position: relative;
+}
+
+/* default styles reset */
+
+.stay-in-the-loop-section a {
+  color: #285445;
+  text-underline-offset: 2px;
+}
+
+.stay-in-the-loop-section a:hover {
+  color: #5B814B;
+}
+
+.stay-in-the-loop-section a:active {
+  color: #264238;
+}
+
+.stay-in-the-loop-section a:disabled {
+  color: #757575;
+}
+
+.stay-in-the-loop-section p,
+.stay-in-the-loop-section a,
+.stay-in-the-loop-section input,
+.stay-in-the-loop-section button {
+  font-family: Nunito Sans, sans-serif;
+}
+
+.stay-in-the-loop-section .subscribe-form {
+  position: relative;
+}
+.stay-in-the-loop-section .alert {
+  width: 100%;
+  border: 1px solid #3C7D11;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+  margin-top: 17px;
+  border-radius: 4px;
+  display: none;
+}
+
+.stay-in-the-loop-section .alert.show {
+  display: block;
+}
+
+.stay-in-the-loop-section .mt--10 {
+  margin-top: -10px;
+}
+
+.stay-in-the-loop-section img {
+  max-height: 197px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 80px;
+  position: relative;
+}
+
+
+.stay-in-the-loop-section p.mb-7px {
+  margin-bottom: 7px;
+}
+
+.stay-in-the-loop-section .text-container {
+  margin-bottom: 24px;
+}
+.stay-in-the-loop-section .text-container p {
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+.stay-in-the-loop-section .text-container strong {
+  letter-spacing: 0.4px;
+}
+
+.stay-in-the-loop-section .input-group {
+  gap: 14px;
+}
+
+.stay-in-the-loop-section input.form-control {
+  width: 100%;
+  max-width: 389px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.stay-in-the-loop-section button {
+  width: 100%;
+  background-color: #7A5C3C;
+  border-radius: 32px;
+  border-top-left-radius: 32px !important;
+  border-bottom-left-radius: 32px !important;
+  font-weight: 500;
+}
+
+.coming-soon {
+  margin-top: 9px;
+}
+
+.coming-soon__image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  left: 7px;
+  top: 6px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .stay-in-the-loop-section .column-left {
+    width: 51%;
+  }
+
+  .stay-in-the-loop-section .column-right {
+    width: 49%;
+    padding: 0;
+  }
+
+  .stay-in-the-loop-section .container {
+    padding: 0;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .coming-soon--badge {
+    left: -35px;
+    top: -31px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .stay-in-the-loop-section .alert {
+    line-height: 20px;
+    margin-top: 5px;
+  }
+
+  .stay-in-the-loop-section .input-group {
+    gap: 14px;
+  }
+
+  .stay-in-the-loop-section button {
+    max-width: 121px;
+  }
+
+  .stay-in-the-loop-section input.form-control {
+    width: 100%;
+  }
+  .stay-in-the-loop-section .text-container strong {
+    letter-spacing: 0;
+  }
+
+  .stay-in-the-loop-section .text-container p {
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  .stay-in-the-loop-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .stay-in-the-loop-section h2 {
+    font-size: 24px;
+    line-height: 32px;
+  } 
+
+  .stay-in-the-loop-section img {
+    max-height: 218px;
+  }
+
+  .coming-soon {
+    padding-left: 36px;
+    margin-top: 56px;
+  }
+}
+
+@media (min-width: 991px) {
+
+  .coming-soon--badge {
+    left: -38px;
+    top: -11px;
+  }
+
+  .coming-soon__image-wrapper {
+    justify-content: flex-start;
+    left: 0;
+    top: 0;
+  }
+
+  .stay-in-the-loop-section .alert {
+    margin-top: 12px;
+    width: calc(100% - 10px);
+    position: absolute;
+  }
+
+  .stay-in-the-loop-section .input-group {
+    gap: 17px;
+  }
+
+  .stay-in-the-loop-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .coming-soon {
+    padding-left: 26px;
+    margin-top: 56px;
+  }
+
+  .stay-in-the-loop-section h2 {
+    font-size: 32px;
+    line-height: 44px;
+  }
+
+  .stay-in-the-loop-section img {
+    max-height: 256px;
+  }
+}

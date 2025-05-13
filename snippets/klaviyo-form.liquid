@@ -1,0 +1,15 @@
+<script defer src="{{ 'klaviyo-form.js' | asset_url }}"></script>
+<script defer src="{{ 'klaviyo-subscription.js' | asset_url }}"></script>
+
+<klaviyo-form>
+  <form id="subscribe-form" class="subscribe-form mb-3" data-list-id="{{ list_id }}">
+    <div class="input-group mb-3">
+      <input type="email" name="email" class="form-control" placeholder="{{ form_placeholder }}" aria-label="{{ form_placeholder }}" required>
+      <button class="btn btn-primary" type="submit"> {{ button_text }}</button>
+    </div>
+    <!-- Success Message (hidden by default) -->
+    <p class="alert alert-success" role="alert" id="success-message">
+      {{ form_success_message }}
+    </p>
+  </form>
+</klaviyo-form>

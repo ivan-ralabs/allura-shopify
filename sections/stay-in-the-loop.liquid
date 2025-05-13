@@ -1,0 +1,196 @@
+{{ 'section-stay-in-the-loop.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px !important;
+    padding-bottom: {{ section.settings.padding_bottom }}px !important;
+    background-image: url('{{ 'spot-bg-mobile.png' | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left top;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_tablet }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom_tablet }}px !important;
+      background-image: url('{{ 'spot-bg-tablet.png' | asset_url }}');
+      background-size: 63%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_desktop }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px !important;
+      background-image: url('{{ 'spot-bg-desktop.png' | asset_url }}');
+      background-size: 34%;
+    }
+  }
+{%- endstyle -%}
+
+<div class="bg-white stay-in-the-loop-section section-{{ section.id }}-padding" id="{{ section.id }}">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Left side (Text and Form) -->
+      <div class="col-md-6 col-lg-5 mb-4 mb-md-0 mt--10 column-left">
+        <h2>{{ section.settings.section_title }}</h2>
+        <div class="text-container">{{ section.settings.section_text }}</div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'subscribe_form' -%}
+            {%- render 'klaviyo-form', form_placeholder: block.settings.form_placeholder, button_text: block.settings.button_text, form_success_message: block.settings.form_success_message, list_id: block.settings.list_id -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <!-- Right side (Image and Tag) -->
+      <div class="col-md-6 col-lg-5 offset-lg-1 column-right">
+        <div class="coming-soon">
+          <div class="coming-soon__image-wrapper position-relative">
+            <img src="{{ section.settings.coming_soon_image | image_url: width:800 }}" alt="Coming Soon" class="img-fluid" width="800" height="auto">
+            <div class="coming-soon--badge position-absolute text-white rounded-pill">
+              {{ section.settings.coming_soon_badge }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Stay in the Loop Section",
+    "tag": "section",
+    "class": "stay-in-loop-section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_top_tablet",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top_tablet",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_tablet",
+        "min": 0,
+        "max": 144,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom_tablet",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top_desktop",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_desktop",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom_desktop",
+        "default": 36
+      },
+      {
+        "type": "text",
+        "id": "section_id",
+        "label": "Section ID",
+        "default": "stay-in-the-loop"
+      },
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "Stay in the loop"
+      },
+      {
+        "type": "html",
+        "id": "section_text",
+        "label": "Section Text"
+      },
+      {
+        "type": "text",
+        "id": "coming_soon_badge",
+        "label": "Coming Soon Badge",
+        "default": "Coming Soon"
+      },
+      {
+        "type": "image_picker",
+        "id": "coming_soon_image",
+        "label": "Coming Soon Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "subscribe_form",
+        "name": "Subscribe form",
+        "settings": [
+          {
+            "type": "text",
+            "id": "list_id",
+            "label": "Klaviyo List ID"
+          },
+          {
+            "type": "text",
+            "id": "form_placeholder",
+            "label": "Email Placeholder",
+            "default": "Your email"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Notify Me"
+          },
+          {
+            "type": "text",
+            "id": "form_success_message",
+            "label": "Success Message",
+            "default": "Thank you! We'll notify you as soon as our products are available."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Stay in the Loop"
+      }
+    ]
+  }
+  {% endschema %}
