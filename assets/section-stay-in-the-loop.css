@@ -55,6 +55,11 @@
 .stay-in-the-loop-section .subscribe-form {
   position: relative;
 }
+
+.stay-in-the-loop-section .btn{
+  white-space: nowrap;
+}
+
 .stay-in-the-loop-section .alert {
   width: 100%;
   border: 1px solid #3C7D11;
