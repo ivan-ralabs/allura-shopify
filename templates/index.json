@@ -9,6 +9,68 @@
  */
 {
   "sections": {
+    "video_q97m4b": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Prescription strength solutions for dry, itchy scalp delivered to your door",
+        "heading_size": "h1",
+        "enable_hero_video": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_video_controls": false,
+        "play_video_muted": true,
+        "video": "shopify://files/videos/ALLURA MODEL THREE_0c4a7b1b-761e-4f9e-9338-3a9aef8dd8e4.mp4",
+        "video_url": "",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "how_it_works_EdRcLp": {
+      "type": "how-it-works",
+      "blocks": {
+        "list_block_UWenHb": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Complete a brief online visit",
+            "how_it_works_text_block": "<p>Answer a few quick questions on your medication history and scalp needs.</p>"
+          }
+        },
+        "list_block_eFArxe": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Get medical approval",
+            "how_it_works_text_block": "<p>A board-certified Dermatologist will review your intake form before approving your prescription. There is no additional cost for this, and you will have the ability to communicate with your dermatologist at any time.</p>"
+          }
+        },
+        "list_block_VBeFyg": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Shipped directly to you",
+            "how_it_works_text_block": "<p>All medications are shipped directly to you with free shipping.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "list_block_UWenHb",
+        "list_block_eFArxe",
+        "list_block_VBeFyg"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "section_title": "How it works",
+        "side_image": "shopify://shop_images/image_4.png",
+        "side_image_tablet": "shopify://shop_images/image_4_1.png",
+        "image_overlap": true
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -35,6 +97,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/main-banner-picture.png",
         "image_overlay_opacity": 20,
@@ -77,7 +140,7 @@
         "section_title": "Stay in the loop",
         "section_text": "<p class=\"mb-7px\">We're almost ready to launch our premium line of prescription compounded medicines to treat severe dandruff. We're excited to be able to offer these products directly to patients without the need to see a dermatologist in person.</p>\n<p><strong>Sign up here to receive a notification when we launch, and be sure to check out <a href=\"/pages/blog\">our blogs</a> in the meantime to learn more.</strong></p>",
         "coming_soon_badge": "Coming soon",
-        "coming_soon_image": "shopify://shop_images/Solution_Max.png"
+        "coming_soon_image": "shopify://shop_images/Triple_1.png"
       }
     },
     "featured_collection": {
@@ -171,6 +234,8 @@
     }
   },
   "order": [
+    "video_q97m4b",
+    "how_it_works_EdRcLp",
     "image_banner",
     "stay_in_the_loop_99p6K8",
     "featured_collection",
