@@ -65,7 +65,7 @@
     }
 
     .section-{{ section.id }}-padding .banner__headline--inner {
-      width: 57%;
+      width: 52%;
       left: 0 !important;
       top: 31%;
       margin-left: 16px !important;
@@ -73,7 +73,7 @@
     }
 
     .section-{{ section.id }}-padding .banner__heading {
-      font-size: 32px;
+      font-size: 25px;
       line-height: 44px;
     }
   }
@@ -132,12 +132,12 @@
   <div
      class="{{ content_container_class }}"
     >
-    {% if enable_hero_video != blank %}
+    {% if enable_hero_video != blank and section.settings.heading != blank %}
       <div class="banner__box content-container content-container--full-width-mobile">
         <div class="banner__headline--wrapper" style="background-image: url('//withallura.com/cdn/shop/t/6/assets/banner-headline-background.png?v=146694845142978732641747037685');">
           <div class="banner__headline--inner">
-            <h2 class="banner__heading inline-richtext h0">
-              Revive your scalp, renew your confidence
+            <h2 class="banner__heading inline-richtext {{ section.settings.heading_size }}">
+               {{ section.settings.heading }}
             </h2>
           </div>
         </div>
