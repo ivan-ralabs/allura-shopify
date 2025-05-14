@@ -29,6 +29,48 @@
         "padding_bottom": 0
       }
     },
+    "how_it_works_EdRcLp": {
+      "type": "how-it-works",
+      "blocks": {
+        "list_block_UWenHb": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Complete a brief online visit",
+            "how_it_works_text_block": "<p>Answer a few quick questions on your medication history and scalp needs.</p>"
+          }
+        },
+        "list_block_eFArxe": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Get medical approval",
+            "how_it_works_text_block": "<p>A board-certified Dermatologist will review your intake form before approving your prescription. There is no additional cost for this, and you will have the ability to communicate with your dermatologist at any time.</p>"
+          }
+        },
+        "list_block_VBeFyg": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Shipped directly to you",
+            "how_it_works_text_block": "<p>All medications are shipped directly to you with free shipping.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "list_block_UWenHb",
+        "list_block_eFArxe",
+        "list_block_VBeFyg"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "section_title": "How it works",
+        "side_image": "shopify://shop_images/image_4.png",
+        "side_image_tablet": "shopify://shop_images/image_4_1.png",
+        "image_overlap": true
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -193,6 +235,7 @@
   },
   "order": [
     "video_q97m4b",
+    "how_it_works_EdRcLp",
     "image_banner",
     "stay_in_the_loop_99p6K8",
     "featured_collection",

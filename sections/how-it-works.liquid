@@ -1,0 +1,158 @@
+{{ 'how-it-works-section.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+
+  .section-{{ section.id }}-padding .how-it-works__list-item {
+    background-image: url({{ 'pattern.png' | asset_url }});
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding .column-left.position-relative {
+      top: -{{ section.settings.padding_top | divided_by: 2 }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign image_overlap = section.settings.image_overlap
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="how-it-works-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding {% if image_overlap %} image-overlap{% endif %}">
+    {% if image_overlap != blank %}
+    <div class="how-it-works__image-wrapper">
+      {% if section.settings.side_image != blank %}
+      <img src="{{ section.settings.side_image | image_url: width:720 }}" alt="How it works image"
+        class="img-fluid image-fluid--mobile image-fluid--desktop" width="720" height="auto">
+      {% endif %}
+      {% if section.settings.side_image_tablet != blank %}
+      <img src="{{ section.settings.side_image_tablet | image_url: width:720 }}" alt="How it works image"
+        class="img-fluid image-fluid--tablet" width="720" height="auto">
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="row align-items-center">
+        <div
+          class="{% if image_overlap != blank %}col-md-8 col-lg-9 position-relative column-left{% else %}col-md-6{% endif %}">
+          <h2 class="how-it-works__title">{{ section.settings.section_title }}</h2>
+          <ul class="how-it-works__list">
+            {%- for block in section.blocks -%}
+            {% if block.type == 'list_block' %}
+            <li class="how-it-works__list-item">
+              <span class="how-it-works__list-badge">
+                {{ forloop.index }}
+              </span>
+              <h3>
+                {{ block.settings.block_title }}
+              </h3>
+              {{ block.settings.how_it_works_text_block }}
+            </li>
+            {% endif %}
+            {%- endfor -%}
+          </ul>
+        </div>
+        {% if image_overlap == blank %}
+        <div class="col-md-6">
+          {% if section.settings.side_image != blank %}
+          <img src="{{ section.settings.side_image | image_url: width:720 }}" alt="How it works image"
+            class="img-fluid rounded shadow" width="720" height="auto">
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "How It Works Section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "t:sections.video.settings.full_width.label",
+        "default": false
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title",
+        "default": "How it works"
+      },
+      {
+        "type": "image_picker",
+        "id": "side_image",
+        "label": "Side Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "side_image_tablet",
+        "label": "Side Image (Tablet)"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_overlap",
+        "label": "Image Overlap",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "list_block",
+        "name": "List block",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "block_title",
+            "label": "Block Title"
+          },
+          {
+            "type": "richtext",
+            "id": "how_it_works_text_block",
+            "label": "Text Block Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "How It Works",
+        "category": "Custom Sections"
+      }
+    ]
+  }
+  {% endschema %}

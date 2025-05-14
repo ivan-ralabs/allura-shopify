@@ -59,14 +59,18 @@
 
   @media screen and (max-width: 768px) {
     .section-{{ section.id }}-padding .banner__headline--wrapper {
-      background-position-x: -41px !important;
+      background-position-x: left;
       background-repeat: no-repeat;
       background-position-y: top;
     }
 
+    .section-{{ section.id }}-padding .banner__box.content-container {
+      padding-left: 0 !important;
+    }
+
     .section-{{ section.id }}-padding .banner__headline--inner {
-      width: 52%;
-      left: 0 !important;
+      width: 60%;
+      left: 3% !important;
       top: 31%;
       margin-left: 16px !important;
       padding-left: 0 !important;
@@ -75,6 +79,20 @@
     .section-{{ section.id }}-padding .banner__heading {
       font-size: 25px;
       line-height: 44px;
+    }
+  }
+
+  @media screen and (max-width: 579px) {
+    .section-{{ section.id }}-padding .banner__headline--wrapper {
+      background-position-x: -41px;
+    }
+
+    .section-{{ section.id }}-padding .banner__headline--inner {
+      left: 0 !important;
+      top: 31%;
+      margin-left: 16px !important;
+      padding-left: 0 !important;
+      width: 52%;
     }
   }
 
