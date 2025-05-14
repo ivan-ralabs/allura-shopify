@@ -9,6 +9,26 @@
  */
 {
   "sections": {
+    "video_q97m4b": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Revive your scalp, renew your confidence",
+        "heading_size": "h1",
+        "enable_hero_video": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_video_controls": false,
+        "play_video_muted": true,
+        "video": "shopify://files/videos/ALLURA MODEL THREE_0c4a7b1b-761e-4f9e-9338-3a9aef8dd8e4.mp4",
+        "video_url": "",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -35,6 +55,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/main-banner-picture.png",
         "image_overlay_opacity": 20,
@@ -171,6 +192,7 @@
     }
   },
   "order": [
+    "video_q97m4b",
     "image_banner",
     "stay_in_the_loop_99p6K8",
     "featured_collection",

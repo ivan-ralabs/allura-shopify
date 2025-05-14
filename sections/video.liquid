@@ -1,11 +1,90 @@
 {{ 'video-section.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  if section.settings.enable_hero_video
+   assign enable_hero_video = true
+  else
+   assign enable_hero_video = false
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+
+  {%- if enable_hero_video -%}
+  .section-{{ section.id }}-padding .video-section__media.deferred-media {
+    --ratio-percent: 46.25%;
+  }
+
+  .section-{{ section.id }}-padding .banner__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    z-index: 2;
+    padding: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-{{ section.id }}-padding .banner__box {
+    padding: 4rem 1.5rem;
+    position: relative;
+    height: fit-content;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .section-{{ section.id }}-padding .video-section__media.deferred-media {
+      --ratio-percent: 62.25%;
+    }
+  }
+
+  @media screen and (max-width: 767px) and (orientation: portrait) {
+    .section-{{ section.id }}-padding .video-section__media.deferred-media {
+      --ratio-percent: 135.25%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-padding .banner__headline--wrapper {
+      background-position-x: -41px !important;
+      background-repeat: no-repeat;
+      background-position-y: top;
+    }
+
+    .section-{{ section.id }}-padding .banner__headline--inner {
+      width: 57%;
+      left: 0 !important;
+      top: 31%;
+      margin-left: 16px !important;
+      padding-left: 0 !important;
+    }
+
+    .section-{{ section.id }}-padding .banner__heading {
+      font-size: 32px;
+      line-height: 44px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding .banner__content {
+      padding: 5rem;
+    }
+  }
+
+  {%- endif -%}
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -40,12 +119,32 @@
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
-    <div
-      {% if section.settings.full_width %}
-        class="page-width"
-      {% endif %}
+  {%- liquid
+    assign content_container_class = ''
+    if section.settings.full_width
+      if enable_hero_video
+        assign content_container_class = 'banner__content banner__content--bottom-center page-width'
+      else
+        assign content_container_class = 'page-width'
+      endif
+    endif
+  -%} 
+  <div
+     class="{{ content_container_class }}"
     >
-      {%- unless section.settings.heading == blank -%}
+    {% if enable_hero_video != blank %}
+      <div class="banner__box content-container content-container--full-width-mobile">
+        <div class="banner__headline--wrapper" style="background-image: url('//withallura.com/cdn/shop/t/6/assets/banner-headline-background.png?v=146694845142978732641747037685');">
+          <div class="banner__headline--inner">
+            <h2 class="banner__heading inline-richtext h0">
+              Revive your scalp, renew your confidence
+            </h2>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+      {%- unless section.settings.heading == blank or enable_hero_video -%}
         <div class="title-wrapper title-wrapper--no-top-margin{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
         </div>
@@ -54,10 +153,11 @@
     <deferred-media
       class="video-section__media deferred-media gradient global-media-settings{% if section.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       data-media-id="{{ video_id }}"
-      {% if poster != null %}
+      {%- if enable_hero_video == false and poster != null -%}
         style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
       {% endif %}
     >
+    {%- unless section.settings.video_url == null and section.settings.enable_video_autoplay -%}
       <button
         id="Deferred-Poster-Modal-{{ video_id }}"
         class="video-section__poster media deferred-media__poster media--landscape"
@@ -73,13 +173,16 @@
         {%- else -%}
           {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
         {%- endif -%}
-        <span class="deferred-media__poster-button motion-reduce">
-          <span class="svg-wrapper">
-            {{- 'icon-play.svg' | inline_asset_content -}}
+          <span class="deferred-media__poster-button motion-reduce">
+            <span class="svg-wrapper">
+              {{- 'icon-play.svg' | inline_asset_content -}}
+            </span>
           </span>
-        </span>
       </button>
+    {%- endunless -%}
+    {%- unless enable_hero_video -%}
       <template>
+    {%- endunless -%}
         {%- if section.settings.video == null and section.settings.video_url != null -%}
           {%- liquid
             assign loop = ''
@@ -109,13 +212,15 @@
             section.settings.video
             | video_tag:
               image_size: '1100x',
-              autoplay: true,
+              autoplay: section.settings.enable_video_autoplay,
               loop: section.settings.enable_video_looping,
-              controls: true,
-              muted: false
+              controls: section.settings.enable_video_controls,
+              muted: section.settings.play_video_muted
           }}
         {%- endif -%}
-      </template>
+      {%- unless enable_hero_video -%}
+        </template>
+      {%- endunless -%}
     </deferred-media>
   </div>
 </div>
@@ -165,8 +270,32 @@
     },
     {
       "type": "checkbox",
+      "id": "enable_hero_video",
+      "label": "t:sections.video.settings.enable_hero_video.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "t:sections.video.settings.enable_video_autoplay.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "enable_video_looping",
       "label": "t:sections.video.settings.enable_video_looping.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_controls",
+      "label": "t:sections.video.settings.enable_video_controls.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "play_video_muted",
+      "label": "t:sections.video.settings.play_video_muted.label",
       "default": false
     },
     {
