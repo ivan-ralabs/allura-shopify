@@ -231,6 +231,94 @@
       "settings": {
         "title": "What our clients say"
       }
+    },
+    "faq_3LE4f6": {
+      "type": "faq",
+      "blocks": {
+        "faq_block_3NTKW3": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What types of scalp conditions do your products treat?",
+            "answer": "<p>Our prescription-based compound products are specifically designed to target itchy and flaky scalp conditions, such as seborrheic dermatitis. Our innovative formulations provide fast relief and long-lasting results for these common scalp issues.</p>"
+          }
+        },
+        "faq_block_xWMKHa": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How do I get a prescription for your products?",
+            "answer": "<p>Our online telehealth platform makes it easy to get a prescription. Simply place the order, pass the medical intake, and if appropriate, you'll receive an electronic prescription for our shampoos or scalp serums.</p>"
+          }
+        },
+        "faq_block_GJpHiR": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How quickly can I expect to see results?",
+            "answer": "<p>Our products are designed to provide fast relief. While individual results may vary, many users report [typical timeframe for initial improvement]. For best results, follow the prescribed usage instructions provided with your product.</p>"
+          }
+        },
+        "faq_block_wWGhBa": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Can I purchase your products without a prescription?",
+            "answer": "<p>No, our shampoos and scalp serums are prescription-based compound products. This ensures that you receive the most appropriate treatment for your specific scalp condition, as determined by a qualified healthcare professional.</p>"
+          }
+        },
+        "faq_block_qKqM7M": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What if I have questions about using the products?",
+            "answer": "<p>We're here to help! You can contact us via <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a>, and our team will be happy to assist you</p>"
+          }
+        },
+        "faq_block_dU4NtE": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Are your products safe for all hair types?",
+            "answer": "<p>Yes! Our products are formulated to be safe for all hair types. However, if you have specific concerns about your hair type or condition, please mention them during filling in th medical intake form or contact directly via <a href=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a></p>"
+          }
+        },
+        "faq_block_km7RtT": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Do you offer any guarantees on your products?",
+            "answer": "<p>We stand behind our products and believe in their effectiveness. If you have any concerns or don’t see the expected results, please reach out to <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a> for assistance.</p>"
+          }
+        },
+        "faq_block_zeB3ze": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What ingredients do your products contain?",
+            "answer": "<p>Our formulations include a blend of effective ingredients specifically chosen to alleviate scalp conditions. For a detailed list of ingredients, please check them directly on the product page</p>"
+          }
+        },
+        "faq_block_xkj8xc": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How do I store the products?",
+            "answer": "<p>Store your products in a cool, dry place, away from direct sunlight. Make sure to keep them out of reach of children and pets.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_block_3NTKW3",
+        "faq_block_xWMKHa",
+        "faq_block_GJpHiR",
+        "faq_block_wWGhBa",
+        "faq_block_qKqM7M",
+        "faq_block_dU4NtE",
+        "faq_block_km7RtT",
+        "faq_block_zeB3ze",
+        "faq_block_xkj8xc"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "faq_title": "Frequently asked questions",
+        "faq_image": "shopify://shop_images/image_8.png"
+      }
     }
   },
   "order": [
@@ -240,6 +328,7 @@
     "about_us_e9Xzm7",
     "image_banner",
     "stay_in_the_loop_99p6K8",
-    "main_reviews_f8YEyx"
+    "main_reviews_f8YEyx",
+    "faq_3LE4f6"
   ]
 }

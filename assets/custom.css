@@ -3544,7 +3544,6 @@ main .seal-subscription-page .seal-layout a, main .seal-subscription-page .seal-
 }
 
 .seal-container.seal-sectioned .seal-button.seal-button-small {
-  //styleName: Labels/Button;
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 500;
@@ -3561,3 +3560,8 @@ main .seal-subscription-page .seal-layout a, main .seal-subscription-page .seal-
   }
 }
 
+@media screen and (max-width: 767px) {
+  .mobile-padding {
+    padding: 0 16px !important;
+  }
+}
