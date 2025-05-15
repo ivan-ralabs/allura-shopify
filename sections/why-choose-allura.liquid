@@ -1,0 +1,329 @@
+{{ 'why-choose-allura-section.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .why-choose-allura-section {
+    position: relative;
+  }
+
+  .why-choose-allura-section:before {
+    position: absolute;
+    z-index: 1;
+    content: '';
+    top: 0;
+    left: -4%;
+    width: 519px;
+    height: 455px;
+    background: url({{'why-choose-allura-spot.png' | asset_url }}) left top no-repeat;
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .why-choose-allura-section {
+      padding-bottom: 112px;
+    }
+
+    .why-choose-allura-section:before {
+      width: 576px;
+      height: 550px;
+    }
+  }
+
+  .why-choose-allura-section th:nth-child(2) {
+    background-color: {{ section.settings.heading_1_background_color }};
+    font-weight: {%- if section.settings.column_1_bold -%} 700; {%- else -%} 400{%- endif -%}
+  }
+
+  .why-choose-allura-section td:nth-child(2) {
+    background-color: {{ section.settings.column_1_background_color }};
+  }
+
+  .why-choose-allura-section th:nth-child(3) {
+    background-color: {{ section.settings.heading_2_background_color }};
+    font-weight: {%- if section.settings.column_2_bold -%} 700; {%- else -%} 400{%- endif -%}
+  }
+
+  .why-choose-allura-section td:nth-child(3) {
+    background-color: {{ section.settings.column_2_background_color }};
+  }
+
+  .why-choose-allura-section th:nth-child(4) {
+    background-color: {{ section.settings.heading_3_background_color }};
+    font-weight: {%- if section.settings.column_3_bold -%} 700; {%- else -%} 400{%- endif -%}
+  }
+
+  .why-choose-allura-section td:nth-child(4) {
+    background-color: {{ section.settings.column_3_background_color }};
+  }
+{% endstyle %}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="why-choose-allura-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="why-choose-allura__title">{{ section.settings.why_choose_allura_title }}</h2>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-between">
+          <div class="col-12 table-column">
+            <div class="table-container">
+              <table class="why-choose-allura__table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>
+                      {{ section.settings.column_1_text }}
+                    </th>
+                    <th>
+                      {{ section.settings.column_2_text }}
+                    </th>
+                    <th>
+                      {{ section.settings.column_3_text }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {%- for block in section.blocks -%}
+                    {% if block.type == 'table_row' %}
+                      <tr>
+                        <td class="main-text">
+                          {{ block.settings.main_text }}
+                        </td>
+                        <td class="column-1">
+                          {% if block.settings.column_1_text != blank %}
+                            {{ block.settings.column_1_text }}
+                          {%- else -%}
+                            <span class="why-choose-allura__table-icon">
+                              {% if block.settings.column_1_checkmark != blank %}
+                                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                              {% else %}
+                                {{- 'icon-close.svg' | inline_asset_content -}}
+                              {% endif %}
+                            </span>
+                          {% endif %}
+                        </td>
+                        <td class="column-2">
+                          {% if block.settings.column_2_text != blank %}
+                            {{ block.settings.column_2_text }}
+                          {%- else -%}
+                            <span class="why-choose-allura__table-icon">
+                              {% if block.settings.column_2_checkmark != blank %}
+                                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                              {% else %}
+                                {{- 'icon-close.svg' | inline_asset_content -}}
+                              {% endif %}
+                            </span>
+                          {% endif %}
+                        </td>
+                        <td class="column-3">
+                          {% if block.settings.column_3_text != blank %}
+                            {{ block.settings.column_3_text }}
+                          {%- else -%}
+                            <span class="why-choose-allura__table-icon">
+                              {% if block.settings.column_3_checkmark != blank %}
+                                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                              {% else %}
+                                {{- 'icon-close.svg' | inline_asset_content -}}
+                              {% endif %}
+                            </span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {%- endfor -%}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Why Choose Allura",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "t:sections.video.settings.full_width.label",
+        "default": false
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "why_choose_allura_title",
+        "label": "Why Choose Allura Title",
+        "default": "Why Choose Allura"
+      },
+      {
+        "type": "header",
+        "content": "Column 1"
+      },
+      {
+        "type": "text",
+        "id": "column_1_text",
+        "label": "Column 1 Heading",
+        "default": "Column 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "column_1_bold",
+        "label": "Column 1 Bold",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "heading_1_background_color",
+        "label": "Heading 1 Background Color",
+        "default": "#EEEEEE"
+      },
+      {
+        "type": "color",
+        "id": "column_1_background_color",
+        "label": "Column 1 Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Column 2"
+      },
+      {
+        "type": "text",
+        "id": "column_2_text",
+        "label": "Column 2 Heading",
+        "default": "Column 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "column_2_bold",
+        "label": "Column 2 Bold",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "heading_2_background_color",
+        "label": "Heading 2 Background Color",
+        "default": "#EEEEEE"
+      },
+      {
+        "type": "color",
+        "id": "column_2_background_color",
+        "label": "Column 2 Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Column 3"
+      },
+      {
+        "type": "text",
+        "id": "column_3_text",
+        "label": "Column 3 Heading",
+        "default": "Column 3"
+      },
+      {
+        "type": "checkbox",
+        "id": "column_3_bold",
+        "label": "Column 3 Bold",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "heading_3_background_color",
+        "label": "Heading 3 Background Color",
+        "default": "#EEEEEE"
+      },
+      {
+        "type": "color",
+        "id": "column_3_background_color",
+        "label": "Column 3 Background Color",
+        "default": "#ffffff"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "table_row",
+        "name": "Table Row",
+        "settings": [
+            {
+              "type": "richtext",
+              "id": "main_text",
+              "label": "Main Text",
+              "default": "<p>Default text</p>"
+            },
+            {
+              "type": "text",
+              "id": "column_1_text",
+              "label": "Column 1 Text"
+            },
+            {
+              "type": "checkbox",
+              "id": "column_1_checkmark",
+              "label": "Column 1 Checkmark",
+              "default": true
+            },
+            {
+              "type": "text",
+              "id": "column_2_text",
+              "label": "Column 2 Text"
+            },
+            {
+              "type": "checkbox",
+              "id": "column_2_checkmark",
+              "label": "Column 2 Checkmark",
+              "default": true
+            },
+            {
+              "type": "text",
+              "id": "column_3_text",
+              "label": "Column 3 Text"
+            },
+            {
+              "type": "checkbox",
+              "id": "column_3_checkmark",
+              "label": "Column 3 Checkmark",
+              "default": true
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Why Choose Allura",
+        "category": "Allura"
+      }
+    ]
+  }
+  {% endschema %}
