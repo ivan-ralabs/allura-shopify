@@ -4,9 +4,9 @@
       <div class="col-md-5 col-lg-4 order-2 order-md-1 about-us-image-backbgroud">
         <div class="about-us-image-wrapper">
           {%- if section.settings.image -%}
-            <img src="{{ section.settings.image | img_url: 'original' }}" alt="About Us Image">
+            <img src="{{ section.settings.image | image_url: 'original' }}" alt="About Us Image" width="600" height="400">
           {%- else -%}
-              <img src="{{ 'Bottles (1).jpg' | asset_url }}" alt="Default Image">
+              <img src="{{ 'Bottles (1).jpg' | asset_url }}" alt="Default Image" width="600" height="400">
           {%- endif -%}
         </div>
       </div>
