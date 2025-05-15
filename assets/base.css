@@ -1229,6 +1229,7 @@ button.shopify-payment-button__button--unbranded {
 
 .button:before,
 .shopify-challenge__button:before,
+.customer button:before,
 .shopify-payment-button__button--unbranded:before {
   content: '';
   position: absolute;
@@ -1244,6 +1245,7 @@ button.shopify-payment-button__button--unbranded {
 
 .button:after,
 .shopify-challenge__button:after,
+.customer button:after,
 .shopify-payment-button__button--unbranded:after {
   content: '';
   position: absolute;
