@@ -109,6 +109,124 @@
         "button_text": "Read More"
       }
     },
+    "why_choose_allura_J3kr8R": {
+      "type": "why-choose-allura",
+      "blocks": {
+        "table_row_acCFHp": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Consultation with a Board Certified Dermatologist from your home</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": true
+          }
+        },
+        "table_row_xG7NXt": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Typical wait time for consultation</p>",
+            "column_1_text": " < 1 day",
+            "column_1_checkmark": true,
+            "column_2_text": "No consultation",
+            "column_2_checkmark": true,
+            "column_3_text": "Weeks to Months",
+            "column_3_checkmark": true
+          }
+        },
+        "table_row_Mp9HPP": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Evidenced based prescription-only compounded shampoo</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_6bqAWK": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Rosemary oil added to prescription shampoo</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_xTnXCc": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Able to message your Dermatologist with questions anytime</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_f7LBBU": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Free shipping directly to you</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_e4B4dw": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Compounded prescription scalp serums available</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        }
+      },
+      "block_order": [
+        "table_row_acCFHp",
+        "table_row_xG7NXt",
+        "table_row_Mp9HPP",
+        "table_row_6bqAWK",
+        "table_row_xTnXCc",
+        "table_row_f7LBBU",
+        "table_row_e4B4dw"
+      ],
+      "name": "Why Choose Allura",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": false,
+        "color_scheme": "",
+        "why_choose_allura_title": "Why choose Allura",
+        "column_1_text": "With Allura",
+        "column_1_bold": true,
+        "heading_1_background_color": "#d5e1cf",
+        "column_1_background_color": "#eef3ec",
+        "column_2_text": "Non-prescription shampoos in stores or online",
+        "column_2_bold": false,
+        "heading_2_background_color": "#eeeeee",
+        "column_2_background_color": "#ffffff",
+        "column_3_text": "Seeing a dermatologist in an office",
+        "column_3_bold": false,
+        "heading_3_background_color": "#eeeeee",
+        "column_3_background_color": "#ffffff"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -326,6 +444,7 @@
     "featured_collection",
     "how_it_works_EdRcLp",
     "about_us_e9Xzm7",
+    "why_choose_allura_J3kr8R",
     "image_banner",
     "stay_in_the_loop_99p6K8",
     "main_reviews_f8YEyx",
