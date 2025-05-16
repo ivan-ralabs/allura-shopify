@@ -1236,13 +1236,11 @@ p a:not([class]):disabled,
 
 #product-types .viewbar .selected-items .item {
   max-width: 196px;
-  padding: 4px 12px 4px 12px;
+  padding: 4px 25px 4px 12px;
   gap: 4px;
   border-radius: 32px;
-  opacity: 0px;
   border: 1px solid #285445;
   background-color: #EEF3EC;
-
   font-family: Nunito Sans;
   font-size: 12px;
   font-weight: 400;
@@ -1251,11 +1249,27 @@ p a:not([class]):disabled,
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #285445;
-  margin-right: 8px;
+  display: inline-grid;
+  position: relative;
+}
+
+.filter-multi-select>.viewbar>.selected-items>.item {
+  height: auto;
+  min-height: 1.875em;
 }
 
 .filter-multi-select>.viewbar>.selected-items>.item>button {
   color: #285445!important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 4px;
+}
+
+.filter-multi-select>.viewbar>.selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 hr.divider {
