@@ -1,4 +1,5 @@
 .why-choose-allura__title {
+  font-family: Lora, sans-serif;
   font-size: 24px;
   line-height: 32px;
   color: #1E1E1E;
@@ -19,7 +20,7 @@
   padding: 12px 8px;
   border: 1px solid #D5E1CF;
   color: #1E1E1E;
-  font-family: Nunita Sans, sans-serif;
+  font-family: Nunito Sans, sans-serif;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0;
@@ -37,6 +38,7 @@
 
   .why-choose-allura-section td p {
       margin-bottom: 0;
+      font-family: Nunito Sans, sans-serif;
   }
 
   .why-choose-allura-section td:not(.main-text) {

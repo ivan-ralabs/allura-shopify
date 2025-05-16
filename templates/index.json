@@ -29,6 +29,84 @@
         "padding_bottom": 0
       }
     },
+    "about_us_e9Xzm7": {
+      "type": "about-us",
+      "settings": {
+        "title": "Explore our concept",
+        "section_image": "shopify://shop_images/1_Hand_2.png",
+        "description": "<p>As practicing board-certified dermatologists for over 20 combined years, <a href=\"/pages/about-us\"><b style=\"white-space: no-wrap;\">Dr. Beasley</b></a> and <a href=\"/pages/about-us\"><b no-wrap>Dr. Ritchie</b></a> found that the medications they can prescribe in the office are often ineffective and that seeing a dermatologist in person can take months and is not convenient.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>Allura eliminates both of these problems: we created higher potency medications that are prescribed by a board-certified dermatologist within 24 hours, without ever having to leave your home.</p>\n<svg class=\"d-none\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>",
+        "button_link": "shopify://pages/about-us",
+        "button_text": "Read More"
+      }
+    },
+    "about_us_why_we_aGjr6p": {
+      "type": "about-us-why-we",
+      "blocks": {
+        "benefit_r9J7tM": {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Tailored to you",
+            "benefit_description": "At Allura Medicinals we provide an expert consultation with a Dermatologist who can prescribe a variety of topical compounded medications to fit your exact needs and hair style."
+          }
+        },
+        "benefit_jPBmGc": {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Convenient, fast, and accessible",
+            "benefit_description": "You can do this from the convenience of your phone, tablet, or desktop computer and have the medications delivered to your home in a matter of days to get the fast results you are looking for."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_r9J7tM",
+        "benefit_jPBmGc"
+      ],
+      "settings": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Revive your scalp, renew your confidence",
+            "heading_size": "h0"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/main-banner-picture.png",
+        "image_overlay_opacity": 20,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -99,16 +177,6 @@
         "image_overlap": true
       }
     },
-    "about_us_e9Xzm7": {
-      "type": "about-us",
-      "settings": {
-        "title": "Explore our concept",
-        "section_image": "shopify://shop_images/Bottles_1.jpg",
-        "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined 20 years and have treated thousands of patients who suffer from an itchy and flakey scalp.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>During that time we realized <b>two things</b>: the commercial medications to treat an itchy or flakey scalp are often ineffective, and even if they were effective it's really hard to get in to see a dermatologist. Allura Medicinals exists to <b>eliminate both</b> of these problems.</p>\n<svg class=\"d-none d-md-block\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>\n<p>The result? The <b>fast and effective relief</b> you've been searching for so you can look and feel the way you want to.</p>",
-        "button_link": "shopify://pages/about-us",
-        "button_text": "Read More"
-      }
-    },
     "why_choose_allura_J3kr8R": {
       "type": "why-choose-allura",
       "blocks": {
@@ -121,7 +189,7 @@
             "column_2_text": "",
             "column_2_checkmark": false,
             "column_3_text": "",
-            "column_3_checkmark": true
+            "column_3_checkmark": false
           }
         },
         "table_row_xG7NXt": {
@@ -225,47 +293,6 @@
         "column_3_bold": false,
         "heading_3_background_color": "#eeeeee",
         "column_3_background_color": "#ffffff"
-      }
-    },
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Revive your scalp, renew your confidence",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/main-banner-picture.png",
-        "image_overlay_opacity": 20,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
       }
     },
     "stay_in_the_loop_99p6K8": {
@@ -441,11 +468,12 @@
   },
   "order": [
     "video_q97m4b",
+    "about_us_e9Xzm7",
+    "about_us_why_we_aGjr6p",
+    "image_banner",
     "featured_collection",
     "how_it_works_EdRcLp",
-    "about_us_e9Xzm7",
     "why_choose_allura_J3kr8R",
-    "image_banner",
     "stay_in_the_loop_99p6K8",
     "main_reviews_f8YEyx",
     "faq_3LE4f6"
