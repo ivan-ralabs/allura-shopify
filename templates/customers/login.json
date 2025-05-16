@@ -1,1 +1,38 @@
-{"sections":{"main":{"type":"main-login","blocks":{"custom_block_7LqPQ8":{"type":"custom_block","settings":{"block_description":"Welcome to better health, starting now","text_background":"shopify:\/\/shop_images\/Ellipse_144_774c90c5-0775-439a-9e90-316a593d1aae.png","banner_image_rectangle":"shopify:\/\/shop_images\/Rectangle_45.png","banner_image":"shopify:\/\/shop_images\/Option_6.jpg"}}},"block_order":["custom_block_7LqPQ8"],"settings":{"enable_shop_login_button":true,"padding_top":36,"padding_bottom":36}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-login",
+      "blocks": {
+        "custom_block_7LqPQ8": {
+          "type": "custom_block",
+          "settings": {
+            "block_description": "Welcome to better health, starting now",
+            "text_background": "shopify://shop_images/Ellipse_144_774c90c5-0775-439a-9e90-316a593d1aae.png",
+            "banner_image_rectangle": "shopify://shop_images/Rectangle_45.png",
+            "banner_image": "shopify://shop_images/Shower.png"
+          }
+        }
+      },
+      "block_order": [
+        "custom_block_7LqPQ8"
+      ],
+      "settings": {
+        "enable_shop_login_button": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
