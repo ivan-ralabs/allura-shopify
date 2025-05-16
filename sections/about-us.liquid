@@ -3,12 +3,9 @@
     <div class="row align-items-center">
       <div class="col-md-5 col-lg-4 order-2 order-md-1 about-us-image-backbgroud">
         <div class="about-us-image-wrapper">
-          {%- if section.settings.image -%}
-            <img src="{{ section.settings.image | img_url: 'original' }}" alt="About Us Image">
-          {%- else -%}
-              <img src="{{ 'Bottles (1).jpg' | asset_url }}" alt="Default Image">
-          {%- endif -%}
-        </div>
+          {%- if section.settings.section_image -%}
+            <img src="{{ section.settings.section_image | image_url: width: 600, height: 750 }}" alt="About Us Image" class="img-fluid" width="600" height="750"> 
+          </div>
       </div>
       <div class="col-md-7 col-lg-6 offset-lg-1 order-1 order-md-2">
         <h2>{{ section.settings.title }}</h2>

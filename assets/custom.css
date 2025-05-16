@@ -606,7 +606,7 @@ h2.title {
 }
 
 .about-us-section {
-    background-color: #F8FAF7;
+    background-color: #ffffff;
     padding: 64px 0;
 }
 
@@ -717,6 +717,7 @@ h2.title {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    height: 100%;
 }
 
 .custom-radio {
@@ -3544,7 +3545,6 @@ main .seal-subscription-page .seal-layout a, main .seal-subscription-page .seal-
 }
 
 .seal-container.seal-sectioned .seal-button.seal-button-small {
-  //styleName: Labels/Button;
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 500;
@@ -3561,3 +3561,8 @@ main .seal-subscription-page .seal-layout a, main .seal-subscription-page .seal-
   }
 }
 
+@media screen and (max-width: 767px) {
+  .mobile-padding {
+    padding: 0 16px !important;
+  }
+}

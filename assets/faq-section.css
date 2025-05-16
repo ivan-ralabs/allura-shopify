@@ -1,0 +1,129 @@
+.faq-title {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  margin-bottom: 24px;
+}
+
+.faq-section .accordion-item {
+  border: 1px solid #D6D6D6;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  padding: 16px 24px;
+}
+
+.faq-section .accordion-item + .accordion-item {
+  margin-top: 8px;
+}
+
+.faq-section .accordion-button {
+  color: #1E1E1E;
+  font-family: Nunito Sans;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: unset;
+}
+
+.faq-section .accordion-button span {
+  padding-right: 20px;
+}
+
+.faq-section .accordion-button,
+.faq-section .accordion-button:focus,
+.faq-section .accordion-button:focus-visible {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.faq-section .accordion-button::after {
+  display: none;
+}
+
+.faq-section .accordion-button .icon {
+  display: none;
+  width: 13.33px;
+  height: auto;
+  margin-left: auto;
+}
+
+.faq-section .accordion-button.collapsed .icon-plus {
+  display: block;
+}
+
+.faq-section .accordion-button:not(.collapsed) .icon-minus {
+  display: block;
+}
+
+.faq-section .accordion-body {
+  padding: 0;
+  margin-top: 16px;
+}
+
+.faq-section .accordion-body > p {
+  font-family: Nunito Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #1E1E1E;
+  margin-bottom: 0;
+}
+
+.faq-section .text-column {
+  position: relative;
+  z-index: 2;
+}
+
+.faq-section .image-column {
+  margin-top: 24px;
+}
+
+.faq-section .image-wrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+}
+
+.faq-section img {
+ position: relative;
+ z-index: 2;
+ border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .faq-section .faq-title {
+    margin-bottom: 32px;
+  }
+
+  .faq-section .image-column {
+    margin-top: 32px;
+  }
+
+  .faq-section .image-wrapper {
+    max-width: 313px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .faq-section .image-column {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .faq-section .faq-title {
+    font-size: 32px;
+    line-height: 44px;
+  }
+
+  .faq-section .image-wrapper {
+    max-width: 416px;
+  }
+}

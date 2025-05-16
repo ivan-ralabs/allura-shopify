@@ -1,0 +1,164 @@
+{{ 'faq-section.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .section-{{ section.id }}-padding .image-wrapper:after {
+    position: absolute;
+    z-index: 1;
+    content: '';
+    bottom: 0;
+    right: -16px;
+    width: 555px;
+    height: 645px;
+    background: url({{'faq-side-mb.png' | asset_url }}) right bottom no-repeat;
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding .image-wrapper:after {
+      width: 650px;
+      left: -54%;
+      bottom: 55px;
+      background: url({{'faq-side-tb.png' | asset_url }}) center bottom no-repeat;
+      background-size: contain;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .section-{{ section.id }}-padding {
+      padding-bottom: 112px;
+    }
+
+    .section-{{ section.id }}-padding .image-wrapper:after {
+      width: 150%;
+      left: auto;
+      right: 0;
+      bottom: 0;
+      background: url({{'faq-side-dt.png' | asset_url }}) center bottom no-repeat;
+      background-size: contain;
+    }
+  }
+{% endstyle %}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div id="faq-section" class="faq-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+    <div class="container mobile-padding">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="faq-title">{{ section.settings.faq_title }}</h2>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-between">
+          <div class="col-12 col-lg-7 text-column">
+            <div class="accordion" id="faqAccordion">
+              {%- for block in section.blocks -%}
+                {% if block.type == 'faq_block' %}
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ forloop.index }}">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.index }}" aria-expanded="true" aria-controls="collapse{{ forloop.index }}">
+                        <span>{{ block.settings.question }}</span>
+                        {{- 'icon-minus.svg' | inline_asset_content -}}
+                        {{- 'icon-plus.svg' | inline_asset_content -}}
+                      </button>
+                    </h2>
+                    <div id="collapse{{ forloop.index }}" class="accordion-collapse collapse {% if forloop.index == 1 %} show{% endif %}" aria-labelledby="heading{{ forloop.index }}" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">
+                        {{ block.settings.answer }}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 text-center image-column">
+            {% if section.settings.faq_image != blank %}
+              <div class="image-wrapper">
+                <img src="{{ section.settings.faq_image | image_url: width:720, height:720 }}" alt="FAQ image" class="img-fluid" width="720" height="720">
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "FAQ Section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "t:sections.video.settings.full_width.label",
+        "default": false
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "faq_title",
+        "label": "FAQ Title",
+        "default": "Frequently asked questions"
+      },
+      {
+        "type": "image_picker",
+        "id": "faq_image",
+        "label": "Side Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq_block",
+        "name": "FAQ Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question",
+            "default": "What is the return policy?"
+          },
+          {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer",
+            "default": "<p>We offer a 30-day return policy on all unopened products.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ Accordion",
+        "category": "Custom Sections"
+      }
+    ]
+  }
+  {% endschema %}

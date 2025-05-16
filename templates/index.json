@@ -9,6 +9,227 @@
  */
 {
   "sections": {
+    "video_q97m4b": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "Prescription strength solutions for dry, itchy scalp delivered to your door",
+        "heading_size": "h1",
+        "enable_hero_video": true,
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_video_controls": false,
+        "play_video_muted": true,
+        "video": "shopify://files/videos/ALLURA MODEL THREE_0c4a7b1b-761e-4f9e-9338-3a9aef8dd8e4.mp4",
+        "video_url": "",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Our products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "how_it_works_EdRcLp": {
+      "type": "how-it-works",
+      "blocks": {
+        "list_block_UWenHb": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Complete a brief online visit",
+            "how_it_works_text_block": "<p>Answer a few quick questions on your medication history and scalp needs.</p>"
+          }
+        },
+        "list_block_eFArxe": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Get medical approval",
+            "how_it_works_text_block": "<p>A board-certified Dermatologist will review your intake form before approving your prescription. There is no additional cost for this, and you will have the ability to communicate with your dermatologist at any time.</p>"
+          }
+        },
+        "list_block_VBeFyg": {
+          "type": "list_block",
+          "settings": {
+            "block_title": "Shipped directly to you",
+            "how_it_works_text_block": "<p>All medications are shipped directly to you with free shipping.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "list_block_UWenHb",
+        "list_block_eFArxe",
+        "list_block_VBeFyg"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "section_title": "How it works",
+        "side_image": "shopify://shop_images/image_4.png",
+        "side_image_tablet": "shopify://shop_images/image_4_1.png",
+        "image_overlap": true
+      }
+    },
+    "about_us_e9Xzm7": {
+      "type": "about-us",
+      "custom_css": [
+        "a {white-space: nowrap;}"
+      ],
+      "settings": {
+        "title": "Explore our concept",
+        "section_image": "shopify://shop_images/1_Hand_2.png",
+        "description": "<p>As practicing board-certified dermatologists for over 20 combined years, <b><a href=\"/pages/about-us\">Dr. Beasley</a></b> and <b><a href=\"/pages/about-us\">Dr. Ritchie</a></b> found that the medications they can prescribe in the office are often ineffective and that seeing a dermatologist in person can take months and is not convenient.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>Allura eliminates both of these problems: we created higher potency medications that are prescribed by a board-certified dermatologist within 24 hours, without ever having to leave your home..</p>\n<svg class=\"d-none\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>",
+        "button_link": "shopify://pages/about-us",
+        "button_text": "Read More"
+      }
+    },
+    "why_choose_allura_J3kr8R": {
+      "type": "why-choose-allura",
+      "blocks": {
+        "table_row_acCFHp": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Consultation with a Board Certified Dermatologist from your home</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_xG7NXt": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Typical wait time for consultation</p>",
+            "column_1_text": " < 1 day",
+            "column_1_checkmark": true,
+            "column_2_text": "No consultation",
+            "column_2_checkmark": true,
+            "column_3_text": "Weeks to Months",
+            "column_3_checkmark": true
+          }
+        },
+        "table_row_Mp9HPP": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Evidenced based prescription-only compounded shampoo</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_6bqAWK": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Rosemary oil added to prescription shampoo</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_xTnXCc": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Able to message your Dermatologist with questions anytime</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_f7LBBU": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Free shipping directly to you</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        },
+        "table_row_e4B4dw": {
+          "type": "table_row",
+          "settings": {
+            "main_text": "<p>Compounded prescription scalp serums available</p>",
+            "column_1_text": "",
+            "column_1_checkmark": true,
+            "column_2_text": "",
+            "column_2_checkmark": false,
+            "column_3_text": "",
+            "column_3_checkmark": false
+          }
+        }
+      },
+      "block_order": [
+        "table_row_acCFHp",
+        "table_row_xG7NXt",
+        "table_row_Mp9HPP",
+        "table_row_6bqAWK",
+        "table_row_xTnXCc",
+        "table_row_f7LBBU",
+        "table_row_e4B4dw"
+      ],
+      "name": "Why Choose Allura",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": false,
+        "color_scheme": "",
+        "why_choose_allura_title": "Why choose Allura",
+        "column_1_text": "With Allura",
+        "column_1_bold": true,
+        "heading_1_background_color": "#d5e1cf",
+        "column_1_background_color": "#eef3ec",
+        "column_2_text": "Non-prescription shampoos in stores or online",
+        "column_2_bold": false,
+        "heading_2_background_color": "#eeeeee",
+        "column_2_background_color": "#ffffff",
+        "column_3_text": "Seeing a dermatologist in an office",
+        "column_3_bold": false,
+        "heading_3_background_color": "#eeeeee",
+        "column_3_background_color": "#ffffff"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -35,6 +256,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/main-banner-picture.png",
         "image_overlay_opacity": 20,
@@ -65,6 +287,7 @@
       "block_order": [
         "subscribe_form_3bU3B6"
       ],
+      "disabled": true,
       "name": "Stay in the Loop",
       "settings": {
         "padding_top": 50,
@@ -78,45 +301,6 @@
         "section_text": "<p class=\"mb-7px\">We're almost ready to launch our premium line of prescription compounded medicines to treat severe dandruff. We're excited to be able to offer these products directly to patients without the need to see a dermatologist in person.</p>\n<p><strong>Sign up here to receive a notification when we launch, and be sure to check out <a href=\"/pages/blog\">our blogs</a> in the meantime to learn more.</strong></p>",
         "coming_soon_badge": "Coming soon",
         "coming_soon_image": "shopify://shop_images/Triple_1.png"
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "title": "Our products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 3,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "link",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
-    "about_us_e9Xzm7": {
-      "type": "about-us",
-      "settings": {
-        "title": "Explore our concept",
-        "section_image": "shopify://shop_images/Bottles_1.jpg",
-        "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined 20 years and have treated thousands of patients who suffer from an itchy and flakey scalp.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>During that time we realized <b>two things</b>: the commercial medications to treat an itchy or flakey scalp are often ineffective, and even if they were effective it's really hard to get in to see a dermatologist. Allura Medicinals exists to <b>eliminate both</b> of these problems.</p>\n<svg class=\"d-none d-md-block\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>\n<p>The result? The <b>fast and effective relief</b> you've been searching for so you can look and feel the way you want to.</p>",
-        "button_link": "shopify://pages/about-us",
-        "button_text": "Read More"
       }
     },
     "main_reviews_f8YEyx": {
@@ -168,13 +352,113 @@
       "settings": {
         "title": "What our clients say"
       }
+    },
+    "faq_3LE4f6": {
+      "type": "faq",
+      "blocks": {
+        "faq_block_3NTKW3": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How quickly will I see results?",
+            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flakey scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.<br/><br/></p>"
+          }
+        },
+        "faq_block_xWMKHa": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What medications do we use in our products?",
+            "answer": "<p>Allura medicinals uses a combination of anti-yeast and anti-inflammatory medications in our shampoo and scalp serums. As you can read about here (blog link), an itchy and flakey scalp is caused by overgrowth of yeast on the scalp followed by an inflammatory reaction to the yeast. We attack this from both angles at the same time, which is different from any commercially available prescription or over the counter medication. </p>"
+          }
+        },
+        "faq_block_GJpHiR": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How long do I need to use these products for?",
+            "answer": "<p>Because we cannot cure an itchy and flakey scalp permanently you will need to continue to use these medications to keep things under control. It is possible that the condition will eventually go away (sometimes when people move to a different part of the country this can happen), but we will not be able to predict when that will happen.</p>"
+          }
+        },
+        "faq_block_wWGhBa": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Is it safe to use these medications on a long term basis?",
+            "answer": "<p>As you can read about here (blog link), seborrheic dermatitis (the fancy term for an itchy and flakey scalp) is not curable. The yeast that causes this condition is found on the skin normally and is present everywhere in the world. So, even when it is eliminated from the body it will come back within a couple of weeks. Therefore we need to find medications that are safe and sustainable. Our products are formulated to be effective as quickly as possible, but also balanced to be safe to use on a long term basis. Our shampoo contains a very strong topical steroid, but as the contact time is just a few minutes 2-3 times a week the likelihood of side effects is very low. Conversely, we use a milder topical steroid in the scalp serum as the contact time is much longer. The combination of the two results in fast and sustainable results that are safe to use long term. If topical steroids are not for you though, stay tuned, we are developing other alternatives that we hope to offer soon!</p>"
+          }
+        },
+        "faq_block_qKqM7M": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How does using Allura Medicinals compare with going to see a dermatologist in person?",
+            "answer": "<p>We designed Allura to be both the most effective <em>and</em> the easiest way to get control of your itchy and flakey scalp. While we do not accept insurance we think our value still exceeds that of an in person dermatologist. Check out the handy chart we put together below to see how we save you time and money.</p>"
+          }
+        },
+        "faq_block_dU4NtE": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How long does it take to receive my order?",
+            "answer": "<p>Once your prescription is verified and approved, most orders ship within 1 business day. Delivery times vary based on your location.</p>"
+          }
+        },
+        "faq_block_km7RtT": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Can I cancel or change my order?",
+            "answer": "<p>If your order has not been processed or shipped, you may request changes by contacting support@alluramedicinals.com. Once an order is \"Processing\" or \"Shipped,\" it cannot be changed or canceled.</p>"
+          }
+        },
+        "faq_block_zeB3ze": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What happens if my package is lost?",
+            "answer": "<p>Please contact our support team if your package is lost (support@alluramedicinals.com). We will assist you in filing a claim with the carrier and, if necessary, arrange for a replacement.</p>"
+          }
+        },
+        "faq_block_xkj8xc": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Are the medications FDA-approved?",
+            "answer": "<p>Some prescription products, particularly compounded medications, are not individually FDA-approved, but the ingredients used are sourced from FDA-registered facilities.</p>"
+          }
+        },
+        "faq_block_aJfW6C": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How do I request a refund?",
+            "answer": "<p>Email support@alluramedicinals.com with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_block_3NTKW3",
+        "faq_block_xWMKHa",
+        "faq_block_GJpHiR",
+        "faq_block_wWGhBa",
+        "faq_block_qKqM7M",
+        "faq_block_dU4NtE",
+        "faq_block_km7RtT",
+        "faq_block_zeB3ze",
+        "faq_block_xkj8xc",
+        "faq_block_aJfW6C"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "faq_title": "Frequently asked questions",
+        "faq_image": "shopify://shop_images/image_8.png"
+      }
     }
   },
   "order": [
+    "video_q97m4b",
+    "featured_collection",
+    "how_it_works_EdRcLp",
+    "about_us_e9Xzm7",
+    "why_choose_allura_J3kr8R",
     "image_banner",
     "stay_in_the_loop_99p6K8",
-    "featured_collection",
-    "about_us_e9Xzm7",
-    "main_reviews_f8YEyx"
+    "main_reviews_f8YEyx",
+    "faq_3LE4f6"
   ]
 }

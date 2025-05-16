@@ -1,0 +1,122 @@
+.why-choose-allura__title {
+  font-family: Lora, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  color: #1E1E1E;
+  margin-bottom: 32px;
+  letter-spacing: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.why-choose-allura__table {
+  position: relative;
+  z-index: 2;
+}
+
+.why-choose-allura-section th,
+.why-choose-allura-section td {
+  width: 23%;
+  padding: 12px 8px;
+  border: 1px solid #D5E1CF;
+  color: #1E1E1E;
+  font-family: Nunito Sans, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+  .why-choose-allura-section th:first-child,
+  .why-choose-allura-section td:first-child {
+    width: 29%;
+    background-color: #ffffff;
+  }
+
+  .why-choose-allura-section th {
+    text-align: center;
+  }
+
+  .why-choose-allura-section td p {
+      margin-bottom: 0;
+      font-family: Nunito Sans, sans-serif;
+  }
+
+  .why-choose-allura-section td:not(.main-text) {
+    text-align: center;
+  }
+
+  .why-choose-allura__table-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #264238;
+    position: relative;
+    display: inline-flex;
+    border-radius: 50%;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .why-choose-allura__table-icon:has(.icon-close) {
+    background-color: #626262;
+  }
+
+  .why-choose-allura__table-icon svg {
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (min-width: 768px) {
+    .why-choose-allura-section th,
+    .why-choose-allura-section td {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .why-choose-allura-section th,
+    .why-choose-allura-section td {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+
+    .why-choose-allura__title {
+      font-size: 32px;
+      line-height: 44px;
+    }
+  }
+
+  @media screen and (max-width: 768px) and (min-width: 759px) {
+    .why-choose-allura-section.page-width {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .why-choose-allura-section.page-width {
+      padding-right: 0;
+    }
+
+    .why-choose-allura-section .table-column {
+      padding-right: 0;
+    }
+
+    .why-choose-allura-section .table-container {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .why-choose-allura-section table {
+      min-width: 435px;
+      margin-right: 7.5px;
+    }
+  }
