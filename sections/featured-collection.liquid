@@ -115,9 +115,6 @@
     
     <div class="row">
         {%- for card_product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          {%- if card_product.available == false or card_product.variants.first.inventory_quantity == 0 -%}
-            {%- continue -%}
-          {%- endif -%}
           <div class="product-tablet-wrap filtered-item col-12 col-md-6 col-lg-4 mb-4" data-type="{{ card_product.type }}" data-product-id="{{ card_product.id }}">
             <div class="card product-card h-100 w-100">
                 <a href="{{ card_product.url }}" class="card-media">

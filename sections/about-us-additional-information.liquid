@@ -16,7 +16,13 @@
       <div class="col-md-6 col-lg-6 offset-lg-1 position-relative">
         <div class="image-wrapper">
           {% if section.settings.image %}
-            <img src="{{ section.settings.image | img_url: 'medium' }}" alt="About Us Image" class="img-fluid right-image w-100">
+            <img 
+              src="{{ section.settings.image | image_url: width: 800 }}" 
+              alt="About Us Image" 
+              class="img-fluid right-image w-100"
+              width="712"
+              height="472"
+            >
           {% endif %}
         </div>
       </div>
