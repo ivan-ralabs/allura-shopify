@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "custom_liquid_XQrWYa": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  button:not([aria-label]){\n    padding: 0 24px !important;\n}\n\n[data-testId=\"form-row\"]:has(button) {\n  gap: 16px;\n  margin-top: 14px;\n}\n\ndiv[data-testId=\"form-row\"]:nth-child(3):has(p) p {\n    padding: 12px 16px;\n    border: 1px solid #3C7D11;\n    border-radius: 4px;\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "video_q97m4b": {
       "type": "video",
       "name": "t:sections.video.presets.name",
@@ -29,11 +39,52 @@
         "padding_bottom": 0
       }
     },
+    "about_us_e9Xzm7": {
+      "type": "about-us",
+      "custom_css": [
+        "a {white-space: nowrap;}"
+      ],
+      "settings": {
+        "title": "Explore our concept",
+        "section_image": "shopify://shop_images/1_Hand_2.png",
+        "description": "<p>As practicing board-certified dermatologists for over 20 combined years, <b><a href=\"/pages/about-us\">Dr. Beasley</a></b> and <b><a href=\"/pages/about-us\">Dr. Ritchie</a></b> found that the medications they can prescribe in the office are often ineffective and that seeing a dermatologist in person can take months and is not convenient.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>Allura eliminates both of these problems: we created higher potency medications that are prescribed by a board-certified dermatologist within 24 hours, without ever having to leave your home..</p>\n<svg class=\"d-none\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>",
+        "button_link": "shopify://pages/about-us",
+        "button_text": "Read More"
+      }
+    },
+    "about_us_why_we_qfRFhm": {
+      "type": "about-us-why-we",
+      "blocks": {
+        "benefit_3CwfUK": {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Tailored to you",
+            "benefit_description": "At Allura Medicinals we provide an expert consultation with a Dermatologist who can prescribe a variety of topical compounded medications to fit your exact needs and hair style."
+          }
+        },
+        "benefit_hCxwfH": {
+          "type": "benefit",
+          "settings": {
+            "benefit_title": "Convenient, fast, and accessible",
+            "benefit_description": "You can do this from the convenience of your phone, tablet, or desktop computer and have the medications delivered to your home in a matter of days to get the fast results you are looking for."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_3CwfUK",
+        "benefit_hCxwfH"
+      ],
+      "settings": {
+        "title": "",
+        "description": ""
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
         "title": "Our products",
         "heading_size": "h2",
+        "show_quiz": false,
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -97,19 +148,6 @@
         "side_image": "shopify://shop_images/image_4.png",
         "side_image_tablet": "shopify://shop_images/image_4_1.png",
         "image_overlap": true
-      }
-    },
-    "about_us_e9Xzm7": {
-      "type": "about-us",
-      "custom_css": [
-        "a {white-space: nowrap;}"
-      ],
-      "settings": {
-        "title": "Explore our concept",
-        "section_image": "shopify://shop_images/1_Hand_2.png",
-        "description": "<p>As practicing board-certified dermatologists for over 20 combined years, <b><a href=\"/pages/about-us\">Dr. Beasley</a></b> and <b><a href=\"/pages/about-us\">Dr. Ritchie</a></b> found that the medications they can prescribe in the office are often ineffective and that seeing a dermatologist in person can take months and is not convenient.</p>\n<div class=\"about-us-image-wrapper d-block d-md-none\"><img src=\"//886076-cc.myshopify.com/cdn/shop/t/3/assets/default-about-us-image.png?v=52271843030714756191732111325\" alt=\"Default Image\"></div>\n<p>Allura eliminates both of these problems: we created higher potency medications that are prescribed by a board-certified dermatologist within 24 hours, without ever having to leave your home..</p>\n<svg class=\"d-none\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>",
-        "button_link": "shopify://pages/about-us",
-        "button_text": "Read More"
       }
     },
     "why_choose_allura_J3kr8R": {
@@ -360,7 +398,7 @@
           "type": "faq_block",
           "settings": {
             "question": "How quickly will I see results?",
-            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flaky scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.<br/><br/></p>"
+            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flaky scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.</p>"
           }
         },
         "faq_block_xWMKHa": {
@@ -402,14 +440,14 @@
           "type": "faq_block",
           "settings": {
             "question": "Can I cancel or change my order?",
-            "answer": "<p>If your order has not been processed or shipped, you may request changes by contacting support@alluramedicinals.com. Once an order is \"Processing\" or \"Shipped,\" it cannot be changed or canceled.</p>"
+            "answer": "<p>If your order has not been processed or shipped, you may request changes by contacting <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a>. Once an order is \"Processing\" or \"Shipped,\" it cannot be changed or canceled.</p>"
           }
         },
         "faq_block_zeB3ze": {
           "type": "faq_block",
           "settings": {
             "question": "What happens if my package is lost?",
-            "answer": "<p>Please contact our support team if your package is lost (support@alluramedicinals.com). We will assist you in filing a claim with the carrier and, if necessary, arrange for a replacement.</p>"
+            "answer": "<p>Please contact our support team if your package is lost (<a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a>). We will assist you in filing a claim with the carrier and, if necessary, arrange for a replacement.</p>"
           }
         },
         "faq_block_xkj8xc": {
@@ -423,7 +461,7 @@
           "type": "faq_block",
           "settings": {
             "question": "How do I request a refund?",
-            "answer": "<p>Email support@alluramedicinals.com with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
+            "answer": "<p>Email <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a> with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
           }
         }
       },
@@ -446,15 +484,17 @@
         "full_width": true,
         "color_scheme": "",
         "faq_title": "Frequently asked questions",
-        "faq_image": "shopify://shop_images/image_8.png"
+        "faq_image": "shopify://shop_images/3_Hands.png"
       }
     }
   },
   "order": [
+    "custom_liquid_XQrWYa",
     "video_q97m4b",
+    "about_us_e9Xzm7",
+    "about_us_why_we_qfRFhm",
     "featured_collection",
     "how_it_works_EdRcLp",
-    "about_us_e9Xzm7",
     "why_choose_allura_J3kr8R",
     "image_banner",
     "stay_in_the_loop_99p6K8",

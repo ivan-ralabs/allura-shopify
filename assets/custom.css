@@ -1058,8 +1058,9 @@ h2.title {
   box-shadow: none;
 }
 
+p a:not([class]),
 .btn.btn-link, 
-.article-default-template a:not([class]) {
+.article-default-template p a:not([class]) {
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 500;
@@ -1073,28 +1074,32 @@ h2.title {
   border-radius: 32px;
 }
 
+p a:not([class]):hover,
 .btn.btn-link:hover,
-.article-default-template a:not([class]):hover {
+.article-default-template p a:not([class]):hover {
   color: #5B814B;
 }
 
+p a:not([class]):focus,
 .btn.btn-link:focus,
+p a:not([class]):focus-visible,
 .btn.btn-link:focus-visible,
-.article-default-template a:not([class]):focus,
-.btn.btn-link:focus-visible {
+.article-default-template p a:not([class]):focus {
   border-color: #C79662;
   background-color: transparent;
   box-shadow: none;
 }
 
+p a:not([class]):active,
 .btn.btn-link:active,
-.article-default-template a:not([class]):active {
+.article-default-template p a:not([class]):active {
   color: #285445;
 }
 
+p a:not([class]):disabled,
 .btn.btn-link:disabled,
 .btn.btn-link.disabled,
-.article-default-template a:not([class]):disabled {
+.article-default-template p a:not([class]):disabled {
   color: #757575;
 }
 
@@ -1231,13 +1236,11 @@ h2.title {
 
 #product-types .viewbar .selected-items .item {
   max-width: 196px;
-  padding: 4px 12px 4px 12px;
+  padding: 4px 25px 4px 12px;
   gap: 4px;
   border-radius: 32px;
-  opacity: 0px;
   border: 1px solid #285445;
   background-color: #EEF3EC;
-
   font-family: Nunito Sans;
   font-size: 12px;
   font-weight: 400;
@@ -1246,11 +1249,27 @@ h2.title {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #285445;
-  margin-right: 8px;
+  display: inline-grid;
+  position: relative;
+}
+
+.filter-multi-select>.viewbar>.selected-items>.item {
+  height: auto;
+  min-height: 1.875em;
 }
 
 .filter-multi-select>.viewbar>.selected-items>.item>button {
   color: #285445!important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 4px;
+}
+
+.filter-multi-select>.viewbar>.selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 hr.divider {
