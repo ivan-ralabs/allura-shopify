@@ -1178,6 +1178,10 @@ p a:not([class]):disabled,
   display: block!important;
 }
 
+.sls-active .sls-selling-plan-description-content:has(.list-marker) {
+  margin-top: 0;
+}
+
 .card-information .price {
   display: none!important;
 }
