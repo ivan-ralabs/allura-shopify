@@ -30,6 +30,9 @@
     },
     "about_us_additional_information_xUn8ae": {
       "type": "about-us-additional-information",
+      "custom_css": [
+        "img {max-width: 380px;}"
+      ],
       "settings": {
         "description": "<p>The answer was creating Allura Medicinals, which <b>seeks to eliminate these barriers </b> and <b>provide the fastest and most effective relief </b> for conditions such as dandruff, seborrheic dermatitis, and scalp psoriasis. Delivering these solutions directly to your doorstep ensures that you have the time to stay focused on the parts of your life that matter most while getting you the flake free and itch free scalp you deserve.</p>",
         "image": "shopify://shop_images/Blog_1.jpg"
