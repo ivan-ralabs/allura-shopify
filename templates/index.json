@@ -427,14 +427,14 @@
           "type": "faq_block",
           "settings": {
             "question": "How does using Allura Medicinals compare with going to see a dermatologist in person?",
-            "answer": "<p>We designed Allura to be both the most effective <em>and</em> the easiest way to get control of your itchy and flaky scalp. While we do not accept insurance we think our value still exceeds that of an in person dermatologist. Check out the handy chart we put together below to see how we save you time and money.</p>"
+            "answer": "<p>We designed Allura to be both the most effective <em>and</em> the easiest way to get control of your itchy and flaky scalp. While we do not accept insurance we think our value still exceeds that of seeing an in person dermatologist. Check out the <a href=\"/pages/about-us\" target=\"_blank\" title=\"About us\"><strong>handy chart</strong></a> we put together to see how we save you time and money. In addition to not having to wait weeks or months to see a dermatologist, you save on your co-pay, prescription medication co-pays, and don’t have to take the time out of your busy schedule to drive to an office and wait to be seen</p>"
           }
         },
         "faq_block_dU4NtE": {
           "type": "faq_block",
           "settings": {
             "question": "How long does it take to receive my order?",
-            "answer": "<p>Once your prescription is verified and approved, most orders ship within 1 business day. Delivery times vary based on your location.</p>"
+            "answer": "<p>Most prescriptions are approved within 1 day, and then your order will ship within 1 day of that time. Delivery times vary based on your location, but in general you can expect to receive your prescriptions within 1 week of placing your order.</p>"
           }
         },
         "faq_block_km7RtT": {
