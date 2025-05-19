@@ -23,7 +23,7 @@
       "type": "video",
       "name": "t:sections.video.presets.name",
       "settings": {
-        "heading": "Prescription Strength Solutions For a Flaky, Itchy Scalp, Delivered to Your Door",
+        "heading": "Prescription strength solutions for dry, itchy scalp delivered to your door",
         "heading_size": "h1",
         "enable_hero_video": true,
         "enable_video_autoplay": true,
@@ -398,7 +398,7 @@
           "type": "faq_block",
           "settings": {
             "question": "How quickly will I see results?",
-            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flakey scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.<br/><br/></p>"
+            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flaky scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.</p>"
           }
         },
         "faq_block_xWMKHa": {
