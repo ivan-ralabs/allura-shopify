@@ -1102,11 +1102,15 @@ p a:not([class]),
   line-height: 24px;
   text-align: center;
   text-decoration: underline;
-  text-underline-offset: 0;
   color: #1E1E1E;
   padding: 8px 4px;
   border: 2px solid transparent;
   border-radius: 32px;
+}
+
+p a:not([class]),
+.article-default-template p a:not([class]) {
+  padding: 0;
 }
 
 p a:not([class]):hover,
@@ -1123,6 +1127,7 @@ p a:not([class]):focus-visible,
   border-color: #C79662;
   background-color: transparent;
   box-shadow: none;
+  outline: none;
 }
 
 p a:not([class]):active,

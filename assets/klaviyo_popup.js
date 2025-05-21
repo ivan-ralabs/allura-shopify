@@ -67,8 +67,13 @@ document.addEventListener('DOMContentLoaded', function () {
         sessionStorageWrite(formId);
         console.log("click");
       }
-    } else if (target.closest('[data-popup-trigger="' + popupId + '"]')) {
-      triggerKlaviyoPopup(popupId);
+    } else if (target.closest('[href*="klaviyo-popup-trigger"]')) {
+      e.preventDefault();
+      const button = target.closest('[href*="klaviyo-popup-trigger"]');
+      const href = button.getAttribute('href');
+      if (href.includes(popupId)) {
+        triggerKlaviyoPopup(popupId);
+      }
     }
   });
 
