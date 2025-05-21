@@ -2791,6 +2791,10 @@ p.login-description {
   flex-grow: 1;
 }
 
+.featured-collection-section .card.product-card .card-body .card-title {
+  flex-grow: 0;
+}
+
 .equal-height {
   display: flex;
   flex-direction: column;
@@ -2812,6 +2816,15 @@ p.login-description {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.featured-collection-section .card.product-card .product-card-body .card-text  {
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+}
+
+.featured-collection-section .card-text .long-description {
+  display: none;
 }
 
 .card.product-card .card-body.product-card-body {

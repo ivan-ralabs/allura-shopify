@@ -69,7 +69,7 @@
 >
 
   <div
-    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    class="collection featured-collection-section{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -144,7 +144,27 @@
                   <h2>{{ card_product.title | escape }}</h2>
                 </a>
                 <div class="card-text">
-                  <p>{{ card_product.description }}</p>
+                  {%- liquid
+                    assign description_array = card_product.description | split: '.'
+                    if description_array.size > 1
+                      assign short_description = description_array | first | strip_html | append: '.'
+                      assign long_description = description_array | join: '.' | replace: short_description, '' | strip_html | remove_first: "."
+                    else
+                      assign long_description = card_product.description
+                    endif
+                  -%}
+                  {% if short_description != blank %}
+                    <p>
+                      <span class="short-description">
+                        {{- short_description -}}
+                      </span>
+                      <span class="long-description">
+                        {{- long_description -}}
+                      </span>
+                    </p>
+                  {% else %}
+                    {{ card_product.description }}
+                  {% endif %}
                 </div>
               </div>
               <div class="card-footer text-start">
@@ -276,22 +296,6 @@
   window.addEventListener('resize', updateCardHeights);
 });
 
-
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    const productCards = document.querySelectorAll('.product-card-body');
-
-    productCards.forEach(card => {
-        const title = card.querySelector('.card-title');
-        const description = card.querySelector('.card-text');
-        const cardHeight = card.offsetHeight;
-
-        const titleHeight = title.offsetHeight;
-        const remainingHeight = cardHeight - titleHeight;
-
-        description.style.maxHeight = `${remainingHeight}px`;
-    });
-  });
   
   $(function () {
     const productTypes = $('#product-types').filterMultiSelect({
