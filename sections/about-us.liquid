@@ -1,17 +1,39 @@
+
+
 <section class="about-us-section">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-5 col-lg-4 order-2 order-md-1 about-us-image-backbgroud">
-        <div class="about-us-image-wrapper">
+        <div class="about-us-image-wrapper d-none d-md-block">
           {%- if section.settings.section_image -%}
-            <img src="{{ section.settings.section_image | image_url: width: 600, height: 750 }}" alt="About Us Image" class="img-fluid" width="600" height="750"> 
+            <img src="{{ section.settings.section_image | image_url: width: 600, height: 750 }}" alt="About Us Image" class="img-fluid d-none d-md-block" width="600" height="750"> 
+            {%- capture mobile_image -%}
+              <div class="about-us-image-wrapper d-block d-md-none">
+              <img src="{{ section.settings.section_image | image_url: width: 600, height: 750 }}" alt="About Us Image" class="img-fluid d-block d-md-none" width="600" height="750"> 
+              </div>
+            {%- endcapture -%}
+            {%- liquid
+              assign description = section.settings.description | replace: '[img_mobile]', mobile_image
+            -%}
           {%- endif -%}
         </div>
       </div>
       <div class="col-md-7 col-lg-6 offset-lg-1 order-1 order-md-2">
         <h2>{{ section.settings.title }}</h2>
-        <p>{{ section.settings.description }}</p>
-        <a href="{{ section.settings.button_link }}" class="btn btn-primary">{{ section.settings.button_text }}</a>
+        {%- if description != blank -%}
+          <div class="about-us-description">
+            {{ description }}
+          </div>
+          {%- else -%}
+          <p>
+            {{ section.settings.description }}
+          </p>
+        {%- endif -%}
+        {% if section.settings.button_link != blank %}
+          <div class="about-us-button">
+            <a href="{{ section.settings.button_link }}" class="btn btn-primary">{{ section.settings.button_text }}</a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
