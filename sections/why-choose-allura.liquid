@@ -23,10 +23,6 @@
   }
 
   @media screen and (min-width: 1024px) {
-    .why-choose-allura-section {
-      padding-bottom: 112px;
-    }
-
     .why-choose-allura-section:before {
       width: 576px;
       height: 550px;
@@ -62,7 +58,7 @@
 {% endstyle %}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="why-choose-allura-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+  <div id="why-choose-allura" class="why-choose-allura-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
