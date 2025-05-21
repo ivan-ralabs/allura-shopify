@@ -164,8 +164,19 @@
                       {% if selling_plan_allocations.size > 0 %}
                         {% for allocation in selling_plan_allocations %}
                           {% assign price = allocation.price %}
-                          <p class="subscription-price">
+                          <p class="subscription-price {% if section.settings.subscription_info != blank %} flex{% endif %}">
                             <b>{{ price | money }}</b> with subscription
+                            {% if section.settings.subscription_info != blank %}
+                              <span class="svg-wrapper info-trigger">
+                                {{- 'icon-info.svg' | inline_asset_content -}}
+                              </span>
+                              <span class="subscription-info">
+                                <span class="svg-wrapper">
+                                  {{- 'icon-info.svg' | inline_asset_content -}}
+                                </span>
+                                {{ section.settings.subscription_info }}
+                              </span>
+                            {% endif %}
                           </p>
                         {% endfor %}
                       {% endif %}
@@ -585,6 +596,11 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
+    },
+    {
+      "type": "text",
+      "id": "subscription_info",
+      "label": "t:sections.featured-collection.settings.subscription_info.label"
     },
     {
       "type": "header",
