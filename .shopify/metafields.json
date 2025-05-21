@@ -283,16 +283,5 @@
       }
     }
   ],
-  "shop": [
-    {
-      "key": "stage",
-      "namespace": "app--144500948993--omni_signups",
-      "name": "Storefront access token",
-      "description": null,
-      "type": {
-        "name": "single_line_text_field",
-        "category": "TEXT"
-      }
-    }
-  ]
+  "shop": []
 }
