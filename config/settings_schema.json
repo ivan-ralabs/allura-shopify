@@ -202,6 +202,21 @@
     ]
   },
   {
+    "name": "Klaviyo Popup",
+    "settings": [
+      {
+      "type": "text",
+      "id": "klaviyo_popup_id",
+      "label": "Klaviyo popup Id"
+      },
+      {
+      "type": "text",
+      "id": "klaviyo_popup_delay",
+      "label": "Popup delay in seconds",
+      },
+    ]
+  },
+  {
     "name": "t:settings_schema.animations.name",
     "settings": [
       {

@@ -64,6 +64,16 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% if settings.klaviyo_popup_id != blank %}
+      <script type="application/ld+json" id="klaviyo_popup_id">
+        {
+          "klaviyo_popup_id": {{ settings.klaviyo_popup_id | json }},
+          "klaviyo_popup_delay": {{ settings.klaviyo_popup_delay | times: 1000 | default: 0 | json }}
+        }
+      </script>
+      <script src="{{ 'klaviyo_popup.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%} 
+
     {{ content_for_header }}
 
     {%- liquid

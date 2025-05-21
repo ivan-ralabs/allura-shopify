@@ -19,6 +19,8 @@
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
+    "klaviyo_popup_id": "XKPmky",
+    "klaviyo_popup_delay": "5",
     "animations_reveal_on_scroll": true,
     "animations_hover_elements": "none",
     "buttons_border_thickness": 1,
