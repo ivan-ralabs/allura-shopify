@@ -825,6 +825,41 @@ h2.title {
     color: #1E1E1E;
   }
 
+  .subscription-price.flex {
+    position: relative;
+    align-items: center;
+    gap: 5px;
+    display: flex;
+  }
+
+  .subscription-price.flex .subscription-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    background-color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(199, 215, 192, 0.50);
+  }
+
+  .subscription-info .svg-wrapper {
+    position: relative;
+    top: 4px;
+  }
+
+  .subscription-price.flex {
+    cursor: pointer;
+  }
+
+  .subscription-price.flex:hover .subscription-info,
+  .subscription-price .info-trigger:focus + .subscription-info {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .quiz-container {
     padding-top: 16px;
     padding-bottom: 64px;
@@ -2756,6 +2791,10 @@ p.login-description {
   flex-grow: 1;
 }
 
+.featured-collection-section .card.product-card .card-body .card-title {
+  flex-grow: 0;
+}
+
 .equal-height {
   display: flex;
   flex-direction: column;
@@ -2779,6 +2818,15 @@ p.login-description {
   -webkit-box-orient: vertical;
 }
 
+.featured-collection-section .card.product-card .product-card-body .card-text  {
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+}
+
+.featured-collection-section .card-text .long-description {
+  display: none;
+}
+
 .card.product-card .card-body.product-card-body {
   padding-bottom: 8px;
 }
@@ -2800,7 +2848,6 @@ p.login-description {
 }
 
 .card.product-card .card-footer a {
-  //styleName: Labels/Link;
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 500;

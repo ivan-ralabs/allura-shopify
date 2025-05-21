@@ -102,6 +102,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
+        "subscription_info": "As a subscriber you will receive this product every 2 months for a discounted price",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 64,
