@@ -21,6 +21,9 @@
     "about_us_DGyFbE": {
       "type": "about-us",
       "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
         "title": "Why Allura Medicinals Exists",
         "section_image": "shopify://shop_images/1_Hand_2.png",
         "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined time of over 20 years and have treated thousands of patients who suffer from itching or flaking of the scalp.</p>\n<p>Between inadequate treatment options and long wait times to be seen in the office they realized that more was needed to address this problem. </p>",
@@ -90,10 +93,16 @@
         "benefit_bY4gfa",
         "benefit_eWPMkC"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 767px) {.container + .container {margin-top: 32px; }}"
+      ],
       "settings": {
-        "image": "shopify://shop_images/Triple_1_c20bf964-64c7-4a51-a41f-58c6d2c4064c.png",
-        "title": "Why Choose Allura",
-        "description": "<p>There are many treatments out there for an itchy or flaky scalp (often caused by either seborrheic dermatitis or scalp psoriasis). There are over the counter shampoos, homoeopathic remedies, and standard prescription medications. Unfortunately, as so many people experience, these products promise a lot but oftentimes do not deliver results.</p>"
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "image": "shopify://shop_images/Option_8_1.jpg",
+        "title": "Why choose Allura",
+        "description": "<p>There are many treatments out there for an itchy or flaky scalp (often caused by either seborrheic dermatitis or scalp psoriasis). There are over the counter shampoos, homoeopathic remedies, and standard prescription medications.</p>\n<p>Unfortunately, as so many people experience, these products promise a lot but oftentimes do not deliver results.</p>"
       }
     },
     "why_choose_allura_RYGdRG": {

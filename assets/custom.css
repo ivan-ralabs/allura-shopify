@@ -370,16 +370,6 @@ footer .footer__copyright.caption .copyright__content, footer .footer__copyright
 }
 
 .product-container variant-selects legend .btn.btn-link {
-  font-family: Nunito Sans;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: left;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #285445;
   z-index: 11111;
 }
 
@@ -583,6 +573,7 @@ footer hr {
 }
 
 h2.title {
+  margin-top: 0;
   font-family: Lora;
   font-size: 32px;
   font-weight: 400;
@@ -1019,6 +1010,8 @@ h2.title {
 .btn.btn-primary:focus,
 .btn.btn-primary:focus-visible {
   border-color: #C79662;
+  outline: none;
+  box-shadow: none;
 }
 
 .btn.btn-primary:hover {
@@ -1041,7 +1034,7 @@ h2.title {
 }
 
 .btn.btn-secondary {
-  color: #282B35;
+  color: #285445;
   border: 1px solid #285445;
   background-color: #FFFFFF;
 }
@@ -1136,6 +1129,7 @@ p a:not([class]):focus-visible,
 .btn.btn-link:focus-visible,
 .article-default-template p a:not([class]):focus {
   border-color: #C79662;
+  color: #285445;
   background-color: transparent;
   box-shadow: none;
   outline: none;
@@ -1144,7 +1138,7 @@ p a:not([class]):focus-visible,
 p a:not([class]):active,
 .btn.btn-link:active,
 .article-default-template p a:not([class]):active {
-  color: #285445;
+  color: #264238;
 }
 
 p a:not([class]):disabled,
@@ -1438,10 +1432,6 @@ hr.divider {
     width: auto;
     height: 75%;
   }
-  .about-us-why-we .container {
-    padding-top: 0!important;
-    padding-bottom: 24px!important;
-  }
 }
 /* @media (max-width: 991.98px) { */
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -1549,7 +1539,6 @@ hr.divider {
 }
 
 .blog-articles p {
-  //styleName: Body/Body 1;
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 400;
@@ -1560,8 +1549,13 @@ hr.divider {
   color: #626262;
 }
 
+.blog-articles .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .blog-articles .tags .badge.rounded-pill {
-  //styleName: Body/Body 5;
   font-family: Nunito Sans;
   font-size: 12px;
   font-weight: 400;
@@ -1574,8 +1568,15 @@ hr.divider {
   border-radius: 32px!important;
   border-color: #285445;
   text-transform: capitalize;
-  margin-right: 8px;
+  margin-right: 0;
   padding: 4px 12px;
+  @media (max-width: 768px) {
+   max-width: 100%;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   -webkit-text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 h2 {
@@ -1588,8 +1589,8 @@ h2 {
   text-decoration-skip-ink: none;
   color: #1E1E1E;
   @media (max-width: 768px) {
-      font-size: 24px;
-      line-height: 32px;
+    font-size: 24px;
+    line-height: 32px;
   }
 }
 
@@ -3263,9 +3264,6 @@ p.login-description {
 
 .about-us-team {
   background-color: #F5F3E7;
-  padding-top: 55px;
-  padding-bottom: 55px;
-  margin-bottom: 64px;
 }
 
 .about-us-team .team-member {

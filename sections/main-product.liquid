@@ -391,7 +391,7 @@
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                           <show-more-button>
                             <button
-                              class="button-show-more link underlined-link"
+                              class="button-show-more btn btn-link"
                               id="Show-More-{{ section.id }}"
                               type="button"
                             >
@@ -1142,7 +1142,7 @@
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                           <show-more-button>
                             <button
-                              class="button-show-more link underlined-link"
+                              class="button-show-more btn btn-link"
                               id="Show-More-{{ section.id }}"
                               type="button"
                             >
@@ -3241,7 +3241,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 64
     },
     {
       "type": "range",
@@ -3251,7 +3251,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 64
     }
   ]
 }
