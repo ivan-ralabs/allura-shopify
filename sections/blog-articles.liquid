@@ -40,6 +40,9 @@
   
   {% for article in articles %}
     <div class="filtered-item w-100 border-bottom pt-5 pb-5" data-tags="{{ article.tags | join: ', ' }}">
+      <a href="{{ article.url }}" class="card-overlay-link" aria-label="Read article: {{ article.title }}"
+        title="Read article: {{ article.title }}" role="link">
+      </a>
       <div class="container">
         <div class="row">
           {%- liquid
@@ -58,7 +61,7 @@
                 {{ reading_time }} min read
               </span>
             </time>
-            <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+            <h2>{{ article.title }}</h2>
             <p>{{ article.excerpt | strip_html | truncatewords: 30 }}</p>
             {% if article.tags.size > 0 %}
               <div class="tags">
@@ -142,8 +145,26 @@
   .blog-articles {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     padding-bottom: 64px;
+  }
+
+  .blog-articles .filtered-item {
+    position: relative;
+  }
+
+  .blog-articles .filtered-item:hover,
+  .blog-articles .filtered-item:focus-within,
+  .blog-articles .filtered-item:focus,
+  .blog-articles .filtered-item:active {
+    background-color: #F8FAF7;
+  }
+  .blog-articles .card-overlay-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   .blog-articles .filtered-item:last-child {
@@ -168,29 +189,34 @@
   .blog-articles-tag-filer h2 {
     margin-bottom: 24px;
   }
-  
+
+  .blog-articles .row {
+  align-items: stretch;
+}
+
   .blog-articles .image-container {
     position: relative;
     width: 100%;
-    height: 100%; 
+    height: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 16px;
+    @media (min-width: 768px) {
+      height: 230px;
+    }
   }
   
   .blog-articles .image-container img {
-    height: auto; 
-    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     border-radius: 16px;
-  }
-
-  @media (max-width: 768px) {
-    .blog-articles .image-container img {
-      height: 100%; 
-      width: auto; 
-    }
   }
   
   .article-card {

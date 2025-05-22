@@ -1526,15 +1526,12 @@ hr.divider {
   margin-left: 8px;
 }
 
-.blog-articles h2, .blog-articles h2 a {
-  font-family: Lora;
+.blog-articles h2 {
+  font-family: Lora ,sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  //styleName: Headings/H3;
   color: #1E1E1E;
 }
 
