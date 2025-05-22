@@ -23,7 +23,7 @@
           </h1>
           {% assign word_count = article.content | split: ' ' | size %}
           {% assign reading_time = word_count | divided_by: 200 | ceil %}
-          
+
           <time>
             {{- article.published_at | date: "%b %e, %Y" -}}
             <span>
