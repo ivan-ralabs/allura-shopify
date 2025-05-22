@@ -1,0 +1,121 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq_JJAyJD": {
+      "type": "faq",
+      "blocks": {
+        "faq_block_RrWHVV": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How quickly will I see results?",
+            "answer": "<p>This depends on several factors, but in general patients will see a reduction in itching within 2 weeks. However, the full effect of any medication for an itchy and flaky scalp can take up to 2 months so we encourage you to continue using these products for that long in order to judge their effectiveness.</p>"
+          }
+        },
+        "faq_block_3YMebw": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What medications do we use in our products?",
+            "answer": "<p>Allura medicinals uses a combination of anti-yeast and anti-inflammatory medications in our shampoo and scalp serums. As you can read about <a href=\"/blogs/news/what-is-dandruff-seborrheic-dermatitis-and-what-can-i-do-to-treat-them\" target=\"_blank\" title=\"What Is Dandruff, Seborrheic Dermatitis, And What Can I Do To Treat Them?\">here</a>, an itchy and flaky scalp is caused by overgrowth of yeast on the scalp followed by an inflammatory reaction to the yeast. We attack this from both angles at the same time, which is different from any commercially available prescription or over the counter medication. </p>"
+          }
+        },
+        "faq_block_EjdW8b": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How long do I need to use these products for?",
+            "answer": "<p>Because we cannot cure an itchy and flaky scalp permanently you will need to continue to use these medications to keep things under control. It is possible that the condition will eventually go away (sometimes when people move to a different part of the country this can happen), but we will not be able to predict when that will happen.</p>"
+          }
+        },
+        "faq_block_i4ANwp": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Is it safe to use these medications on a long term basis?",
+            "answer": "<p>As you can read about <a href=\"/blogs/news/what-is-dandruff-seborrheic-dermatitis-and-what-can-i-do-to-treat-them\" title=\"What Is Dandruff, Seborrheic Dermatitis, And What Can I Do To Treat Them?\">here</a>, seborrheic dermatitis (the technical term for an itchy and flaky scalp) is not curable. The yeast that causes this condition is found on the skin normally and is present everywhere in the world. So, even if it was eliminated from the body it will come back within a couple of weeks. Therefore we need to find medications that are safe and sustainable to use. Our products are formulated to be effective as quickly as possible, but also balanced to be safe to use on a long term basis. Our shampoo contains a very strong topical steroid, but as the contact time is just a few minutes, and used 2-3 times a week, the likelihood of side effects is very low. Conversely, we use a milder topical steroid in the scalp serum as the contact time is much longer. The combination of the two results in fast and sustainable results that are safe to use long term. If topical steroids are not for you though, <a href=\"#klaviyo-popup-trigger-XKPmky\" title=\"#klaviyo-popup-trigger-XKPmky\">stay tuned</a> as we are developing other alternatives that we hope to offer soon!</p>"
+          }
+        },
+        "faq_block_YaGRkC": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How does using Allura Medicinals compare with going to see a dermatologist in person?",
+            "answer": "<p>We designed Allura to be both the most effective <em>and</em> the easiest way to get control of your itchy and flaky scalp. While we do not accept insurance we think our value still exceeds that of seeing an in person dermatologist. Check out the <a href=\"/pages/about-us/#why-choose-allura\" target=\"_blank\" title=\"/pages/about-us/#why-choose-allura\"><strong>handy chart</strong></a> we put together to see how we save you time and money. In addition to not having to wait weeks or months to see a dermatologist, you save on your co-pay, prescription medication co-pays, and don’t have to take the time out of your busy schedule to drive to an office and wait to be seen</p>"
+          }
+        },
+        "faq_block_TtKcLF": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How long does it take to receive my order?",
+            "answer": "<p>Most prescriptions are approved within 1 day, and then your order will ship within 1 day of that time. Delivery times vary based on your location, but in general you can expect to receive your prescriptions within 1 week of placing your order.</p>"
+          }
+        },
+        "faq_block_89qbGB": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Can I cancel or change my order?",
+            "answer": "<p>If your order has not been processed or shipped, you may request changes by contacting <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a>. Once an order is \"Processing\" or \"Shipped,\" it cannot be changed or canceled.</p>"
+          }
+        },
+        "faq_block_DPmjEq": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What happens if my package is lost?",
+            "answer": "<p>Please contact our support team if your package is lost (<a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a>). We will assist you in filing a claim with the carrier and, if necessary, arrange for a replacement.</p>"
+          }
+        },
+        "faq_block_AiyBcW": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Are the medications FDA-approved?",
+            "answer": "<p>Some prescription products, particularly compounded medications, are not individually FDA-approved, but the ingredients used are sourced from FDA-registered facilities.</p>"
+          }
+        },
+        "faq_block_ng3hnW": {
+          "type": "faq_block",
+          "settings": {
+            "question": "How do I request a refund?",
+            "answer": "<p>Email <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a> with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_block_RrWHVV",
+        "faq_block_3YMebw",
+        "faq_block_EjdW8b",
+        "faq_block_i4ANwp",
+        "faq_block_YaGRkC",
+        "faq_block_TtKcLF",
+        "faq_block_89qbGB",
+        "faq_block_DPmjEq",
+        "faq_block_AiyBcW",
+        "faq_block_ng3hnW"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "full_width": true,
+        "color_scheme": "",
+        "faq_title": "Frequently asked questions",
+        "faq_image": "shopify://shop_images/3_Hands.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_JJAyJD"
+  ]
+}
