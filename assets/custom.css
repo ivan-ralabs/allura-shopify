@@ -370,16 +370,6 @@ footer .footer__copyright.caption .copyright__content, footer .footer__copyright
 }
 
 .product-container variant-selects legend .btn.btn-link {
-  font-family: Nunito Sans;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: left;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #285445;
   z-index: 11111;
 }
 
@@ -1019,6 +1009,8 @@ h2.title {
 .btn.btn-primary:focus,
 .btn.btn-primary:focus-visible {
   border-color: #C79662;
+  outline: none;
+  box-shadow: none;
 }
 
 .btn.btn-primary:hover {
@@ -1041,7 +1033,7 @@ h2.title {
 }
 
 .btn.btn-secondary {
-  color: #282B35;
+  color: #285445;
   border: 1px solid #285445;
   background-color: #FFFFFF;
 }
@@ -1136,6 +1128,7 @@ p a:not([class]):focus-visible,
 .btn.btn-link:focus-visible,
 .article-default-template p a:not([class]):focus {
   border-color: #C79662;
+  color: #285445;
   background-color: transparent;
   box-shadow: none;
   outline: none;
@@ -1144,7 +1137,7 @@ p a:not([class]):focus-visible,
 p a:not([class]):active,
 .btn.btn-link:active,
 .article-default-template p a:not([class]):active {
-  color: #285445;
+  color: #264238;
 }
 
 p a:not([class]):disabled,
