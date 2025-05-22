@@ -14,6 +14,10 @@
     .section-{{ section.id }}-padding .column-left.position-relative {
       top: -{{ section.settings.padding_top | divided_by: 2 }}px;
     }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | plus: 32 }}px;
+    }
   }
 {%- endstyle -%}
 
@@ -82,7 +86,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:sections.all.padding.padding_top",
-        "default": 36
+        "default": 64
       },
       {
         "type": "range",
@@ -92,7 +96,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:sections.all.padding.padding_bottom",
-        "default": 36
+        "default": 64
       },
       {
         "type": "checkbox",

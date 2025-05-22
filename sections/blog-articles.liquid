@@ -42,8 +42,14 @@
     <div class="filtered-item w-100 border-bottom pt-5 pb-5" data-tags="{{ article.tags | join: ', ' }}">
       <div class="container">
         <div class="row">
-          <!-- <div class="article-ca"> -->
-          <div class="col-8 col-md-8 col-lg-7 offset-lg-1">
+          {%- liquid
+            if article.image
+              assign left_col_class = 'col-7 col-md-6 col-lg-6 offset-lg-1'
+            else
+              assign left_col_class = 'col-12'
+            endif
+          -%}
+          <div class="{{ left_col_class }}">
             {% assign word_count = article.content | size %}
             {% assign reading_time = word_count | divided_by: 200 | ceil %}
             <time>
@@ -54,19 +60,21 @@
             </time>
             <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
             <p>{{ article.excerpt | strip_html | truncatewords: 30 }}</p>
-            <div class="tags">
-              {% for tag in article.tags %}
-                <span class="badge rounded-pill text-bg-light">{{ tag }}</span>
-              {% endfor %}
-            </div>
+            {% if article.tags.size > 0 %}
+              <div class="tags">
+                {% for tag in article.tags %}
+                  <span class="badge rounded-pill text-bg-light">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
           </div>
-          <div class="col-4 col-md-4 col-lg-3 text-end">
-            <div class="image-container">
-              {% if article.image %}
-                <img src="{{ article.image | img_url: 'medium' }}" alt="{{ article.title }}">
-              {% endif %}
+          {% if article.image %}
+            <div class="col-5 col-md-5 offset-md-1 offset-lg-1 col-lg-3 text-end">
+              <div class="image-container">
+                <img src="{{ article.image | image_url: width: 400 }}" alt="{{ article.title }}" width="{{ article.image.width }}" height="{{ article.image.height }}">
+              </div>
             </div>
-          </div>
+          {% endif %}
         </div>
       </div>
     </div>

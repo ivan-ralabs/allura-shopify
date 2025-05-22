@@ -1,61 +1,75 @@
-<div class="about-us-why-we">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 order-2 order-md-1">
-        {% if section.settings.image %}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} isolate gradient ">
+  <div
+    class="about-us-why-we about-us-why-we-section section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 order-2 order-md-1">
+          {% if section.settings.image %}
           <img src="{{ section.settings.image | img_url: 'large' }}" alt="Why Us Image" class="img-fluid w-100">
-        {% endif %}
-      </div>
-      <div class="col-md-8 order-1 order-md-2">
-        {% if section.settings.title %}
-          <h2 class="section-title">{{ section.settings.title }}</h2>
-        {% endif %}
-        {% if section.settings.description %}
-          <p class="section-description">{{ section.settings.description }}</p>
-        {% endif %}
-        <div class="title-wrap d-none d-lg-block">
-          <h3>
-            Discover our benefits
-          </h3>
-          <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z" fill="#5A8676"/>
-          </svg>
+          {% endif %}
         </div>
-    
-        <div class="row d-none d-lg-flex benefits">
-          {% for block in section.blocks %}
+        <div class="col-md-8 order-1 order-md-2">
+          {% if section.settings.title %}
+          <h2 class="section-title">{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.description %}
+          <p class="section-description">{{ section.settings.description }}</p>
+          {% endif %}
+          <div class="title-wrap d-none d-lg-block">
+            <h3>
+              Discover our benefits
+            </h3>
+            <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z"
+                fill="#5A8676" />
+            </svg>
+          </div>
+
+          <div class="row d-none d-lg-flex benefits">
+            {% for block in section.blocks %}
             <div class="col-md-6 d-flex align-items-stretch">
               <div class="benefit">
                 <h4 class="benefit-title">{{ block.settings.benefit_title }}</h4>
                 <p class="benefit-description">{{ block.settings.benefit_description }}</p>
               </div>
             </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container d-block d-lg-none">
-    <div class="row align-items-center">
-      <div class="col">
-        <div class="title-wrap">
-          <h3>
-            Discover our benefits
-          </h3>
-          <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z" fill="#5A8676"/>
-          </svg>
-        </div>
+    <div class="container d-block d-lg-none">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="title-wrap">
+            <h3>
+              Discover our benefits
+            </h3>
+            <svg width="632" height="12" viewBox="0 0 632 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.9906 3.82044C8.07972 1.02357 74.4516 7.38012 149.348 3.82045C280.479 -2.4119 386.826 0.00651893 487.297 3.82044C540.151 5.82682 600.893 4.5948 622.368 4.04459C627.416 3.91523 634.636 8.20139 630.392 10.9398C623.694 15.2623 451.98 4.83751 316.191 6.87161C197.936 8.64307 47.3518 10.4145 10.4377 10.8424C5.04194 10.905 -2.913 6.07278 1.9906 3.82044Z"
+                fill="#5A8676" />
+            </svg>
+          </div>
 
-        <div class="row benefits">
-          {% for block in section.blocks %}
+          <div class="row benefits d-flex flex-md-row d-lg-none">
+            {% for block in section.blocks %}
             <div class="col-md-6 d-flex align-items-stretch">
               <div class="benefit">
                 <h4 class="benefit-title">{{ block.settings.benefit_title }}</h4>
                 <p class="benefit-description">{{ block.settings.benefit_description }}</p>
               </div>
             </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
@@ -96,11 +110,7 @@
     color: #1E1E1E;
     margin-bottom: 24px;
   }
-  
-  .about-us-why-we .container {
-    /* padding-top: 60px; */
-    /* padding-bottom: 60px; */
-  }
+
   .about-us-why-we .section-title {
     font-size: 32px;
     margin-bottom: 20px;
@@ -110,8 +120,12 @@
     color: #555;
     margin-bottom: 30px;
   }
+  
+  .benefits {
+    gap: 20px 0;
+  }
+
   .benefits .benefit {
-    margin-bottom: 20px;
     background-color: #E3EBDF;
     border-radius: 16px;
     padding: 24px 24px 16px 56px;
@@ -163,7 +177,43 @@
 {% schema %}
   {
     "name": "About Us Why We",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+    "groups": ["header", "footer"]
+    },
     "settings": [
+        {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "scheme-1"
+        },
+        {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 64
+        },
+        {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 64
+        },
       {
         "type": "image_picker",
         "id": "image",
