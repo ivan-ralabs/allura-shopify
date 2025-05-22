@@ -21,7 +21,7 @@
           <h1 class="article-template__title">
             {{ article.title | escape }}
           </h1>
-          {% assign word_count = article.content | size %}
+          {% assign word_count = article.content | split: ' ' | size %}
           {% assign reading_time = word_count | divided_by: 200 | ceil %}
           
           <time>

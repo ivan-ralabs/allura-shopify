@@ -50,7 +50,7 @@
             endif
           -%}
           <div class="{{ left_col_class }}">
-            {% assign word_count = article.content | size %}
+            {% assign word_count = article.content | split: ' ' | size %}
             {% assign reading_time = word_count | divided_by: 200 | ceil %}
             <time>
               {{ article.published_at | date: "%b %d, %Y" }}
