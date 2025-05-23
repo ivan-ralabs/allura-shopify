@@ -164,6 +164,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Consultation with a Board Certified Dermatologist from your home</p>",
+            "main_text_icon": "shopify://shop_images/computer.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -176,6 +177,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Typical wait time for consultation</p>",
+            "main_text_icon": "shopify://shop_images/timer.svg",
             "column_1_text": " < 1 day",
             "column_1_checkmark": true,
             "column_2_text": "No consultation",
@@ -188,6 +190,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Evidenced based prescription-only compounded shampoo</p>",
+            "main_text_icon": "shopify://shop_images/bubbles.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -200,6 +203,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Rosemary oil added to prescription shampoo</p>",
+            "main_text_icon": "shopify://shop_images/soap-bubble.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -212,6 +216,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Able to message your Dermatologist with questions anytime</p>",
+            "main_text_icon": "shopify://shop_images/drop.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -224,6 +229,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Free shipping directly to you</p>",
+            "main_text_icon": "shopify://shop_images/message.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -236,6 +242,7 @@
           "type": "table_row",
           "settings": {
             "main_text": "<p>Compounded prescription scalp serums available</p>",
+            "main_text_icon": "shopify://shop_images/truck-tick.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -263,16 +270,19 @@
         "why_choose_allura_title": "Why choose Allura",
         "column_1_text": "With Allura",
         "column_1_bold": true,
-        "heading_1_background_color": "#d5e1cf",
+        "heading_1_background_color": "#285445",
+        "heading_1_text_color": "#ffffff",
         "column_1_background_color": "#eef3ec",
         "column_2_text": "Non-prescription shampoos in stores or online",
-        "column_2_bold": false,
-        "heading_2_background_color": "#eeeeee",
-        "column_2_background_color": "#ffffff",
+        "column_2_bold": true,
+        "heading_2_background_color": "#3d2b1f",
+        "heading_2_text_color": "#ffffff",
+        "column_2_background_color": "#f5f3e7",
         "column_3_text": "Seeing a dermatologist in an office",
-        "column_3_bold": false,
-        "heading_3_background_color": "#eeeeee",
-        "column_3_background_color": "#ffffff"
+        "column_3_bold": true,
+        "heading_3_background_color": "#3d2b1f",
+        "heading_3_text_color": "#ffffff",
+        "column_3_background_color": "#f5f3e7"
       }
     },
     "image_banner": {
