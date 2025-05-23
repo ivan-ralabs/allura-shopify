@@ -6,10 +6,6 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  .why-choose-allura-section {
-    position: relative;
-  }
-
   .why-choose-allura-section:before {
     position: absolute;
     z-index: 1;
@@ -22,16 +18,10 @@
     background-size: contain;
   }
 
-  @media screen and (min-width: 1024px) {
-    .why-choose-allura-section:before {
-      width: 576px;
-      height: 550px;
-    }
-  }
-
   .why-choose-allura-section th:nth-child(2) {
     background-color: {{ section.settings.heading_1_background_color }};
-    font-weight: {%- if section.settings.column_1_bold -%} 700; {%- else -%} 400{%- endif -%}
+    font-weight: {%- if section.settings.column_1_bold -%} 700{%- else -%} 400{%- endif -%};
+    color: {{ section.settings.heading_1_text_color }};
   }
 
   .why-choose-allura-section td:nth-child(2) {
@@ -40,7 +30,8 @@
 
   .why-choose-allura-section th:nth-child(3) {
     background-color: {{ section.settings.heading_2_background_color }};
-    font-weight: {%- if section.settings.column_2_bold -%} 700; {%- else -%} 400{%- endif -%}
+    font-weight: {%- if section.settings.column_2_bold -%} 700{%- else -%} 400{%- endif -%};
+    color: {{ section.settings.heading_2_text_color }};
   }
 
   .why-choose-allura-section td:nth-child(3) {
@@ -49,7 +40,8 @@
 
   .why-choose-allura-section th:nth-child(4) {
     background-color: {{ section.settings.heading_3_background_color }};
-    font-weight: {%- if section.settings.column_3_bold -%} 700; {%- else -%} 400{%- endif -%}
+    font-weight: {%- if section.settings.column_3_bold -%} 700{%- else -%} 400{%- endif -%};
+    color: {{ section.settings.heading_3_text_color }};
   }
 
   .why-choose-allura-section td:nth-child(4) {
@@ -59,7 +51,7 @@
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div id="why-choose-allura" class="why-choose-allura-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
-    <div class="container">
+    <div class="container mobile-padding">
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="why-choose-allura__title">{{ section.settings.why_choose_allura_title }}</h2>
@@ -88,17 +80,22 @@
                     {% if block.type == 'table_row' %}
                       <tr>
                         <td class="main-text">
+                          {% if block.settings.main_text_icon  != blank %}
+                            <span class="why-choose-allura_row-icon">
+                              {{- block.settings.main_text_icon | image_url: width: 32, height: 32, crop: 'center' | image_tag: class: 'icon' -}}
+                             </span>
+                          {% endif %}
                           {{ block.settings.main_text }}
                         </td>
                         <td class="column-1">
                           {% if block.settings.column_1_text != blank %}
                             {{ block.settings.column_1_text }}
                           {%- else -%}
-                            <span class="why-choose-allura__table-icon">
+                            <span class="why-choose-allura__cell-icon">
                               {% if block.settings.column_1_checkmark != blank %}
-                                {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                                {{- 'icon-filled-check.svg' | inline_asset_content -}}
                               {% else %}
-                                {{- 'icon-close.svg' | inline_asset_content -}}
+                                {{- 'icon-filled-plus.svg' | inline_asset_content -}}
                               {% endif %}
                             </span>
                           {% endif %}
@@ -107,7 +104,7 @@
                           {% if block.settings.column_2_text != blank %}
                             {{ block.settings.column_2_text }}
                           {%- else -%}
-                            <span class="why-choose-allura__table-icon">
+                            <span class="why-choose-allura__cell-icon">
                               {% if block.settings.column_2_checkmark != blank %}
                                 {{- 'icon-checkmark.svg' | inline_asset_content -}}
                               {% else %}
@@ -120,7 +117,7 @@
                           {% if block.settings.column_3_text != blank %}
                             {{ block.settings.column_3_text }}
                           {%- else -%}
-                            <span class="why-choose-allura__table-icon">
+                            <span class="why-choose-allura__cell-icon">
                               {% if block.settings.column_3_checkmark != blank %}
                                 {{- 'icon-checkmark.svg' | inline_asset_content -}}
                               {% else %}
@@ -190,25 +187,31 @@
       {
         "type": "text",
         "id": "column_1_text",
-        "label": "Column 1 Heading",
+        "label": "Column Heading",
         "default": "Column 1"
       },
       {
         "type": "checkbox",
         "id": "column_1_bold",
-        "label": "Column 1 Bold",
+        "label": "Column Bold",
         "default": false
       },
       {
         "type": "color",
         "id": "heading_1_background_color",
-        "label": "Heading 1 Background Color",
+        "label": "Heading Background Color",
         "default": "#EEEEEE"
       },
       {
         "type": "color",
+        "id": "heading_1_text_color",
+        "label": "Heading Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
         "id": "column_1_background_color",
-        "label": "Column 1 Background Color",
+        "label": "Column Background Color",
         "default": "#ffffff"
       },
       {
@@ -218,25 +221,31 @@
       {
         "type": "text",
         "id": "column_2_text",
-        "label": "Column 2 Heading",
+        "label": "Column Heading",
         "default": "Column 2"
       },
       {
         "type": "checkbox",
         "id": "column_2_bold",
-        "label": "Column 2 Bold",
+        "label": "Column Bold",
         "default": false
       },
       {
         "type": "color",
         "id": "heading_2_background_color",
-        "label": "Heading 2 Background Color",
+        "label": "Heading Background Color",
         "default": "#EEEEEE"
       },
       {
         "type": "color",
+        "id": "heading_2_text_color",
+        "label": "Heading Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
         "id": "column_2_background_color",
-        "label": "Column 2 Background Color",
+        "label": "Column Background Color",
         "default": "#ffffff"
       },
       {
@@ -246,25 +255,31 @@
       {
         "type": "text",
         "id": "column_3_text",
-        "label": "Column 3 Heading",
+        "label": "Column Heading",
         "default": "Column 3"
       },
       {
         "type": "checkbox",
         "id": "column_3_bold",
-        "label": "Column 3 Bold",
+        "label": "Column Bold",
         "default": false
       },
       {
         "type": "color",
         "id": "heading_3_background_color",
-        "label": "Heading 3 Background Color",
+        "label": "Heading Background Color",
         "default": "#EEEEEE"
       },
       {
         "type": "color",
+        "id": "heading_3_text_color",
+        "label": "Heading Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
         "id": "column_3_background_color",
-        "label": "Column 3 Background Color",
+        "label": "Column Background Color",
         "default": "#ffffff"
       }
     ],
@@ -278,6 +293,11 @@
               "id": "main_text",
               "label": "Main Text",
               "default": "<p>Default text</p>"
+            },
+            {
+              "type": "image_picker",
+              "id": "main_text_icon",
+              "label": "Main Text Icon"
             },
             {
               "type": "text",
