@@ -7,14 +7,34 @@
     top: 0;
     bottom: 0;
     left: 10%;
-    z-index: 2;
+    z-index: 3;
     background-image: url('{{ 'main-banner--background-patern.png' | asset_url }}'); 
     background-repeat: repeat;
     background-size: initial;
     background-position: top left;
+    background-color: #C7D7C0;
     @media (max-width: 1024px) {
     width: 221px;
       left: 5%;
+    }
+
+    @media (max-width: 579px) {
+      left: 0;
+      max-width: 136px;
+      max-height: 432px;
+      background-color: transparent;
+      background-image: url('{{ "background-mobile--blog.svg" | asset_url }}');
+      background-position: left top;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .template--page-about_us .blog-main-banner:before {
+    @media (max-width: 579px) {
+      max-width: 277px;
+      background-image: url('{{ "background-mobile--about-us.svg" | asset_url }}');
+      background-position: left top;
+      background-repeat: no-repeat;
     }
   }
 
@@ -36,6 +56,9 @@
       @media (max-width: 768px) {
         width: 35%;
       }
+      @media (max-width: 579px) {
+        display: none !important;
+      }
   }
 
   .blog-banner-overlay:before {
@@ -45,7 +68,7 @@
     height: 100%;
     top: 0;
     left: 35%;
-    background-image: url('{{ 'background.svg' | asset_url }}');
+    background-image: url('{{ "background.svg" | asset_url }}');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -56,11 +79,22 @@
       background-position: center top;
     }
 
-     @media (max-width: 768px) {
+    @media (max-width: 768px) {
       left: 45%;
         background-size: cover;
         background-position: center top -40px;
     }
+  }
+
+  .blog-banner-overlay:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #C7D7C0;
+    z-index: 2;
   }
 {%- endstyle -%}
 
