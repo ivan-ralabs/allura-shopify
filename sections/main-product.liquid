@@ -656,14 +656,14 @@
   {% endif %}
   
   <!-- Ingredients description -->
-  {% if product.metafields.custom.ingredients != blank %}
+  {% if product.metafields.custom.ingredient_group.value != blank %}
+    {% assign ingredient_groups = product.metafields.custom.ingredient_group.value %}
     <div class="product-details">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8 offset-lg-2">
             <h2>Ingredients</h2>
             <div class="product__ingredients">
-                {% assign ingredient_groups = product.metafields.custom.ingredient_group.value %}
                 {% for group in ingredient_groups %}
                   {%- assign background_color = group.background_color | default: '#f0f8ff' -%}
                   <div class="ingredient-group" style="background-color: {{ background_color }};">
