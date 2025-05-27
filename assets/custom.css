@@ -3090,7 +3090,6 @@ p.login-description {
   }
 }
 .rating-count.caption span {
-  //styleName: Body/Body 3;
   font-family: Nunito Sans;
   font-size: 14px;
   font-weight: 400;
@@ -3105,12 +3104,12 @@ p.login-description {
   margin: 4px 0;
 }
 
-.porudct-details {
+.product-details {
   position: relative;
   margin-bottom: 24px!important;
 }
 
-.porudct-details h2 {
+.product-details h2 {
   display: inline-block;
   background-color: #FFFFFF;
 
@@ -3126,7 +3125,7 @@ p.login-description {
   margin-bottom: 12px;
 }
 
-.porudct-details p, .porudct-details ul li, .porudct-details ol li {
+.product-details p, .product-details ul li, .product-details ol li {
   font-family: Nunito Sans;
   font-size: 14px;
   font-weight: 400;
@@ -3138,7 +3137,7 @@ p.login-description {
 
 }
 
-.porudct-details h2:before {
+.product-details h2:before {
   content: '';
   display: block;
   position: absolute;
@@ -3153,7 +3152,7 @@ p.login-description {
   border-radius: 16px;
 }
 
-.porudct-details table tr.marked-row td {
+.product-details table tr.marked-row td {
   background-color: #F5F3E7;
   font-family: Nunito Sans;
   font-size: 12px;
@@ -3165,7 +3164,7 @@ p.login-description {
   color: #757575;
 }
 
-.porudct-details table tr.marked-row td:first-child {
+.product-details table tr.marked-row td:first-child {
   font-family: Nunito Sans;
   font-size: 12px;
   font-weight: 800;
@@ -3191,16 +3190,106 @@ p.login-description {
   }
 }
 
-.porudct-details table tr td {
-  font-family: Nunito Sans;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
+.ingredient-group {
+  padding: 30px 94px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+
+  @media screen and (max-width: 1024px) {
+    padding: 30px 24px;
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    padding: 30px 16px;
+    gap: 16px;
+  }
+}
+
+.ingredient-group + .ingredient-group {
+  margin-top: 28px;
+}
+
+.ingredients-group__column {
+  flex-basis: 50%;
+  max-width: 300px;
+
+  @media screen and (max-width: 767px) {
+    flex-basis: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.ingredients-group-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  @media screen and (max-width: 767px) {
+    justify-content: flex-start;
+  }
+}
+
+.ingredients-group-title h3 {
+  text-align: center;
   color: #1E1E1E;
-  padding: 16px;
+  font-family: Nunito Sans;
+  font-size: 26px;
+  line-height: 24px;
+  font-weight: 700;
+
+  @media screen and (max-width: 767px) {
+    text-align: left;
+  }
+}
+
+.ingredients-group-title p {
+  text-align: center;
+  font-family: Nunito Sans;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #757575;
+
+  @media screen and (max-width: 767px) {
+    text-align: left;
+  }
+}
+
+.ingredients-group-list h4 {
+  font-family: Nunito Sans, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: #1E1E1E;
+}
+
+.ingredients-group-list p {
+  font-family: Nunito Sans;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: #757575;
+  margin-bottom: 0;
+}
+
+.ingredients-group-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-group-list li + li {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: .5px solid #28544533;
 }
 
 .product-weight {

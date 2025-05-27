@@ -479,7 +479,7 @@
                   
                   <!-- Description -->
                   {% if product.description != blank %}
-                    <div class="porudct-details">
+                    <div class="product-details">
                       <h2>Description</h2>
             
                       {{ product.description }}
@@ -489,25 +489,19 @@
               </div>
             </div>
             
-            <!-- DescrIngredientsiption -->
+            <!-- Ingredients description -->
             {% if product.metafields.custom.ingredients != blank %}
-              <div class="porudct-details">
+              <div class="product-details">
                 <div class="container">
                   <div class="row">
                     <div class="col">
                       <h2>Ingredients</h2>
           
                       <table class="table table-bordered">
-                        <!-- <thead>
-                          <tr>
-                            <th>Ingredient</th>
-                            <th>Details</th>
-                          </tr>
-                        </thead> -->
                         <tbody>
-                          {% assign ingredients = product.metafields.custom.ingredients.value | parse_json %}
+                          {% assign ingredients = product.metafields.custom.ingredients.value | json %}
                           {% for ingredient in ingredients %}
-                            <tr {% if ingredient.marked %} class="marked-row" {% endif %}>
+                            <tr {% if ingredient.marked %} class="marked-row stepan2" {% endif %}>
                               <td>{{ ingredient.key }}</td>
                               <td>{{ ingredient.value }}</td>
                             </tr>
@@ -522,7 +516,7 @@
               
           <!-- How to apply -->
             {% if product.metafields.custom.how_to_apply != blank %}
-              <div class="porudct-details">
+              <div class="product-details">
                 <div class="container">
                   <div class="row">
                     <div class="col">
@@ -537,7 +531,7 @@
 
             <!-- Other important information -->
             {% if product.metafields.custom.other_important_information != blank %}
-              <div class="porudct-details">
+              <div class="product-details">
                 <div class="container">
                   <div class="row">
                     <div class="col">
@@ -895,11 +889,11 @@
     margin-left: auto;
   }
 
-  .modal-dialog .porudct-details {
+  .modal-dialog .product-details {
     z-index: 111;
   }
 
-  .modal-dialog .porudct-details h2 {
+  .modal-dialog .product-details h2 {
     padding-left: 0;
   }
 
@@ -907,7 +901,7 @@
     color: #285445;
   }
   
-  .modal-dialog .porudct-details h2:before {
+  .modal-dialog .product-details h2:before {
     left: 40px;
   }
   
@@ -922,7 +916,7 @@
     color: #1E1E1E;
   }
   
-  .porudct-details h2:before {
+  .product-details h2:before {
     background-image: url('{{ 'description-header-patern.png' | asset_url }}'); 
     background-repeat: repeat-x; 
     background-size: auto; 
