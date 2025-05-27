@@ -642,7 +642,7 @@
   </div>
 <!-- Description -->
   {% if product.description != blank %}
-    <div class="porudct-details">
+    <div class="product-details">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8 offset-lg-2">
@@ -655,31 +655,39 @@
     </div>
   {% endif %}
   
-  <!-- DescrIngredientsiption -->
+  <!-- Ingredients description -->
   {% if product.metafields.custom.ingredients != blank %}
-    <div class="porudct-details">
+    <div class="product-details">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8 offset-lg-2">
             <h2>Ingredients</h2>
-
-            <table class="table table-bordered">
-              <!-- <thead>
-                <tr>
-                  <th>Ingredient</th>
-                  <th>Details</th>
-                </tr>
-              </thead> -->
-              <tbody>
-                {% assign ingredients = product.metafields.custom.ingredients.value | parse_json %}
-                {% for ingredient in ingredients %}
-                  <tr {% if ingredient.marked %} class="marked-row" {% endif %}>
-                    <td>{{ ingredient.key }}</td>
-                    <td>{{ ingredient.value }}</td>
-                  </tr>
+            <div class="product__ingredients">
+                {% assign ingredient_groups = product.metafields.custom.ingredient_group.value %}
+                {% for group in ingredient_groups %}
+                  {%- assign background_color = group.background_color | default: '#f0f8ff' -%}
+                  <div class="ingredient-group" style="background-color: {{ background_color }};">
+                    <div class="ingredients-group-title ingredients-group__column">
+                      <h3>{{ group.title }}</h3>
+                      <p>{{ group.description }}</p>
+                    </div>
+                    <div class="ingredients-group-list ingredients-group__column">
+                      <ul>
+                      {%- for ingredient in group.ingredients.value -%}
+                        <li>
+                          <h4>
+                            {{ ingredient.name }}
+                          </h4>
+                          <p>
+                            {{ ingredient.details }}
+                          </p>
+                        </li>
+                      {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
                 {% endfor %}
-              </tbody>
-            </table>
+            </div>
           </div>
         </div>
       </div>
@@ -688,7 +696,7 @@
     
 <!-- How to apply -->
   {% if product.metafields.custom.how_to_apply != blank %}
-    <div class="porudct-details">
+    <div class="product-details">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8 offset-lg-2">
@@ -703,7 +711,7 @@
 
   <!-- Other important information -->
   {% if product.metafields.custom.other_important_information != blank %}
-    <div class="porudct-details">
+    <div class="product-details">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8 offset-lg-2">
@@ -1706,7 +1714,7 @@ document.addEventListener('DOMContentLoaded', function () {
     border: 2px solid #007bff;
   }
 
-  .porudct-details h2:before {
+  .product-details h2:before {
     background-image: url('{{ 'description-header-patern.png' | asset_url }}'); 
     background-repeat: repeat-x; 
     background-size: auto; 
