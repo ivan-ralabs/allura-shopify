@@ -11,7 +11,6 @@
   "sections": {
     "custom_liquid_XQrWYa": {
       "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
       "settings": {
         "custom_liquid": "<style>\n  button:not([aria-label]){\n    padding: 0 24px !important;\n}\n\n[data-testId=\"form-row\"]:has(button) {\n  gap: 16px;\n  margin-top: 14px;\n}\n\ndiv[data-testId=\"form-row\"]:nth-child(3):has(p) p {\n    padding: 12px 16px;\n    border: 1px solid #3C7D11;\n    border-radius: 4px;\n}\n</style>",
         "color_scheme": "",
@@ -21,10 +20,10 @@
     },
     "video_q97m4b": {
       "type": "video",
-      "name": "t:sections.video.presets.name",
       "settings": {
         "heading": "Prescription strength solutions for dry, itchy scalp delivered to your door",
-        "heading_size": "h1",
+        "heading_size": "h0",
+        "blob_style": "simple",
         "enable_hero_video": true,
         "enable_video_autoplay": true,
         "enable_video_looping": true,
@@ -145,7 +144,6 @@
         "list_block_eFArxe",
         "list_block_VBeFyg"
       ],
-      "name": "How It Works",
       "settings": {
         "padding_top": 64,
         "padding_bottom": 64,
@@ -261,7 +259,6 @@
         "table_row_f7LBBU",
         "table_row_e4B4dw"
       ],
-      "name": "Why Choose Allura",
       "settings": {
         "padding_top": 64,
         "padding_bottom": 64,
@@ -343,7 +340,6 @@
         "subscribe_form_3bU3B6"
       ],
       "disabled": true,
-      "name": "Stay in the Loop",
       "settings": {
         "padding_top": 50,
         "padding_bottom": 64,
