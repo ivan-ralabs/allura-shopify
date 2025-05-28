@@ -44,58 +44,14 @@
         "a {white-space: nowrap;}"
       ],
       "settings": {
-        "title": "Explore our Concept",
         "color_scheme": "",
         "padding_top": 64,
         "padding_bottom": 40,
+        "title": "Explore our Concept",
         "section_image": "shopify://shop_images/1_Hand_2.png",
         "description": "<p>Nearly half of the US population suffers from an itchy or flaky scalp. As practicing board-certified dermatologists for a combined 20+ years, <b><a href=\"/pages/about-us\">Dr. Beasley</a></b> and <b><a href=\"/pages/about-us\">Dr. Ritchie</a></b> found that the current medications available for these problems are often ineffective. In addition, seeing a dermatologist in person can take months and takes so much time out of your day.</p>\n[img_mobile]\n<p>Allura eliminates both of these problems: we created higher potency, compounded medications that are prescribed by board-certified dermatologists to meet your specific needs, without ever having to leave your home.</p>\n<svg class=\"d-none\" width=\"416\" height=\"12\" viewbox=\"0 0 416 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1.31027 3.82044C5.3183 1.02357 49.0061 7.38012 98.3053 3.82045C184.619 -2.4119 254.619 0.00651908 320.752 3.82044C353.853 5.72935 391.652 4.70686 407.42 4.12916C412.007 3.96111 418.219 7.72653 414.942 10.9398C410.533 15.2623 297.506 4.83751 208.126 6.87161C132.449 8.59387 36.6583 10.3161 9.0663 10.8037C4.26214 10.8886 -2.6301 6.57011 1.31027 3.82044Z\" fill=\"#5A8676\"></path>\n        </svg>",
         "button_link": "shopify://pages/about-us",
         "button_text": "Read More"
-      }
-    },
-    "about_us_team_rtHJLP": {
-      "type": "about-us-team",
-      "blocks": {
-        "team_member_dHi8rE": {
-          "type": "team_member",
-          "settings": {
-            "avatar": "shopify://shop_images/586aae297adbc0284cc3a559676f2528.jpg",
-            "initials": "Dr. Knox Beasley, MD",
-            "position": "Dermatologist & Co-Founder",
-            "description": "Dr. Beasley is a board certified dermatologist practicing for over 10 years and has treated thousands of patients with flaky and itchy scalp. Beasley also deals with an itchy and flaky scalp himself and uses the Max Control Shampoo and The Essential Solution."
-          }
-        },
-        "team_member_VgBakH": {
-          "type": "team_member",
-          "settings": {
-            "avatar": "shopify://shop_images/Headshot_3.jpg",
-            "initials": "Dr. Simon Ritchie, MD",
-            "position": "Dermatologist & Co-Founder",
-            "description": "Dr. Ritchie completed his dermatology residency training at the University of Maryland School of Medicine in Baltimore, MD and became board certified in dermatology in 2013. He specializes in the treatment of complex dermatological conditions and is an Assistant Professor of Dermatology at the Uniformed Services University of the Health Sciences in Bethesda, MD."
-          }
-        },
-        "button_YH4ck7": {
-          "type": "button",
-          "settings": {
-            "button_text": "Read More",
-            "button_url": "shopify://pages/about-us",
-            "button_style": "primary",
-            "full_width": false,
-            "button_alignment": "left"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_dHi8rE",
-        "team_member_VgBakH",
-        "button_YH4ck7"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "title": "The Team"
       }
     },
     "about_us_why_we_qfRFhm": {
@@ -197,6 +153,50 @@
         "side_image": "shopify://shop_images/Triple_2_6fe8fd8a-8caf-4b8b-857f-f2432af5cd4a.png",
         "side_image_tablet": "shopify://shop_images/Triple_2_6fe8fd8a-8caf-4b8b-857f-f2432af5cd4a.png",
         "image_overlap": true
+      }
+    },
+    "about_us_team_rtHJLP": {
+      "type": "about-us-team",
+      "blocks": {
+        "team_member_dHi8rE": {
+          "type": "team_member",
+          "settings": {
+            "avatar": "shopify://shop_images/586aae297adbc0284cc3a559676f2528.jpg",
+            "initials": "Dr. Knox Beasley, MD",
+            "position": "Dermatologist & Co-Founder",
+            "description": "Dr. Beasley is a board certified dermatologist practicing for over 10 years and has treated thousands of patients with flaky and itchy scalp. Beasley also deals with an itchy and flaky scalp himself and uses the Max Control Shampoo and The Essential Solution."
+          }
+        },
+        "team_member_VgBakH": {
+          "type": "team_member",
+          "settings": {
+            "avatar": "shopify://shop_images/Headshot_3.jpg",
+            "initials": "Dr. Simon Ritchie, MD",
+            "position": "Dermatologist & Co-Founder",
+            "description": "Dr. Ritchie completed his dermatology residency training at the University of Maryland School of Medicine in Baltimore, MD and became board certified in dermatology in 2013. He specializes in the treatment of complex dermatological conditions and is an Assistant Professor of Dermatology at the Uniformed Services University of the Health Sciences in Bethesda, MD."
+          }
+        },
+        "button_YH4ck7": {
+          "type": "button",
+          "settings": {
+            "button_text": "Read More",
+            "button_url": "shopify://pages/about-us",
+            "button_style": "primary",
+            "full_width": false,
+            "button_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_dHi8rE",
+        "team_member_VgBakH",
+        "button_YH4ck7"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "title": "The Team"
       }
     },
     "why_choose_allura_J3kr8R": {
@@ -454,11 +454,11 @@
     "custom_liquid_XQrWYa",
     "video_q97m4b",
     "about_us_e9Xzm7",
-    "about_us_team_rtHJLP",
     "about_us_why_we_qfRFhm",
     "featured_collection",
     "how_it_works_EdRcLp",
     "why_choose_allura_J3kr8R",
+    "about_us_team_rtHJLP",
     "image_banner",
     "stay_in_the_loop_99p6K8",
     "main_reviews_f8YEyx"
