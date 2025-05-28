@@ -1403,6 +1403,40 @@ hr.divider {
   overflow: hidden;
 }
 
+.blog-banner-overlay {
+  display: block !important;
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #C7D7C0;
+    @media (min-width: 1600px) {
+      width: 55%;
+    }
+    @media (max-width: 1024px) {
+      z-index: 1;
+      width: 30%;
+    }
+    @media (max-width: 768px) {
+      width: 35%;
+    }
+    @media (max-width: 579px) {
+      display: none !important;
+    }
+}
+
+.blog-banner-overlay:after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #C7D7C0;
+  z-index: 2;
+}
+
 .blog-banner-image {
   position: absolute;
   right: 0;
@@ -1496,6 +1530,15 @@ hr.divider {
   position: relative;
   max-width: 480px;
   z-index: 4;
+  margin-left: 80px;
+
+  @media screen and (max-width: 1023px) {
+    margin-left: 16px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 24px;
+  }
 }
 
 .blog-banner-caption .banner-text h1 {

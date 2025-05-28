@@ -38,29 +38,6 @@
     }
   }
 
-  .blog-banner-overlay {
-    display: block !important;
-    position: absolute;
-    width: 45%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #C7D7C0;
-      @media (min-width: 1600px) {
-        width: 55%;
-      }
-      @media (max-width: 1024px) {
-        z-index: 1;
-        width: 30%;
-      }
-      @media (max-width: 768px) {
-        width: 35%;
-      }
-      @media (max-width: 579px) {
-        display: none !important;
-      }
-  }
-
   .blog-banner-overlay:before {
     content: '';
     position: absolute;
@@ -84,17 +61,6 @@
         background-position: center top -40px;
     }
   }
-
-  .blog-banner-overlay:after {
-    content: '';
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #C7D7C0;
-    z-index: 2;
-  }
 {%- endstyle -%}
 
 <section class="blog-main-banner">
@@ -106,9 +72,17 @@
   {% endif %}
   <div class="blog-banner-caption">
     <div class="blog-banner-caption-cover">
-      <img src="{{ section.settings.text_background | img_url: 'master' }}" alt="Main Banner caption">
+      {% assign text_bg = section.settings.text_background %}
+      {% if text_bg %}
+        <img 
+          src="{{ text_bg | image_url: width: text_bg.width }}" 
+          width="{{ text_bg.width }}" 
+          height="{{ text_bg.height }}" 
+          alt="Main Banner caption"
+          >
+      {% endif %}
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="banner-text pb-5">
         <b>{{ section.settings.banner_title }}</b>
         <h1 class="mt-4">{{ section.settings.banner_description }}</h1>
