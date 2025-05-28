@@ -155,15 +155,25 @@
      class="{{ content_container_class }}"
     >
     {% if enable_hero_video != blank and section.settings.heading != blank %}
-      <div class="banner__box content-container content-container--full-width-mobile">
-        <div class="banner__headline--wrapper" style="background-image: url('//withallura.com/cdn/shop/t/6/assets/banner-headline-background.png?v=146694845142978732641747037685');">
-          <div class="banner__headline--inner">
-            <h2 class="banner__heading inline-richtext {{ section.settings.heading_size }}">
-               {{ section.settings.heading }}
-            </h2>
+      {% if section.settings.blob_style == 'graphic' %}
+        <div class="banner__box content-container content-container--full-width-mobile">
+          <div class="banner__headline--wrapper" style="background-image: url('//withallura.com/cdn/shop/t/6/assets/banner-headline-background.png?v=146694845142978732641747037685');">
+            <div class="banner__headline--inner">
+              <h2 class="banner__heading inline-richtext {{ section.settings.heading_size }}">
+                 {{ section.settings.heading }}
+              </h2>
+            </div>
           </div>
         </div>
-      </div>
+      {% else %}
+        <div class="banner__box--simple content-container content-container--full-width-mobile">
+            <div class="banner__headline--simple-wrapper__inner">
+              <h2 class="banner__heading inline-richtext {{ section.settings.heading_size }}">
+                {{ section.settings.heading }}
+              </h2>
+            </div>
+        </div>
+      {% endif %}
     {% endif %}
 
       {%- unless section.settings.heading == blank or enable_hero_video -%}
@@ -289,6 +299,23 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "blob_style",
+      "label": "Blob style",
+      "info": "Blob style is used to apply a specific design to the video section.",
+      "options": [
+        {
+          "value": "simple",
+          "label": "Simple"
+        },
+        {
+          "value": "graphic",
+          "label": "Graphic"
+        }
+      ],
+      "default": "graphic"
     },
     {
       "type": "checkbox",
