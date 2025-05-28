@@ -155,50 +155,6 @@
         "image_overlap": true
       }
     },
-    "about_us_team_rtHJLP": {
-      "type": "about-us-team",
-      "blocks": {
-        "team_member_dHi8rE": {
-          "type": "team_member",
-          "settings": {
-            "avatar": "shopify://shop_images/586aae297adbc0284cc3a559676f2528.jpg",
-            "initials": "Dr. Knox Beasley, MD",
-            "position": "Dermatologist & Co-Founder",
-            "description": "Dr. Beasley is a board certified dermatologist practicing for over 10 years and has treated thousands of patients with flaky and itchy scalp. Beasley also deals with an itchy and flaky scalp himself and uses the Max Control Shampoo and The Essential Solution."
-          }
-        },
-        "team_member_VgBakH": {
-          "type": "team_member",
-          "settings": {
-            "avatar": "shopify://shop_images/Headshot_3.jpg",
-            "initials": "Dr. Simon Ritchie, MD",
-            "position": "Dermatologist & Co-Founder",
-            "description": "Dr. Ritchie completed his dermatology residency training at the University of Maryland School of Medicine in Baltimore, MD and became board certified in dermatology in 2013. He specializes in the treatment of complex dermatological conditions and is an Assistant Professor of Dermatology at the Uniformed Services University of the Health Sciences in Bethesda, MD."
-          }
-        },
-        "button_YH4ck7": {
-          "type": "button",
-          "settings": {
-            "button_text": "Read More",
-            "button_url": "shopify://pages/about-us",
-            "button_style": "primary",
-            "full_width": false,
-            "button_alignment": "left"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_dHi8rE",
-        "team_member_VgBakH",
-        "button_YH4ck7"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "title": "The Team"
-      }
-    },
     "why_choose_allura_J3kr8R": {
       "type": "why-choose-allura",
       "blocks": {
@@ -324,6 +280,50 @@
         "heading_3_background_color": "#3d2b1f",
         "heading_3_text_color": "#ffffff",
         "column_3_background_color": "#f5f3e7"
+      }
+    },
+    "about_us_team_rtHJLP": {
+      "type": "about-us-team",
+      "blocks": {
+        "team_member_dHi8rE": {
+          "type": "team_member",
+          "settings": {
+            "avatar": "shopify://shop_images/586aae297adbc0284cc3a559676f2528.jpg",
+            "initials": "Dr. Knox Beasley, MD",
+            "position": "Dermatologist & Co-Founder",
+            "description": "Dr. Beasley is a board certified dermatologist practicing for over 10 years and has treated thousands of patients with flaky and itchy scalp. Beasley also deals with an itchy and flaky scalp himself and uses the Max Control Shampoo and The Essential Solution."
+          }
+        },
+        "team_member_VgBakH": {
+          "type": "team_member",
+          "settings": {
+            "avatar": "shopify://shop_images/Headshot_3.jpg",
+            "initials": "Dr. Simon Ritchie, MD",
+            "position": "Dermatologist & Co-Founder",
+            "description": "Dr. Ritchie completed his dermatology residency training at the University of Maryland School of Medicine in Baltimore, MD and became board certified in dermatology in 2013. He specializes in the treatment of complex dermatological conditions and is an Assistant Professor of Dermatology at the Uniformed Services University of the Health Sciences in Bethesda, MD."
+          }
+        },
+        "button_YH4ck7": {
+          "type": "button",
+          "settings": {
+            "button_text": "Read More",
+            "button_url": "shopify://pages/about-us",
+            "button_style": "primary",
+            "full_width": false,
+            "button_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_dHi8rE",
+        "team_member_VgBakH",
+        "button_YH4ck7"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "title": "Meet the Founders"
       }
     },
     "image_banner": {
