@@ -147,7 +147,7 @@
       "settings": {
         "padding_top": 64,
         "padding_bottom": 64,
-        "full_width": true,
+        "full_width": false,
         "color_scheme": "",
         "section_title": "How it works",
         "side_image": "shopify://shop_images/Triple_2_6fe8fd8a-8caf-4b8b-857f-f2432af5cd4a.png",
