@@ -2101,6 +2101,7 @@ input.is-invalid, input.parsley-error {
 }
 
 .customer.registration-form {
+  display: block;
   max-width: 100%!important;
   width: 100%!important;
   padding-bottom: 65px;
