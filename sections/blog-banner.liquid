@@ -1,4 +1,4 @@
-<style>
+{%- style -%}
   .blog-main-banner::before {
     content: '';
     display: block;
@@ -7,25 +7,82 @@
     top: 0;
     bottom: 0;
     left: 10%;
-
+    z-index: 3;
     background-image: url('{{ 'main-banner--background-patern.png' | asset_url }}'); 
     background-repeat: repeat;
     background-size: initial;
     background-position: top left;
+    background-color: #C7D7C0;
+    @media (max-width: 1024px) {
+    width: 221px;
+      left: 5%;
+    }
+
+    @media (max-width: 579px) {
+      left: 0;
+      max-width: 136px;
+      max-height: 432px;
+      background-color: transparent;
+      background-image: url('{{ "background-mobile--blog.svg" | asset_url }}');
+      background-position: left top;
+      background-repeat: no-repeat;
+    }
   }
-</style>
+
+  .template--page-about_us .blog-main-banner:before {
+    @media (max-width: 579px) {
+      max-width: 277px;
+      background-image: url('{{ "background-mobile--about-us.svg" | asset_url }}');
+      background-position: left top;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .blog-banner-overlay:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 35%;
+    background-image: url('{{ "background.svg" | asset_url }}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center top;
+    z-index: 1;
+    @media (max-width: 1024px) {
+      left: 45%;
+      background-size: auto;
+    }
+
+    @media (max-width: 768px) {
+      left: 45%;
+        background-size: cover;
+        background-position: center top -40px;
+    }
+  }
+{%- endstyle -%}
 
 <section class="blog-main-banner">
   {% if section.settings.banner_image %}
+    <div class="blog-banner-overlay"></div>
     <div class="blog-banner-image">
       <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="Main Banner Image">
     </div>
   {% endif %}
   <div class="blog-banner-caption">
     <div class="blog-banner-caption-cover">
-      <img src="{{ section.settings.text_background | img_url: 'master' }}" alt="Main Banner caption">
+      {% assign text_bg = section.settings.text_background %}
+      {% if text_bg %}
+        <img 
+          src="{{ text_bg | image_url: width: text_bg.width }}" 
+          width="{{ text_bg.width }}" 
+          height="{{ text_bg.height }}" 
+          alt="Main Banner caption"
+          >
+      {% endif %}
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="banner-text pb-5">
         <b>{{ section.settings.banner_title }}</b>
         <h1 class="mt-4">{{ section.settings.banner_description }}</h1>

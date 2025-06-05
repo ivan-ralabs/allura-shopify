@@ -65,6 +65,16 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {% if settings.klaviyo_popup_id != blank %}
+      <script type="application/ld+json" id="klaviyo_popup_id">
+        {
+          "klaviyo_popup_id": {{ settings.klaviyo_popup_id | json }},
+          "klaviyo_popup_delay": {{ settings.klaviyo_popup_delay | times: 1000 | default: 0 | json }}
+        }
+      </script>
+      <script src="{{ 'klaviyo_popup.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%} 
+
     {{ content_for_header }}
 
     {%- liquid
@@ -326,7 +336,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} template--{{ template.name }}{% if template.suffix %}-{{ template.suffix }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

@@ -101,16 +101,6 @@
       }
     },
     {
-      "key": "ingredients",
-      "namespace": "custom",
-      "name": "Ingredients",
-      "description": "Ingredients",
-      "type": {
-        "name": "json",
-        "category": "JSON"
-      }
-    },
-    {
       "key": "how_to_apply",
       "namespace": "custom",
       "name": "How to apply",
@@ -158,6 +148,16 @@
       "type": {
         "name": "boolean",
         "category": "TRUE_FALSE"
+      }
+    },
+    {
+      "key": "ingredient_group",
+      "namespace": "custom",
+      "name": "Ingredient Group",
+      "description": "",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
       }
     }
   ],
@@ -283,16 +283,5 @@
       }
     }
   ],
-  "shop": [
-    {
-      "key": "stage",
-      "namespace": "app--144500948993--omni_signups",
-      "name": "Storefront access token",
-      "description": null,
-      "type": {
-        "name": "single_line_text_field",
-        "category": "TEXT"
-      }
-    }
-  ]
+  "shop": []
 }

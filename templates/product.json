@@ -1,1 +1,148 @@
-{"sections":{"main":{"type":"main-product","blocks":{"title":{"type":"title","settings":{}},"judge_me_reviews_preview_badge_PVbCLq":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{}},"custom_liquid_P7QBtk":{"type":"custom_liquid","settings":{"custom_liquid":"<p class=\"product-weight\">\n          <span>\n            <!-- {%- if product.variants.first.weight != blank -%}\n              {%- assign weight_in_grams = product.variants.first.weight -%}\n              {%- assign weight_in_oz = weight_in_grams | divided_by: 28.3495 | round: 2 -%}\n              {{ weight_in_oz }} oz\n            {%- else -%}\n              No weight information available.\n            {%- endif -%} -->\n            {%- if product.variants.first.weight != blank -%}\n              {{ product.variants.first.weight | times: 0.03527396 | round: 1 }} oz\n            {%- else -%}\n              No weight information available.\n            {%- endif -%}\n          <\/span>\n        <\/p>"}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"description":{"type":"description","settings":{}},"seal_subscriptions_subscription_widget_z7biJR":{"type":"shopify:\/\/apps\/seal-subscriptions\/blocks\/subscription-widget\/13b25004-a140-4ab7-b5fe-29918f759699","settings":{"product":"{{product}}"}},"custom_liquid_rMKpqR":{"type":"custom_liquid","settings":{"custom_liquid":"<a class=\"btn btn-primary\" id=\"get-started-btn\" href=\"\/pages\/quiz\">Get started<\/a>"}},"buy_buttons_HqHPhD":{"type":"buy_buttons","disabled":true,"settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}}},"block_order":["title","judge_me_reviews_preview_badge_PVbCLq","custom_liquid_P7QBtk","price","variant_picker","description","seal_subscriptions_subscription_widget_z7biJR","custom_liquid_rMKpqR","buy_buttons_HqHPhD"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","media_position":"left","image_zoom":"none","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"main_product_information_GYEbax":{"type":"main-product-information","settings":{}},"17346225175cbb14c2":{"type":"apps","blocks":{"judge_me_reviews_review_widget_KhcXCE":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{}}},"block_order":["judge_me_reviews_review_widget_KhcXCE"],"settings":{"include_margins":true}},"custom_liquid_LQkyWf":{"type":"custom-liquid","disabled":true,"settings":{"custom_liquid":"","color_scheme":"","padding_top":40,"padding_bottom":52}},"related-products":{"type":"related-products","disabled":true,"settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"columns_mobile":"2","padding_top":36,"padding_bottom":28}}},"order":["main","main_product_information_GYEbax","17346225175cbb14c2","custom_liquid_LQkyWf","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_PVbCLq": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "custom_liquid_P7QBtk": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p class=\"product-weight\">\n          <span>\n            <!-- {%- if product.variants.first.weight != blank -%}\n              {%- assign weight_in_grams = product.variants.first.weight -%}\n              {%- assign weight_in_oz = weight_in_grams | divided_by: 28.3495 | round: 2 -%}\n              {{ weight_in_oz }} oz\n            {%- else -%}\n              No weight information available.\n            {%- endif -%} -->\n            {%- if product.variants.first.weight != blank -%}\n              {{ product.variants.first.weight | times: 0.03527396 | round: 1 }} oz\n            {%- else -%}\n              No weight information available.\n            {%- endif -%}\n          </span>\n        </p>"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "seal_subscriptions_subscription_widget_z7biJR": {
+          "type": "shopify://apps/seal-subscriptions/blocks/subscription-widget/13b25004-a140-4ab7-b5fe-29918f759699",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "custom_liquid_rMKpqR": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<a class=\"btn btn-primary disabled\" id=\"get-started-btn\" href=\"/pages/quiz\">Coming soon</a>"
+          }
+        },
+        "buy_buttons_HqHPhD": {
+          "type": "buy_buttons",
+          "disabled": true,
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "judge_me_reviews_preview_badge_PVbCLq",
+        "custom_liquid_P7QBtk",
+        "price",
+        "variant_picker",
+        "description",
+        "seal_subscriptions_subscription_widget_z7biJR",
+        "custom_liquid_rMKpqR",
+        "buy_buttons_HqHPhD"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "none",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "main_product_information_GYEbax": {
+      "type": "main-product-information",
+      "settings": {}
+    },
+    "17346225175cbb14c2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_KhcXCE": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_KhcXCE"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "custom_liquid_LQkyWf": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_product_information_GYEbax",
+    "17346225175cbb14c2",
+    "custom_liquid_LQkyWf",
+    "related-products"
+  ]
+}

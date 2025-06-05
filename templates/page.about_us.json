@@ -13,7 +13,7 @@
       "type": "blog-banner",
       "settings": {
         "banner_title": "ABOUT US",
-        "banner_description": "Meet our team, explore our concept",
+        "banner_description": "Meet Our Team, Explore Our Concept",
         "text_background": "shopify://shop_images/Ellipse_144_88100365-0d26-4024-af88-0b66c7e820ba.png",
         "banner_image": "shopify://shop_images/Option_1_flip.webp"
       }
@@ -21,18 +21,24 @@
     "about_us_DGyFbE": {
       "type": "about-us",
       "settings": {
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
         "title": "Why Allura Medicinals Exists",
         "section_image": "shopify://shop_images/1_Hand_2.png",
-        "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined 20 years and have treated thousands of patients who suffer from an itchy and flaky scalp.</p>\n<p>During that time we realized <b>two things</b>: the commercial medications to treat an itchy or flaky scalp are <b>often ineffective</b>, and even if they were effective it's really <b>hard to get in</b> to see a dermatologist. Between the usual wait times to see a dermatologist, the expense, and taking time off work or school it sometimes just isn't possible at all. </p>",
+        "description": "<p><b>Dr. Beasley</b> and <b>Dr. Ritchie</b> have been practising as <b>Board Certified Dermatologists</b> for a combined time of over 20 years and have treated thousands of patients who suffer from itching or flaking of the scalp.</p>\n<p>Between inadequate treatment options and long wait times to be seen in the office they realized that more was needed to address this problem. </p>",
         "button_link": "/",
         "button_text": ""
       }
     },
     "about_us_additional_information_xUn8ae": {
       "type": "about-us-additional-information",
+      "custom_css": [
+        "img {max-width: 380px;}"
+      ],
       "settings": {
-        "description": "<p>Allura Medicinals exists to <b>eliminate both</b> of these problems. We <b>specially formulated compounded medications</b> and offer them direct to patients via an online platform that includes an expert consultation with a Board Certified Dermatologist. </p>\n<p>The result? The <b>fast and effective relief</b> you've been searching for so you can look and feel the way you want to.</p>",
-        "image": "shopify://shop_images/Option_3.jpg"
+        "description": "<p>The answer was creating Allura Medicinals, which <b>seeks to eliminate these barriers </b> and <b>provide the fastest and most effective relief </b> for conditions such as dandruff, seborrheic dermatitis, and scalp psoriasis. Delivering these solutions directly to your doorstep ensures that you have the time to stay focused on the parts of your life that matter most while getting you the flake free and itch free scalp you deserve.</p>",
+        "image": "shopify://shop_images/Blog_1.jpg"
       }
     },
     "about_us_team_Qk98rz": {
@@ -44,7 +50,7 @@
             "avatar": "shopify://shop_images/586aae297adbc0284cc3a559676f2528.jpg",
             "initials": "Dr. Knox Beasley, MD",
             "position": "Dermatologist & Co-Founder",
-            "description": "Dr. Beasley is originally from Nashville, Tennessee. He received his bachelor’s degree from the United States Military Academy at West Point, New York. Furthering his education, he obtained his medical degree at Tulane University in New Orleans, Louisiana, followed by his dermatology training in San Antonio, Texas. Dr. Beasley is board-certified by the American Board of Dermatology and is a fellow of the American Academy of Dermatology. Dr. Beasley also deals with an itchy and flaky scalp and uses the Max Shampoo and The Essential Solution - Steroid Free topical which works best for him."
+            "description": "Dr. Beasley is a board certified dermatologist practicing for over 10 years and has treated thousands of patients with flaky and itchy scalp. Beasley also deals with an itchy and flaky scalp himself and uses the Max Control Shampoo and The Essential Solution."
           }
         },
         "team_member_iRH3pd": {
@@ -62,7 +68,10 @@
         "team_member_iRH3pd"
       ],
       "settings": {
-        "title": "The team"
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "title": "The Team"
       }
     },
     "about_us_why_we_WbmkBW": {
@@ -87,19 +96,26 @@
         "benefit_bY4gfa",
         "benefit_eWPMkC"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 767px) {.container + .container {margin-top: 32px; }}"
+      ],
       "settings": {
-        "image": "shopify://shop_images/Option_8_1.jpg",
-        "title": "Why choose Allura",
-        "description": "<p>There are many treatments out there for an itchy or flaky scalp (often caused by either seborrheic dermatitis or scalp psoriasis). There are over the counter shampoos, homoeopathic remedies, and standard prescription medications.</p>\n<p>Unfortunately, as so many people experience, these products promise a lot but oftentimes do not deliver results.</p>"
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "image": "shopify://shop_images/Triple_1_c20bf964-64c7-4a51-a41f-58c6d2c4064c.png",
+        "title": "Why Choose Allura",
+        "description": "<p>There are many treatments out there for an itchy or flaky scalp (often caused by either seborrheic dermatitis or scalp psoriasis). There are over the counter shampoos, homoeopathic remedies, and standard prescription medications.</p>\n<p>Unfortunately, as so many people experience, these products promise a lot but often times do not deliver results.</p>"
       }
     },
-    "why_choose_allura_RYGdRG": {
+    "why_choose_allura_wg6xa6": {
       "type": "why-choose-allura",
       "blocks": {
-        "table_row_r7LBGx": {
+        "table_row_CtCEHd": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Consultation with a Board Certified Dermatologist from your home</p>",
+            "main_text_icon": "shopify://shop_images/computer.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -108,10 +124,11 @@
             "column_3_checkmark": false
           }
         },
-        "table_row_WpT7bf": {
+        "table_row_GtAjbD": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Typical wait time for consultation</p>",
+            "main_text_icon": "shopify://shop_images/timer.svg",
             "column_1_text": " < 1 day",
             "column_1_checkmark": true,
             "column_2_text": "No consultation",
@@ -120,10 +137,11 @@
             "column_3_checkmark": true
           }
         },
-        "table_row_gjzzAE": {
+        "table_row_HAGhHM": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Evidenced based prescription-only compounded shampoo</p>",
+            "main_text_icon": "shopify://shop_images/bubbles.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -132,10 +150,11 @@
             "column_3_checkmark": false
           }
         },
-        "table_row_KApi4M": {
+        "table_row_xr9GnK": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Rosemary oil added to prescription shampoo</p>",
+            "main_text_icon": "shopify://shop_images/soap-bubble.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -144,10 +163,11 @@
             "column_3_checkmark": false
           }
         },
-        "table_row_wgpbDj": {
+        "table_row_bhebcn": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Able to message your Dermatologist with questions anytime</p>",
+            "main_text_icon": "shopify://shop_images/drop.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -156,10 +176,11 @@
             "column_3_checkmark": false
           }
         },
-        "table_row_T67UpF": {
+        "table_row_hz939A": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Free shipping directly to you</p>",
+            "main_text_icon": "shopify://shop_images/message.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -168,10 +189,11 @@
             "column_3_checkmark": false
           }
         },
-        "table_row_CXdJec": {
+        "table_row_BwCFCR": {
           "type": "table_row",
           "settings": {
             "main_text": "<p>Compounded prescription scalp serums available</p>",
+            "main_text_icon": "shopify://shop_images/truck-tick.svg",
             "column_1_text": "",
             "column_1_checkmark": true,
             "column_2_text": "",
@@ -182,15 +204,14 @@
         }
       },
       "block_order": [
-        "table_row_r7LBGx",
-        "table_row_WpT7bf",
-        "table_row_gjzzAE",
-        "table_row_KApi4M",
-        "table_row_wgpbDj",
-        "table_row_T67UpF",
-        "table_row_CXdJec"
+        "table_row_CtCEHd",
+        "table_row_GtAjbD",
+        "table_row_HAGhHM",
+        "table_row_xr9GnK",
+        "table_row_bhebcn",
+        "table_row_hz939A",
+        "table_row_BwCFCR"
       ],
-      "name": "Why Choose Allura",
       "settings": {
         "padding_top": 64,
         "padding_bottom": 64,
@@ -199,16 +220,19 @@
         "why_choose_allura_title": "Why choose Allura",
         "column_1_text": "With Allura",
         "column_1_bold": true,
-        "heading_1_background_color": "#d5e1cf",
+        "heading_1_background_color": "#285445",
+        "heading_1_text_color": "#ffffff",
         "column_1_background_color": "#eef3ec",
         "column_2_text": "Non-prescription shampoos in stores or online",
-        "column_2_bold": false,
-        "heading_2_background_color": "#eeeeee",
-        "column_2_background_color": "#ffffff",
+        "column_2_bold": true,
+        "heading_2_background_color": "#3d2b1f",
+        "heading_2_text_color": "#ffffff",
+        "column_2_background_color": "#f5f3e7",
         "column_3_text": "Seeing a dermatologist in an office",
-        "column_3_bold": false,
-        "heading_3_background_color": "#eeeeee",
-        "column_3_background_color": "#ffffff"
+        "column_3_bold": true,
+        "heading_3_background_color": "#3d2b1f",
+        "heading_3_text_color": "#ffffff",
+        "column_3_background_color": "#f5f3e7"
       }
     },
     "main": {
@@ -226,7 +250,7 @@
     "about_us_additional_information_xUn8ae",
     "about_us_team_Qk98rz",
     "about_us_why_we_WbmkBW",
-    "why_choose_allura_RYGdRG",
+    "why_choose_allura_wg6xa6",
     "main"
   ]
 }

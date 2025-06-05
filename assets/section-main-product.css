@@ -2,6 +2,34 @@ product-info {
   display: block;
 }
 
+.product .selling-plan-group-options-name-select {
+  position: relative;
+  padding-left: 6px;
+}
+
+.product .list-marker {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1E1E1E;
+  padding-left: 16px;
+  position: relative;
+}
+
+.product .selling-plan-group-options-name-select:before,
+.product .list-marker:before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  background-color: #1e1e1e;
+  border-radius: 50%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
 .product {
   margin: 0;
 }

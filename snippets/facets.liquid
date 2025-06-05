@@ -171,7 +171,7 @@
                             {%- endif -%}
                           </div>
                           <facet-remove>
-                            <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link">
+                            <a href="{{ filter.url_to_remove }}" class="facets__reset btn btn-link">
                               {{ 'products.facets.reset' | t }}
                             </a>
                           </facet-remove>
@@ -280,7 +280,7 @@
                       {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
                         <show-more-button>
                           <button
-                            class="button-show-more link underlined-link"
+                            class="button-show-more btn btn-link"
                             id="Show-More-{{ forloop.index }}-{{ section.id }}"
                             type="button"
                           >
@@ -321,7 +321,7 @@
                         </span>
                         {%- if filter_type != 'vertical' -%}
                           <facet-remove>
-                            <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link">
+                            <a href="{{ filter.url_to_remove }}" class="facets__reset btn btn-link">
                               {{ 'products.facets.reset' | t }}
                             </a>
                           </facet-remove>

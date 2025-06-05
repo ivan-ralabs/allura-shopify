@@ -1,28 +1,58 @@
-<div id="about-us-team" class="about-us-team">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10  offset-lg-1 text-center">
-        <h2>{{ section.settings.title }}</h2>
-      </div>
-    </div>
-  
-    <div class="row">
-      {% for member in section.blocks %}
-        <div class="col-md-6 col-lg-5 mb-4 d-flex {% if forloop.first %}offset-lg-1{% endif %}">
-          <div class="team-member text-start">
-            <div class="team-avatar">
-              {% if member.settings.avatar %}
-                <img src="{{ member.settings.avatar | img_url: 'medium' }}" alt="{{ member.settings.initials }}" class="img-fluid rounded-circle">
-              {% endif %}
-            </div>
-            <div class="team-info">
-              <h5 class="team-name">{{ member.settings.initials }}</h5>
-              <p class="team-position">{{ member.settings.position }}</p>
-              <p class="team-description">{{ member.settings.description }}</p>
-            </div>
-          </div>
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} isolate gradient ">
+  <div id="about-us-team"
+    class="about-us-team about-us-team-section section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10  offset-lg-1 text-center">
+          <h2>{{ section.settings.title }}</h2>
         </div>
-      {% endfor %}
+      </div>
+
+      <div class="row">
+        {% for block in section.blocks %}
+          {%- if block.type == 'team_member' -%}
+            {%- assign member = block -%}
+            <div class="col-md-6 col-lg-5 d-flex {% if forloop.first %}offset-lg-1{% endif %}">
+              <div class="team-member text-start">
+                <div class="team-avatar">
+                  {% if member.settings.avatar %}
+                  <img 
+                    src="{{ member.settings.avatar | image_url: width: 240, height: 240, crop: 'center' }}" 
+                    alt="{{ member.settings.initials }}"
+                    width="120"
+                    height="120"
+                    class="img-fluid rounded-circle">
+                  {% endif %}
+                </div>
+                <div class="team-info">
+                  <h5 class="team-name">{{ member.settings.initials }}</h5>
+                  <p class="team-position">{{ member.settings.position }}</p>
+                  <p class="team-description">{{ member.settings.description }}</p>
+                </div>
+              </div>
+            </div>
+          {%- elsif block.type == 'button' -%}
+            {%- assign button = block -%}
+            {%- liquid
+              assign button_style = 'btn-' | append: button.settings.button_style
+              assign button_alignment = 'text-' | append: button.settings.button_alignment
+              if button.settings.full_width
+                assign button_style = button_style | append: ' w-100'
+              endif
+            -%}
+            <div class="col-12 {{ button_alignment }} offset-lg-1 col-lg-10">
+              <a href="{{ button.settings.button_url }}" class="btn {{ button_style }} position-relative">{{ button.settings.button_text }}</a>
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
@@ -85,7 +115,14 @@
       top: 130px;
     }
   }
-  
+
+  @media (max-width: 579px) {
+    .about-us-team::before {
+        bottom: 45%;
+        left: -67%;
+    } 
+  }
+
   @media (max-width: 1050px) {
     .about-us-team::after {
        right: -15%; 
@@ -189,15 +226,51 @@
 {% schema %}
   {
     "name": "About Us Team Section",
-      "settings": [
-    {
-      "type": "text",
-      "label": "Title",
-      "id": "title",
-      "default": "Our Team",
-      "info": "This is the title for the About Us Team section."
-    }
-  ],
+        "tag": "section",
+        "class": "section",
+        "disabled_on": {
+        "groups": ["header", "footer"]
+      },
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 64
+      },
+      {
+        "type": "text",
+        "label": "Title",
+        "id": "title",
+        "default": "Our Team",
+        "info": "This is the title for the About Us Team section."
+      }
+    ],
   "blocks": [
     {
       "type": "team_member",
@@ -229,6 +302,75 @@
           "id": "description",
           "default": "Short description of the team member.",
           "info": "Provide a brief description of the team member."
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Button Text",
+          "id": "button_text",
+          "default": "Learn More",
+          "info": "Text for the button."
+        },
+        {
+          "type": "url",
+          "label": "Button URL",
+          "id": "button_url",
+          "default": "/",
+          "info": "URL for the button link."
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "info": "Choose the style for the button.",
+          "label": "Button Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "tertiary",
+              "label": "Tertiary"
+            }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full Width Button",
+          "default": false,
+          "info": "Check this box to make the button full width."
+        },
+        {
+          "type": "select",
+          "id": "button_alignment",
+          "info": "Select the alignment for the button.",
+          "label": "Button Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "end",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
         }
       ]
     }

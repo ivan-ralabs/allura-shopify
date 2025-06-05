@@ -74,8 +74,8 @@
       <div class="col-md-5">
         <ul class="footer-menu d-flex justify-content-start">
           <li><a href="/pages/about-us">About us</a></li>
-          <li><a href="/pages/blog">Blog space</a></li>
-          <li><a href="/#faq-section">FAQ</a></li>
+          <li><a href="/pages/blog">Blog</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
         </ul>
       </div>
     
@@ -666,7 +666,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 64
     },
     {
       "type": "range",
@@ -676,18 +676,14 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 64
     }
   ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "text"
-      }
-    ]
-  }
+  "presets": [
+    {
+      "name": "Footer",
+      "category": "Footer"
+    }
+  ]
 }
 {% endschema %}

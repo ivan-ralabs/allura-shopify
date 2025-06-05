@@ -36,7 +36,7 @@
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
-          <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
+          <a href="{{ section.settings.button_link }}" class="btn btn-link large-up-hide">
             {{- section.settings.button_label | escape -}}
           </a>
         {%- endif -%}
@@ -373,7 +373,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 64
     },
     {
       "type": "range",
@@ -383,7 +383,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 64
     }
   ],
   "blocks": [
