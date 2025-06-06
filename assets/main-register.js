@@ -1,4 +1,4 @@
-if (customElements.get('main-register') === undefined) {
+if (!customElements.get('main-register')) {
   customElements.define(
     "main-register",
     class extends HTMLElement {

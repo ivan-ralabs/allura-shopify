@@ -1,125 +1,98 @@
-{% style %}
-  .cabinet-personal-data .custom-radio-input input + label {
-    font-weight: 500;
-    letter-spacing: 0;
-  }
-{% endstyle %}
+<script src="{{ 'personal-data.js' | asset_url }}" defer></script>
 
 <div class="container">
   <div class="cabinet-personal-data">
     <h1>Personal data</h1>
 
     {% if customer %}
-      {%- liquid
-        assign gender_metafield = customer.metafields.custom.gender_text.value
-        assign date_of_birth = customer.metafields.custom.date_of_birth.value
-        assign preffered_name = customer.metafields.custom.preffered_name.value
-      -%}
-      {% comment %} <ul>
-        <li>First Name: {{ customer.first_name }}</li>
-        <li>Last Name: {{ customer.last_name }}</li>
-        <li>Email: {{ customer.email }}</li>
-        <li>Phone: {{ customer.phone }}</li>
-        <li>Orders Count: {{ customer.orders_count }}</li>
-        <li>Total Spent: {{ customer.total_spent }}</li>
-        <li>Default Address: {{ customer.default_address | json }}</li>
-        <li>Tags: {{ customer.tags | join: ', ' }}</li>
+      <personal-data>
+        {%- liquid
+          assign gender_metafield = customer.metafields.custom.gender_text.value
+          assign date_of_birth = customer.metafields.custom.date_of_birth.value
+          assign preffered_name = customer.metafields.custom.preffered_name.value
+        -%}
+        {% comment %} <ul>
+          <li>First Name: {{ customer.first_name }}</li>
+          <li>Last Name: {{ customer.last_name }}</li>
+          <li>Email: {{ customer.email }}</li>
+          <li>Phone: {{ customer.phone }}</li>
+          <li>Orders Count: {{ customer.orders_count }}</li>
+          <li>Total Spent: {{ customer.total_spent }}</li>
+          <li>Default Address: {{ customer.default_address | json }}</li>
+          <li>Tags: {{ customer.tags | join: ', ' }}</li>
       
-      </ul> {% endcomment %}
+        </ul> {% endcomment %}
         {% comment %} Any changes except the Preferred name require verification {% endcomment %}
-      <p class="mb-4 d-none">Any changes except the Preferred name require verification</p>
-
-      <!-- Legal first name -->
-      <div class="form-floating-label preview-mode">
-        <input
-          type="text"
-          name="customer[first_name]"
-          id="RegisterForm-FirstName"
-          class="form-control"
-          {% if customer.first_name %}
-            value="{{ customer.first_name }}"
-          {% endif %}
-          autocomplete="given-name"
-          placeholder=""
-          required
-        >
-        <label for="RegisterForm-FirstName">
-          {{ 'customer.register.first_name' | t }}
-        </label>
-        <div class="invalid-feedback text-start">
-          Please enter your legal first name
+        <p class="mb-4 d-none">Any changes except the Preferred name require verification</p>
+      
+        <!-- Legal first name -->
+        <div class="form-floating-label">
+          <input type="text" name="customer[first_name]" id="firstName" class="form-control" {% if
+            customer.first_name %} value="{{ customer.first_name }}" {% endif %} autocomplete="given-name" placeholder=""
+            required>
+          <label for="firstName">
+            {{ 'customer.register.first_name' | t }}
+          </label>
+          <div class="invalid-feedback text-start">
+            Please enter your legal first name
+          </div>
         </div>
-      </div>
       
-      <!-- Legal last name -->
-      <div class="form-floating-label preview-mode">
-        <input
-          type="text"
-          name="customer[last_name]"
-          id="RegisterForm-LastName"
-          class="form-control"
-          {% if customer.last_name %}
-            value="{{ customer.last_name }}"
-          {% endif %}
-          autocomplete="family-name"
-          placeholder=""
-          required
-        >
-        <label for="RegisterForm-LastName">
-          {{ 'customer.register.last_name' | t }}
-        </label>
-        <div class="invalid-feedback text-start">
-          Please enter your legal last name
+        <!-- Legal last name -->
+        <div class="form-floating-label">
+          <input type="text" name="customer[last_name]" id="lastName" class="form-control" {% if
+            customer.last_name %} value="{{ customer.last_name }}" {% endif %} autocomplete="family-name" placeholder=""
+            required>
+          <label for="lastName">
+            {{ 'customer.register.last_name' | t }}
+          </label>
+          <div class="invalid-feedback text-start">
+            Please enter your legal last name
+          </div>
         </div>
-      </div>
       
-      <!-- Preferred name (optional) -->
-       {% if preffered_name != blank %}
-      <div class="form-floating-label">
-        <input 
-          type="text" 
-          name="Preffered name" 
-          id="RegisterForm-PreferredName" 
-          class="form-control" 
-            value="{{ preffered_name }}"
-          autocomplete="nickname" 
-          placeholder=""
-        >
-        <label for="RegisterForm-PreferredName">
-          Preferred name
-        </label>
-      </div>
-      {% endif %}
-      
-      <!-- Date of birth -->
-      {%- if date_of_birth != blank -%}
-      <div class="form-floating-label mb-5">
-        <input type="date" id="dateOfBirth" class="" name="Date of Birth" value="{{ date_of_birth }}" value="" required>
-      
-        <label for="dateOfBirth">Date of Birth:</label>
-      </div>
-      {%- endif -%}
-        
-      <!-- Gender -->
-       {%- assign genders = 'male,female,intersex' | split: ',' -%}
-       {% if gender_metafield != blank %}
-          <fieldset class="form-input-wrap custom-radio-group text-start">
-            <legend>Gender assigned at birth</legend>
-            {%- for gender in genders -%}
-              <div class="custom-radio-input">
-                <input class="form-check-input" type="radio" name="{{ gender }}" id="{{gender}}-option{{- forloop.index -}}" {% if gender == gender_metafield %}checked{% endif %}>
-                <label class="form-check-label" for="gender-option{{- forloop.index -}}">
-                  <span class="radio-circle"></span>{{ gender | capitalize }}
-                </label>
-              </div>
-            {%- endfor -%}
-          </fieldset>
+        <!-- Preferred name (optional) -->
+        {% if preffered_name != blank %}
+        <div class="form-floating-label">
+          <input type="text" name="Preffered name" id="preferredName" class="form-control"
+            value="{{ preffered_name }}" autocomplete="nickname" placeholder="">
+          <label for="preferredName">
+            Preferred name
+          </label>
+        </div>
         {% endif %}
-
-     <div>
-        <!-- <button class="btn btn-primary">Save</button> -->
-        <!-- <button type="reset" class="btn text-center btn-link">Cancel</button> -->
-      </div>
+      
+        <!-- Date of birth -->
+        {%- if date_of_birth != blank -%}
+        <div class="form-floating-label mb-5">
+          <input type="date" id="dateOfBirth" class="" name="Date of Birth" value="{{ date_of_birth }}" value="" required>
+      
+          <label for="dateOfBirth">Date of Birth:</label>
+        </div>
+        {%- endif -%}
+      
+        <!-- Gender -->
+        {%- assign genders = 'male,female,intersex' | split: ',' -%}
+        {% if gender_metafield != blank %}
+        <fieldset id="gendersSet" class="form-input-wrap custom-radio-group text-start">
+          <legend>Gender assigned at birth</legend>
+          {%- for gender in genders -%}
+          <div class="custom-radio-input">
+            <input class="form-check-input" type="radio" name="gender" value="{{-gender-}}" id="gender-option{{- forloop.index -}}" {% if
+              gender==gender_metafield %}checked{% endif %}>
+            <label class="form-check-label" for="gender-option{{- forloop.index -}}">
+              <span class="radio-circle"></span>{{ gender | capitalize }}
+            </label>
+          </div>
+          {%- endfor -%}
+        </fieldset>
+        {% endif %}
+      
+        <div class="account-buttons">
+          <button id="saveButton" type="button" class="btn btn-primary" disabled>Save</button>
+          <button id="cancelButton" class="btn text-center btn-link" disabled>Cancel</button>
+        </div>
+      </personal-data>
     {% endif %}
   </div>
 </div>
