@@ -50,7 +50,7 @@
         "custom_liquid_rMKpqR": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<a class=\"btn btn-primary disabled\" id=\"get-started-btn\" href=\"/pages/quiz\">Coming soon</a>"
+            "custom_liquid": "<a class=\"btn btn-primary\" id=\"get-started-btn\" href=\"/pages/quiz\">Coming soon</a>"
           }
         },
         "buy_buttons_HqHPhD": {
