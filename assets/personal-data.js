@@ -130,6 +130,8 @@ if (!customElements.get('personal-data')) {
         this.gendersSet.querySelector(
           `input[type='radio'][value='${this.initialValues.selectedGender}']`
         ).checked = true;
+        this.saveButton.disabled = true;
+        this.cancelButton.disabled = true;
       }
     }
   );

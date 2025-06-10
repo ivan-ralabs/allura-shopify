@@ -45,6 +45,12 @@ class CustomerAddresses {
     this.saveButton = document.querySelector(selectors.saveButton);
     this.cancelButton = document.querySelector(selectors.cancelButton);
 
+    this._getElementValues();
+    if (!this.saveButton) {
+      console.error("saveButton not found");
+      return;
+    }
+
     [this.stateSelect, this.cityInput, this.address1Input, this.address2Input, this.zipInput, this.phoneInput].forEach((input) => {
       if (input) {
         input.addEventListener('input', () => {
@@ -54,14 +60,12 @@ class CustomerAddresses {
       }
     });
 
-      if (this.cancelButton) {
-        this.cancelButton.addEventListener(
-          "click",
-          this._cancelChanges.bind(this)
-        );
-      } else {
-        console.error("cancelButton not found");
+    this.cancelButton.addEventListener(
+      "click", (e) => {
+        e.preventDefault();
+        this._cancelChanges();
       }
+    );
   }
 
   _cancelChanges() {
