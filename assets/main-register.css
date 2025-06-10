@@ -1,0 +1,105 @@
+
+  .min-length-feedback {
+    display: none;
+  }
+
+  #create_customer {
+    margin-top: 4px;
+  }
+  
+  #create_customer .custom-checkbox-input label {
+    font-family: Avenir;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #1E1E1E;
+  }
+
+  #create_customer .custom-checkbox-input label .btn-link {
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    position: relative;
+    top: -2px;
+  }
+  
+  .registration-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .registration-form-question h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .registration-form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .registration-form-navigation button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+
+  .registration-form-navigation button:disabled {
+    background-color: #ccc;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .registration-form-navigation button:not(:disabled) {
+    background-color: #5B814B;
+    color: white;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  #progress-text {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #285445;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .progress-bar-background {
+    width: 100%;
+    background-color: #C7D7C0;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 8px;
+    border-radius: 8px;
+    background-color: #57814A;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+    display: block!important;
+  }
