@@ -5,7 +5,7 @@
     <h1>Personal data</h1>
 
     {% if customer %}
-      <personal-data>
+      <personal-data data-customer-id="{{ customer.id }}">
         {%- liquid
           assign gender_metafield = customer.metafields.custom.gender_text.value
           assign date_of_birth = customer.metafields.custom.date_of_birth.value

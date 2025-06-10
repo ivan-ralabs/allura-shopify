@@ -114,7 +114,10 @@ if (!customElements.get('personal-data')) {
           return;
         }
 
-        console.log("Saving changes:", input);
+        console.log('this', this);
+        input.id = `gid://shopify/Customer/${this.getAttribute("data-customer-id")}`;
+        console.log("Changes detected, preparing to save:", obj);
+
         // Here you would typically send the `input` object to your server or API
       }
 

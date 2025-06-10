@@ -3,7 +3,8 @@ const selectors = {
   addressCountrySelect: '[data-address-country-select]',
   addressContainer: '[data-address]',
   toggleAddressButton: 'button[aria-expanded]',
-  cancelAddressButton: 'button[type="reset"]',
+  saveButton: 'button#saveButton',
+  cancelButton: 'button#cancelButton',
   deleteAddressButton: 'button[data-confirm-message]',
 };
 
@@ -18,6 +19,7 @@ class CustomerAddresses {
     if (Object.keys(this.elements).length === 0) return;
     this._setupCountries();
     this._setupEventListeners();
+    this._initDOMelements();
   }
 
   _getElements() {
@@ -27,11 +29,62 @@ class CustomerAddresses {
           container,
           addressContainer: container.querySelector(selectors.addressContainer),
           toggleButtons: document.querySelectorAll(selectors.toggleAddressButton),
-          cancelButtons: container.querySelectorAll(selectors.cancelAddressButton),
           deleteButtons: container.querySelectorAll(selectors.deleteAddressButton),
           countrySelects: container.querySelectorAll(selectors.addressCountrySelect),
         }
       : {};
+  }
+
+  _initDOMelements() {
+    this.stateSelect = document.querySelector('select[name="address[province]"]');
+    this.cityInput = document.querySelector('input[name="address[city]"]');
+    this.address1Input = document.querySelector('input[name="address[address1]"]');
+    this.address2Input = document.querySelector('input[name="address[address2]"]');
+    this.zipInput = document.querySelector('input[name="address[zip]"]');
+    this.phoneInput = document.querySelector('input[name="address[phone]"]');
+    this.saveButton = document.querySelector(selectors.saveButton);
+    this.cancelButton = document.querySelector(selectors.cancelButton);
+
+    [this.stateSelect, this.cityInput, this.address1Input, this.address2Input, this.zipInput, this.phoneInput].forEach((input) => {
+      if (input) {
+        input.addEventListener('input', () => {
+          this.saveButton.disabled = false;
+          this.cancelButton.disabled = false;
+        });
+      }
+    });
+
+      if (this.cancelButton) {
+        this.cancelButton.addEventListener(
+          "click",
+          this._cancelChanges.bind(this)
+        );
+      } else {
+        console.error("cancelButton not found");
+      }
+  }
+
+  _cancelChanges() {
+    this.stateSelect.value = this.initialValues.state || this.stateSelect.getAttribute('data-default');
+    this.address1Input.value = this.initialValues.address1 || '';
+    this.address2Input.value = this.initialValues.address2 || '';
+    this.cityInput.value = this.initialValues.city || '';
+    this.stateSelect.value = this.initialValues.state || '';
+    this.zipInput.value = this.initialValues.zip || '';
+    this.phoneInput.value = this.initialValues.phone || '';
+    this.saveButton.disabled = true;
+    this.cancelButton.disabled = true;
+  }
+
+  _getElementValues() {
+    this.initialValues = {
+      state: this.stateSelect ? this.stateSelect.value : '',
+      city: this.cityInput ? this.cityInput.value : '',
+      address1: this.address1Input ? this.address1Input.value : '',
+      address2: this.address2Input ? this.address2Input.value : '',
+      zip: this.zipInput ? this.zipInput.value : '',
+      phone: this.phoneInput ? this.phoneInput.value : '',
+    };
   }
 
   _setupCountries() {
@@ -54,9 +107,6 @@ class CustomerAddresses {
     this.elements.toggleButtons.forEach((element) => {
       element.addEventListener('click', this._handleAddEditButtonClick);
     });
-    this.elements.cancelButtons.forEach((element) => {
-      element.addEventListener('click', this._handleCancelButtonClick);
-    });
     this.elements.deleteButtons.forEach((element) => {
       element.addEventListener('click', this._handleDeleteButtonClick);
     });
@@ -68,10 +118,6 @@ class CustomerAddresses {
 
   _handleAddEditButtonClick = ({ currentTarget }) => {
     this._toggleExpanded(currentTarget);
-  };
-
-  _handleCancelButtonClick = ({ currentTarget }) => {
-    this._toggleExpanded(currentTarget.closest(selectors.addressContainer).querySelector(`[${attributes.expanded}]`));
   };
 
   _handleDeleteButtonClick = ({ currentTarget }) => {

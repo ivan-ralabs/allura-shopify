@@ -2497,11 +2497,11 @@ p.login-description {
   padding-left: 0;
 }
 
-#shipping-details {
+.shipping-details {
   padding-bottom: 40px;
 }
 
-#shipping-details .form-floating-label, #shipping-details .form-floating-label input  {
+.shipping-details .form-floating-label, .shipping-details .form-floating-label input  {
   @media (max-width: 767px) {
     width: 100%;
   }
@@ -2518,7 +2518,7 @@ p.login-description {
   gap: 16px;
 }
 
-#shipping-details .btn.btn-primary {
+.shipping-details .btn.btn-primary {
   padding: 12px 24px;
   border-radius: 32px;
   font-family: Nunito Sans;
