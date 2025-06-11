@@ -129,7 +129,6 @@
     const toastLiveExample = document.getElementById('liveToast')
 
     if (toastTrigger) {
-      console.log('stepan 1');
       const toastBootstrap = bootstrap?.Toast.getOrCreateInstance(toastLiveExample)
       toastTrigger.addEventListener('click', () => {
         toastBootstrap.show()
