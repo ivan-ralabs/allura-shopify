@@ -4,7 +4,7 @@ if (!customElements.get('main-register')) {
     class extends HTMLElement {
       constructor() {
         super();
-
+        this.handleInputValidation = this.handleInputValidation.bind(this);
         this.init();
       }
 
@@ -94,7 +94,7 @@ if (!customElements.get('main-register')) {
           const feedbackElement =
             formFloatingWrapper.querySelector(".invalid-feedback");
 
-          if (!field.checkValidity()) {
+          if (!field.checkValidity() || !this.validateInput(field)) {
             valid = false;
             formFloatingWrapper.classList.add("is-invalid");
             field.classList.add("is-invalid");
@@ -110,6 +110,25 @@ if (!customElements.get('main-register')) {
           }
         });
         return valid;
+      }
+
+      validateInput(input) {
+        let nameRegex;
+        input.id === "preferredName" ? /^[\p{L}\p{Nd}.\- '\u2019]{1,50}$/u : /^[\p{L}.'\- ]{1,50}$/u;
+
+        switch (input.id) {
+          case "RegisterForm-FirstName":
+          case "RegisterForm-LastName":
+            nameRegex = /^[\p{L}.'\- ]{1,50}$/u;
+            break;
+            case "RegisterForm-PreferredName":
+            nameRegex = /^(?:[\p{L}\p{Nd}.'\-\u2019]{1,50})?$/u;
+            break;
+          default:
+            return true;
+        }
+
+        return nameRegex.test(input.value);
       }
 
       nextStep(step) {
@@ -164,7 +183,7 @@ if (!customElements.get('main-register')) {
         );
 
         fields.forEach((field) => {
-          console.log("field", field);
+          console.log(`Setting up validation for field: ${field.id}`);
           field.removeEventListener("input", this.handleInputValidation);
           field.addEventListener("input", this.handleInputValidation);
         });
@@ -182,7 +201,7 @@ if (!customElements.get('main-register')) {
           "input, select, textarea"
         );
 
-        if (field.checkValidity()) {
+        if (field.checkValidity() && this.validateInput(event.target)) {
           formFloatingWrapper?.classList.remove("is-invalid");
           field.classList.remove("is-invalid");
           fields.forEach((input) => {

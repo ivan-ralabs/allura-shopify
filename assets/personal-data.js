@@ -8,6 +8,16 @@ if (!customElements.get('personal-data')) {
         this.init();
       }
 
+      // validateNameInput(event) {
+      //   const input = event.target;
+      //   console.log(`Validating input: ${input.id}`);
+      //   const nameRegex = input.id === "preferredName" ? /^[\p{L}\p{Nd}.\- '\u2019]{1,50}$/u : /^[\p{L}.'\- ]{1,50}$/u;
+
+      //   return nameRegex.test(input.value)
+      //     ? (input.setCustomValidity(""), true)
+      //     : (input.setCustomValidity("Please enter a valid name."), false);
+      // }
+
       init() {
         this.firstNameInput = document.getElementById("firstName");
         this.lastNameInput = document.getElementById("lastName");
@@ -40,6 +50,11 @@ if (!customElements.get('personal-data')) {
           console.log(`Adding input event listener to ${input.id}`);
           if (input) input.addEventListener('input', this.enableButtons.bind(this));
         });
+
+        // [this.firstNameInput, this.lastNameInput, this.prefferedNameInput].forEach(input => {
+        //   console.log(`Adding blur event listener to ${input.id}`);
+        //   if (input) input.addEventListener('blur', this.validateNameInput.bind(this));
+        // });
 
         if (this.saveButton) {
           this.saveButton.addEventListener(
