@@ -47,17 +47,11 @@
             "product": "{{product}}"
           }
         },
-        "custom_liquid_rMKpqR": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<a class=\"btn btn-primary disabled\" id=\"get-started-btn\" href=\"/pages/quiz\">Coming soon</a>"
-          }
-        },
         "buy_buttons_HqHPhD": {
           "type": "buy_buttons",
-          "disabled": true,
           "settings": {
-            "show_dynamic_checkout": true,
+            "buy_buttons_style": "coming_soon",
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
         }
@@ -70,12 +64,14 @@
         "variant_picker",
         "description",
         "seal_subscriptions_subscription_widget_z7biJR",
-        "custom_liquid_rMKpqR",
         "buy_buttons_HqHPhD"
       ],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
+        "coming_soon_button_text": "",
+        "quiz_button_text": "",
+        "quiz_button_url": "",
         "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -88,10 +84,6 @@
         "padding_top": 36,
         "padding_bottom": 12
       }
-    },
-    "main_product_information_GYEbax": {
-      "type": "main-product-information",
-      "settings": {}
     },
     "17346225175cbb14c2": {
       "type": "apps",
@@ -140,7 +132,6 @@
   },
   "order": [
     "main",
-    "main_product_information_GYEbax",
     "17346225175cbb14c2",
     "custom_liquid_LQkyWf",
     "related-products"

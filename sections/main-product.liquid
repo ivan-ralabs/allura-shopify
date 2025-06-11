@@ -429,13 +429,30 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: true
+                {%- liquid
+                  assign buy_buttons_style = block.settings.buy_buttons_style
+                  assign quiz_button_text = block.settings.quiz_button_text | default: 'Get started'
+                  assign coming_soon_button_text = block.settings.coming_soon_button_text | default: 'Coming soon'
+                  assign quiz_button_link = block.settings.quiz_button_link | default: '/pages/quiz'
                 -%}
+                {%- case buy_buttons_style -%}
+                  {%- when 'default', 'bundle' -%}
+                     {%- render 'buy-buttons',
+                      block: block,
+                      product: product,
+                      product_form_id: product_form_id,
+                      section_id: section.id,
+                      show_pickup_availability: true
+                    -%}
+                  {%- when 'quiz' -%}
+                    <a class="btn btn-primary" id="get-started-btn" href="{{ quiz_button_link }}">
+                      {{ quiz_button_text }}
+                    </a>
+                  {%- when 'coming_soon' -%}
+                    <a class="btn btn-primary disabled">
+                      {{ coming_soon_button_text }}
+                    </a>
+                {%- endcase -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -1188,13 +1205,30 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: true
+                {%- liquid
+                  assign buy_buttons_style = block.settings.buy_buttons_style
+                  assign quiz_button_text = block.settings.quiz_button_text | default: 'Get started'
+                  assign coming_soon_button_text = block.settings.coming_soon_button_text | default: 'Coming soon'
+                  assign quiz_button_link = block.settings.quiz_button_link | default: '/pages/quiz'
                 -%}
+                {%- case buy_buttons_style -%}
+                  {%- when 'default', 'bundle' -%}
+                     {%- render 'buy-buttons',
+                      block: block,
+                      product: product,
+                      product_form_id: product_form_id,
+                      section_id: section.id,
+                      show_pickup_availability: true
+                    -%}
+                  {%- when 'quiz' -%}
+                    <a class="btn btn-primary" id="get-started-btn" href="{{ quiz_button_link }}">
+                      {{ quiz_button_text }}
+                    </a>
+                  {%- when 'coming_soon' -%}
+                    <a class="btn btn-primary disabled">
+                      {{ coming_soon_button_text }}
+                    </a>
+                {%- endcase -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -1725,9 +1759,6 @@ document.addEventListener('DOMContentLoaded', function () {
   /* .container.product-information { */
     display: none;
   }
-  .product-form__buttons, .sls-purchase-options-label {
-    display: none!important;
-  }
 </style>
 
 {% schema %}
@@ -1905,6 +1936,30 @@ document.addEventListener('DOMContentLoaded', function () {
       "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "select",
+          "id": "buy_buttons_style",
+          "label": "Buttons style",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "bundle",
+              "label": "Bundle"
+            },
+            {
+              "value": "quiz",
+              "label": "Quiz"
+            },
+            {
+              "value": "coming_soon",
+              "label": "Coming soon"
+            }
+          ],
+            "default": "coming_soon"
+        },
         {
           "type": "checkbox",
           "id": "show_dynamic_checkout",

@@ -1341,11 +1341,6 @@ shopify-accelerated-checkout-cart {
   opacity: 0.5;
 }
 
-.button--full-width {
-  display: flex;
-  width: 100%;
-}
-
 .button.loading {
   color: transparent;
   position: relative;
@@ -3501,11 +3496,8 @@ details-disclosure > details {
   position: absolute;
   z-index: 1;
   width: 1.8rem;
-}
-
-.loading__spinner {
-  width: 1.8rem;
   display: inline-block;
+  margin-left: 10px;
 }
 
 .spinner {
