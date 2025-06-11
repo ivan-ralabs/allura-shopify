@@ -2101,6 +2101,7 @@ input.is-invalid, input.parsley-error {
 }
 
 .customer.registration-form {
+  display: block;
   max-width: 100%!important;
   width: 100%!important;
   padding-bottom: 65px;
@@ -2496,17 +2497,28 @@ p.login-description {
   padding-left: 0;
 }
 
-#shipping-details {
+.shipping-details {
   padding-bottom: 40px;
 }
 
-#shipping-details .form-floating-label, #shipping-details .form-floating-label input  {
+.shipping-details .form-floating-label, .shipping-details .form-floating-label input  {
   @media (max-width: 767px) {
     width: 100%;
   }
 }
 
-#shipping-details .btn.btn-primary, .cabinet-personal-data .btn.btn-primary {
+.cabinet-personal-data .custom-radio-input input + label {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.account-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.shipping-details .btn.btn-primary {
   padding: 12px 24px;
   border-radius: 32px;
   font-family: Nunito Sans;
@@ -2519,26 +2531,6 @@ p.login-description {
   @media (max-width: 767px) {
     width: 100%;
     margin-bottom: 16px;
-  }
-}
-
-#shipping-details .btn.btn-link, .cabinet-personal-data .btn.btn-link {
-  padding: 8px 4px;
-  border-radius: 32px;
-  font-family: Nunito Sans;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: left;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #285445;
-  margin-left: 10px;
-  @media (max-width: 767px) {
-    width: 100%;
-    margin-left: 0;
   }
 }
 

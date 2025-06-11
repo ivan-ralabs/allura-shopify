@@ -31,186 +31,187 @@
         {% assign address_to_edit = customer.addresses.first %}
       {% endif %}
       
-      <div id="shipping-details">
-        {%- form 'customer_address', address_to_edit, data_parsley_validate: true -%}
+      <div class="shipping-details">
+        <shipping-details>
+          {%- form 'customer_address', address_to_edit, data_parsley_validate: true -%}
 
-          <!-- <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressFirstName_{{ form.id }}"
-              class="w-100"
-              name="address[first_name]"
-              value="{{ form.first_name }}"
-              autocomplete="given-name"
-              placeholder=""
-            >
-            <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressLastName_{{ form.id }}"
-              class="w-100"
-              name="address[last_name]"
-              value="{{ form.last_name }}"
-              autocomplete="family-name"
-              placeholder=""
-            >
-            <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressCompany_{{ form.id }}"
-              class="w-100"
-              name="address[company]"
-              value="{{ form.company }}"
-              autocomplete="organization"
-              placeholder=""
-            >
-            <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
-          </div> -->
-
-
-          
-          <!-- {{ address | json }} -->
-
-          <!-- <div>
-            <label for="AddressCountry_{{ form.id }}">
-              {{ 'customer.addresses.country' | t }}
-            </label>
-            <div class="select">
-              <select
-                id="AddressCountry_{{ form.id }}"
-                name="address[country]"
-                data-address-country-select
-                data-default="{{ form.country }}"
-                data-form-id="{{ form.id }}"
-                autocomplete="country"
+            <!-- <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressFirstName_{{ form.id }}"
+                class="w-100"
+                name="address[first_name]"
+                value="{{ form.first_name }}"
+                autocomplete="given-name"
+                placeholder=""
               >
-                {{ all_country_option_tags }}
-              </select>
-              <span class="svg-wrapper">
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </span>
+              <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
             </div>
-          </div> -->
-          <div class="form-floating-label form-floating-select-label" id="AddressProvinceContainer_{{ form.id }}">
-            <label for="AddressProvince_{{ form.id }}">
-              State
-            </label>
-            <!-- <div class="select"> -->
-            <select
-              id="AddressProvince_{{ form.id }}"
-              class="w-100"
-              name="address[province]"
-              data-default="{{ form.province }}"
-              autocomplete="address-level1"
-              required
-            ></select>
-          </div>
-          <p>*Unfortunately, we are unable to ship orders to <b>Guam</b> and <b>Puerto Rico</b> at this time.</p>
-          <!-- <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressProvince_{{ form.id }}"
-              class="w-100"
-              name="address[province]"
-              value="{{ form.province }}"
-              autocomplete="address-level2"
-              placeholder=""
-              required
-              data-parsley-errors-container="#state-errors"
-            >
-            <label for="AddressProvince_{{ form.id }}">State</label>
-            <div id="state-errors"></div>
-          </div> -->
-          
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressCity_{{ form.id }}"
-              class="w-100"
-              name="address[city]"
-              value="{{ form.city }}"
-              autocomplete="address-level2"
-              placeholder=""
-              required
-              data-parsley-errors-container="#city-errors"
-            >
-            <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
-            <div id="city-errors"></div>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressAddress1_{{ form.id }}"
-              class="w-100"
-              name="address[address1]"
-              value="{{ form.address1 }}"
-              autocomplete="address-line1"
-              placeholder=""
-              required
-              data-parsley-errors-container="#address-errors"
-            >
-            <label for="AddressAddress1_{{ form.id }}">Address</label>
-            <div id="address-errors"></div>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressAddress2_{{ form.id }}"
-              class="w-100"
-              name="address[address2]"
-              value="{{ form.address2 }}"
-              autocomplete="address-line2"
-              placeholder=""
-            >
-            <label for="AddressAddress2_{{ form.id }}">Apartment, suite, ect. (optional)</label>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="text"
-              id="AddressZip_{{ form.id }}"
-              name="address[zip]"
-              value="{{ form.zip }}"
-              autocapitalize="characters"
-              autocomplete="postal-code"
-              placeholder=""
-              required
-              data-parsley-errors-container="#post-code-errors"
-            >
-            <label for="AddressZip_{{ form.id }}">ZIP code</label>
-            <div id="post-code-errors"></div>
-          </div>
-          <div class="form-floating-label">
-            <input
-              type="tel"
-              id="address_phone"
-              name="address[phone]"
-              value="{{ form.phone }}"
-              autocomplete="tel"
-              placeholder=""
-            >
-            <label for="address_phone">Phone number</label>
-          </div>
-          <!-- <div>
-            {{ form.set_as_default_checkbox }}
-            <label for="address_default_address_{{ form.id }}">
-              {{ 'customer.addresses.set_default' | t }}
-            </label>
-          </div> -->
-          <!-- <input type="checkbox" name="address[default]" value="1" checked> -->
-          <!-- {% if default_address == nil %}
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressLastName_{{ form.id }}"
+                class="w-100"
+                name="address[last_name]"
+                value="{{ form.last_name }}"
+                autocomplete="family-name"
+                placeholder=""
+              >
+              <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+            </div>
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressCompany_{{ form.id }}"
+                class="w-100"
+                name="address[company]"
+                value="{{ form.company }}"
+                autocomplete="organization"
+                placeholder=""
+              >
+              <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
+            </div> -->
+
+
+            
+            <!-- {{ address | json }} -->
+
+            <!-- <div>
+              <label for="AddressCountry_{{ form.id }}">
+                {{ 'customer.addresses.country' | t }}
+              </label>
+              <div class="select">
+                <select
+                  id="AddressCountry_{{ form.id }}"
+                  name="address[country]"
+                  data-address-country-select
+                  data-default="{{ form.country }}"
+                  data-form-id="{{ form.id }}"
+                  autocomplete="country"
+                >
+                  {{ all_country_option_tags }}
+                </select>
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div> -->
+            <div class="form-floating-label form-floating-select-label" id="AddressProvinceContainer_{{ form.id }}">
+              <label for="AddressProvince_{{ form.id }}">
+                State
+              </label>
+              <!-- <div class="select"> -->
+              <select
+                id="AddressProvince_{{ form.id }}"
+                class="w-100"
+                name="address[province]"
+                data-default="{{ form.province }}"
+                autocomplete="address-level1"
+                required
+              ></select>
+            </div>
+            <p>*Unfortunately, we are unable to ship orders to <b>Guam</b> and <b>Puerto Rico</b> at this time.</p>
+            <!-- <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressProvince_{{ form.id }}"
+                class="w-100"
+                name="address[province]"
+                value="{{ form.province }}"
+                autocomplete="address-level2"
+                placeholder=""
+                required
+                data-parsley-errors-container="#state-errors"
+              >
+              <label for="AddressProvince_{{ form.id }}">State</label>
+              <div id="state-errors"></div>
+            </div> -->
+            
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressCity_{{ form.id }}"
+                class="w-100"
+                name="address[city]"
+                value="{{ form.city }}"
+                autocomplete="address-level2"
+                placeholder=""
+                required
+                data-parsley-errors-container="#city-errors"
+              >
+              <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+              <div id="city-errors"></div>
+            </div>
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressAddress1_{{ form.id }}"
+                class="w-100"
+                name="address[address1]"
+                value="{{ form.address1 }}"
+                autocomplete="address-line1"
+                placeholder=""
+                required
+                data-parsley-errors-container="#address-errors"
+              >
+              <label for="AddressAddress1_{{ form.id }}">Address</label>
+              <div id="address-errors"></div>
+            </div>
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressAddress2_{{ form.id }}"
+                class="w-100"
+                name="address[address2]"
+                value="{{ form.address2 }}"
+                autocomplete="address-line2"
+                placeholder=""
+              >
+              <label for="AddressAddress2_{{ form.id }}">Apartment, suite, ect. (optional)</label>
+            </div>
+            <div class="form-floating-label">
+              <input
+                type="text"
+                id="AddressZip_{{ form.id }}"
+                name="address[zip]"
+                value="{{ form.zip }}"
+                autocapitalize="characters"
+                autocomplete="postal-code"
+                placeholder=""
+                required
+                data-parsley-errors-container="#post-code-errors"
+              >
+              <label for="AddressZip_{{ form.id }}">ZIP code</label>
+              <div id="post-code-errors"></div>
+            </div>
+            <div class="form-floating-label">
+              <input
+                type="tel"
+                id="address_phone"
+                name="address[phone]"
+                value="{{ form.phone }}"
+                autocomplete="tel"
+                placeholder=""
+              >
+              <label for="address_phone">Phone number</label>
+            </div>
+            <!-- <div>
+              {{ form.set_as_default_checkbox }}
+              <label for="address_default_address_{{ form.id }}">
+                {{ 'customer.addresses.set_default' | t }}
+              </label>
+            </div> -->
+            <!-- <input type="checkbox" name="address[default]" value="1" checked> -->
+            <!-- {% if default_address == nil %}
+              <input type="hidden" name="address[default]" value="1">
+            {% endif %} -->
             <input type="hidden" name="address[default]" value="1">
-          {% endif %} -->
-          <input type="hidden" name="address[default]" value="1">
-          <div>
-            <button type="submit" class="btn btn-primary">Save</button>
-            <!-- <button type="reset" class="btn text-center btn-link">Cancel</button> -->
-            <button onclick="window.history.back()" class="btn text-center btn-link">Cancel</button>
-          </div>
-        {%- endform -%}
+            <div class="account-buttons">
+              <button id="saveButton" type="submit" class="btn btn-primary" disabled>Save</button>
+              <button id="cancelButton" class="btn text-center btn-link" disabled>Cancel</button>
+            </div>
+          {%- endform -%}
+        </shipping-details>
       </div>
     {% else %}
       No address found.
@@ -591,12 +592,13 @@
     margin-bottom: 10px;
   }
 
-  #shipping-details form p {
+  .shipping-details form p {
     font-size: 12px;
     margin-bottom: 24px;
   }
   
 </style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
   const excludedStates = ['Guam', 'Puerto Rico'];
