@@ -1,8 +1,8 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css">
 
+<script src="{{ 'parsley.min.js' | asset_url }}" defer></script>
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
-<script src="{{ 'parsley.min.js' | asset_url }}"></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -15,6 +15,14 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none; /* Initially hidden */
+    margin-top: 0.25em;
   }
 {%- endstyle -%}
 
@@ -34,7 +42,6 @@
       <div class="shipping-details">
         <shipping-details>
           {%- form 'customer_address', address_to_edit, data_parsley_validate: true -%}
-
             <!-- <div class="form-floating-label">
               <input
                 type="text"
@@ -100,6 +107,7 @@
               <label for="AddressProvince_{{ form.id }}">
                 State
               </label>
+              <div id="province-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <!-- <div class="select"> -->
               <select
                 id="AddressProvince_{{ form.id }}"
@@ -143,18 +151,13 @@
               <div id="city-errors"></div>
             </div>
             <div class="form-floating-label">
-              <input
-                type="text"
-                id="AddressAddress1_{{ form.id }}"
-                class="w-100"
-                name="address[address1]"
-                value="{{ form.address1 }}"
-                autocomplete="address-line1"
-                placeholder=""
-                required
-                data-parsley-errors-container="#address-errors"
-              >
+              <input type="text" id="AddressAddress1_{{ form.id }}" class="w-100" name="address[address1]"
+                value="{{ form.address1 }}" autocomplete="address-line1" placeholder="" required
+                data-parsley-errors-container="#address-errors" data-parsley-trigger="input">
+              <input type="hidden" id="AddressPlaceId_{{ form.id }}" name="address[place_id]" required
+                data-parsley-required-message="Please pick a valid address from the list." />
               <label for="AddressAddress1_{{ form.id }}">Address</label>
+                <div id="address1-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <div id="address-errors"></div>
             </div>
             <div class="form-floating-label">
@@ -182,6 +185,7 @@
                 data-parsley-errors-container="#post-code-errors"
               >
               <label for="AddressZip_{{ form.id }}">ZIP code</label>
+              <div id="zip-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <div id="post-code-errors"></div>
             </div>
             <div class="form-floating-label">

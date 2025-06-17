@@ -129,6 +129,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "google_api_key": "AIzaSyBpGm1JH4I4wNJeCZspAadyFIOXBOuLbZA",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
