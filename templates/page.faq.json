@@ -89,6 +89,13 @@
             "question": "How do I request a refund?",
             "answer": "<p>Email <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a> with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
           }
+        },
+        "faq_block_mDp7Jt": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Who does Allura partner with for order fulfillment?",
+            "answer": "<p>Once you complete your intake, the information is sent in a HIPAA compliant manner to MD Integrations, where your information is reviewed by a board certified dermatologist for approval. You can contact MD Integrations at <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a></p>"
+          }
         }
       },
       "block_order": [
@@ -101,7 +108,8 @@
         "faq_block_89qbGB",
         "faq_block_DPmjEq",
         "faq_block_AiyBcW",
-        "faq_block_ng3hnW"
+        "faq_block_ng3hnW",
+        "faq_block_mDp7Jt"
       ],
       "name": "FAQ Accordion",
       "settings": {
