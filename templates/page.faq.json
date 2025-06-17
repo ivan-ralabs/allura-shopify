@@ -94,7 +94,14 @@
           "type": "faq_block",
           "settings": {
             "question": "Who does Allura partner with for order fulfillment?",
-            "answer": "<p>Once you complete your intake, the information is sent in a HIPAA compliant manner to MD Integrations, where your information is reviewed by a board certified dermatologist for approval. You can contact MD Integrations at <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a></p>"
+            "answer": "<p>Once you complete your intake, the information is sent in a HIPAA compliant manner to MD Integrations, where your information is reviewed by a board certified dermatologist for approval. You can contact MD Integrations at <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com<br/><br/></a>Once your prescription is approved it is sent to our partner pharmacy, Chemistry Rx, where it is compounded at that time, packaged, and mailed to you. You can contact Chemistry Rx at <a href=\"tel:8557900100\" title=\"tel:8557900100\">855-790-0100</a>. </p>"
+          }
+        },
+        "faq_block_hYAdPF": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What states do we serve patients in?",
+            "answer": "<p>We currently offer our custom prescription compounds to patients in all 50 states. We hope to expand our services to US territories in the near future.</p>"
           }
         }
       },
@@ -109,7 +116,8 @@
         "faq_block_DPmjEq",
         "faq_block_AiyBcW",
         "faq_block_ng3hnW",
-        "faq_block_mDp7Jt"
+        "faq_block_mDp7Jt",
+        "faq_block_hYAdPF"
       ],
       "name": "FAQ Accordion",
       "settings": {
