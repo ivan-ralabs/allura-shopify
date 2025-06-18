@@ -38,7 +38,7 @@
           "type": "faq_block",
           "settings": {
             "question": "How long do I need to use these products for?",
-            "answer": "<p>Because we cannot cure an itchy and flaky scalp permanently you will need to continue to use these medications to keep things under control. It is possible that the condition will eventually go away (sometimes when people move to a different part of the country this can happen), but we will not be able to predict when that will happen.</p>"
+            "answer": "<p>Because there is no way to permanently cure an itchy and flaky scalp you will need to continue to use these medications on a regular basis to keep the problem under control. It is possible that the condition will eventually go away (sometimes when people move to a different area this can happen), but we will not be able to predict when, or if, that will occur.</p>"
           }
         },
         "faq_block_i4ANwp": {
@@ -89,6 +89,20 @@
             "question": "How do I request a refund?",
             "answer": "<p>Email <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com</a> with your order number and reason for your request. We will consider all requests on a case by case basis and will provide return instructions if applicable.</p>"
           }
+        },
+        "faq_block_mDp7Jt": {
+          "type": "faq_block",
+          "settings": {
+            "question": "Who does Allura partner with for order fulfillment?",
+            "answer": "<p>Once you complete your intake, the information is sent in a HIPAA compliant manner to MD Integrations, where your information is reviewed by a board certified dermatologist for approval. You can contact MD Integrations at <a href=\"mailto:support@alluramedicinals.com\" title=\"mailto:support@alluramedicinals.com\">support@alluramedicinals.com<br/><br/></a>Once your prescription is approved it is sent to our partner pharmacy, Chemistry Rx, where it is compounded at that time, packaged, and mailed to you. You can contact Chemistry Rx at <a href=\"tel:8557900100\" title=\"tel:8557900100\">855-790-0100</a>. </p>"
+          }
+        },
+        "faq_block_hYAdPF": {
+          "type": "faq_block",
+          "settings": {
+            "question": "What states do we serve patients in?",
+            "answer": "<p>We currently offer our custom prescription compounds to patients in all 50 states. We hope to expand our services to US territories in the near future.</p>"
+          }
         }
       },
       "block_order": [
@@ -101,7 +115,9 @@
         "faq_block_89qbGB",
         "faq_block_DPmjEq",
         "faq_block_AiyBcW",
-        "faq_block_ng3hnW"
+        "faq_block_ng3hnW",
+        "faq_block_mDp7Jt",
+        "faq_block_hYAdPF"
       ],
       "name": "FAQ Accordion",
       "settings": {
