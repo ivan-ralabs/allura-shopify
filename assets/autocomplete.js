@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector(
     '.shipping-details form[id^="address_form_"]'
   );
+  if (!form) return;
   const addressInput = form.querySelector('input[name="address[address1]"]');
   const zipInput = form.querySelector('input[name="address[zip]"]');
   const stateSelect = form.querySelector('select[name="address[province]"]');
