@@ -148,6 +148,7 @@
                 data-parsley-errors-container="#city-errors"
               >
               <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+              <div id="city-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <div id="city-errors"></div>
             </div>
             <div class="form-floating-label">
@@ -198,6 +199,7 @@
                 placeholder=""
               >
               <label for="address_phone">Phone number</label>
+              <div id="phone-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
             </div>
             <!-- <div>
               {{ form.set_as_default_checkbox }}
