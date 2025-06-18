@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let zipOK = false;
   let stateOK = false;
   let cityOK = false;
-  let phoneOK = false;
   let expectedState = null;
   let expectedCity = null;
 
@@ -235,10 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
     first.err.textContent = `This ${first.name} doesn’t match the selected state.`;
     first.err.style.display = "block";
   });
-  phoneInput.addEventListener("input", () => {
-    phoneOK = false;
-    phoneErr.style.display = "none";
-  });
 
   // --- Blur validations ---
   addressInput.addEventListener("blur", () => {
@@ -265,9 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   phoneInput.addEventListener("blur", () => {
-    const val = phoneInput.value.trim();
-    if (phonePattern.test(val)) {
-      phoneOK = true;
+    if (phonePattern.test(phoneInput.value.trim())) {
       phoneErr.style.display = "none";
     } else {
       phoneErr.textContent =
@@ -305,10 +298,10 @@ document.addEventListener('DOMContentLoaded', () => {
         msg: "Please select the correct state for your ZIP code.",
       },
       {
-        ok: phoneOK,
+        ok: phonePattern.test(phoneInput.value.trim()),
         input: phoneInput,
         err: phoneErr,
-        msg: "Please enter a valid phone number.",
+        msg: "Please enter a valid phone number (e.g. 123-456-7890).",
       },
     ];
 
