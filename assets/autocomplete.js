@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
   zipOK = zipInput.value.trim() !== "";
   cityOK = cityInput.value.trim() !== "";
 
+  if (cityInput.value.includes(",")) {
+    const [, short] = cityInput.value.split(/\s*,\s*/);
+    const full = STATE_CODES[short];
+    if (full) cityInput.dataset.stateFull = full;
+  }
+
   const fromCity = cityInput.dataset.stateFull;
   stateOK = fromCity
     ? stateSelect.value === fromCity
@@ -275,24 +281,33 @@ document.addEventListener('DOMContentLoaded', () => {
   cityInput.addEventListener("change", () => {
     cityErr.style.display = "none";
   });
-  stateSelect.addEventListener("change", () => {
-    const picked = stateSelect.value; // e.g. “New Mexico”
-    const fullFromCity = cityInput.dataset.stateFull; // the “New Mexico” you stored
 
-    // if there’s no city yet, don’t block
-    if (!cityInput.value.trim()) {
+  stateSelect.addEventListener("change", () => {
+    stateErr.style.display = cityErr.style.display = "none";
+    
+    let fullFromCity = cityInput.dataset.stateFull; // the “New Mexico” you stored
+
+    if (!fullFromCity && cityInput.value.includes(",")) {
+      const [, short] = cityInput.value.split(/\s*,\s*/);
+      const full = STATE_CODES[short];
+       if (full) {
+         fullFromCity = full;
+         cityInput.dataset.stateFull = full;
+       }
+    }
+
+    if (!fullFromCity) {
       stateOK = true;
       return;
     }
 
-    if (picked === fullFromCity) {
+    if (stateSelect.value === fullFromCity) {
       stateOK = true;
-      stateErr.style.display = "";
-      cityErr.style.display = "";
     } else {
       stateOK = false;
+      stateErr.textContent = "Please select the correct state for your city.";
       cityErr.textContent = "This city doesn’t match the selected state.";
-      cityErr.style.display = "block";
+      stateErr.style.display = cityErr.style.display = "block";
     }
   });
 

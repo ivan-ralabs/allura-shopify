@@ -46,6 +46,8 @@ class CustomerAddresses {
     const form = document.querySelector(
       '.shipping-details form[id^="address_form_"]'
     );
+    if (!form) return;
+
     const saveBtn = form.querySelector('button[type="submit"]');
     const cancelBtn = form.querySelector('button[type="button"].cancel');
 
@@ -56,6 +58,12 @@ class CustomerAddresses {
     const stateSelect = form.querySelector('select[name="address[province]"]');
     const zipInput = form.querySelector('input[name="address[zip]"]');
     const phoneInput = form.querySelector('input[name="address[phone]"]');
+
+    this.addressErr = form.querySelector("#address1-error");
+    this.zipErr = form.querySelector("#zip-error");
+    this.cityErr = form.querySelector("#city-error");
+    this.stateErr = form.querySelector("#province-error");
+    this.phoneErr = form.querySelector("#phone-error");
 
     if (!form || !saveBtn || !cancelBtn) return;
 
@@ -165,6 +173,11 @@ class CustomerAddresses {
     this.stateSelect.value = this.initialValues.state || "";
     this.zipInput.value = this.initialValues.zip || "";
     this.phoneInput.value = this.initialValues.phone || "";
+
+    [this.addressErr, this.zipErr, this.cityErr, this.stateErr, this.phoneErr].forEach((err) => {
+      if (err) err.style.display = "none";
+    });
+
     this.saveButton.disabled = true;
     this.cancelButton.disabled = true;
   }
