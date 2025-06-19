@@ -58,10 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
   zipOK = zipInput.value.trim() !== "";
   cityOK = cityInput.value.trim() !== "";
 
-  const fromCity = cityInput.dataset.stateFull;  
+  const fromCity = cityInput.dataset.stateFull;
   stateOK = fromCity
     ? stateSelect.value === fromCity
-    : stateSelect.value.trim() !== '';
+    : stateSelect.value.trim() !== "";
+
+  // put this somewhere at top of file:
+  const BLOCKED = new Set(["GU", "PR"]); // Add any others you want to ban
+
+  function isBlockedPlace(place) {
+    const comps = place.address_components.reduce((o, c) => {
+      o[c.types[0]] = { long: c.long_name, short: c.short_name };
+      return o;
+    }, {});
+    const st = comps.administrative_area_level_1?.short;
+    return st && BLOCKED.has(st);
+  }
 
   // --- Address Autocomplete (as before) ---
   function initAddressAutocomplete() {
@@ -72,18 +84,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     ac.addListener("place_changed", () => {
+      const place = ac.getPlace();
+      if (isBlockedPlace(place)) {
+        addressInput.value = "";
+        addressErr.textContent = "Unfortunately, we are unable to ship orders to Guam and Puerto Rico at this time.";
+        addressErr.style.display = "block";
+        addressOK = false;
+        return;
+      }
+
       addressOK = true;
       addressErr.style.display = "none";
 
       const comps = {};
-      for (const c of ac.getPlace().address_components) {
+      for (const c of place.address_components) {
         comps[c.types[0]] = { long: c.long_name, short: c.short_name };
       }
 
       // Autofill CITY
       if (comps.locality && comps.administrative_area_level_1) {
         // after you pull out the Google components:
-        const fullStateName = comps.administrative_area_level_1.long;  // "New Mexico"
+        const fullStateName = comps.administrative_area_level_1.long; // "New Mexico"
         const stateCodeShort = comps.administrative_area_level_1.short; // "NM"
         const cityName = comps.locality.long;
 
@@ -92,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2) stash the full state in a data-attribute for later validation
         cityInput.dataset.stateFull = fullStateName;
-        
+
         cityOK = true;
         cityErr.style.display = "none";
         cityInput.dispatchEvent(new Event("change", { bubbles: true }));
@@ -131,11 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     zipAc.addListener("place_changed", () => {
+      const place = zipAc.getPlace();
+
+       if (isBlockedPlace(place)) {
+         zipInput.value = "";
+         zipErr.textContent = "Unfortunately, we are unable to ship orders to Guam and Puerto Rico at this time.";
+         zipErr.style.display = "block";
+         zipOK = false;
+         return;
+       }
+
       zipOK = true;
       zipErr.style.display = "none";
 
       const comps = {};
-      for (const c of zipAc.getPlace().address_components) {
+      for (const c of place.address_components) {
         comps[c.types[0]] = c.long_name;
       }
 
@@ -169,14 +200,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     cityAc.addListener("place_changed", () => {
+      const place = cityAc.getPlace();
+
+      if (isBlockedPlace(place)) {
+        cityInput.value = "";
+        cityErr.textContent = "Unfortunately, we are unable to ship orders to Guam and Puerto Rico at this time.";
+        cityErr.style.display = "block";
+        cityOK = false;
+        return;
+      }
+
+      cityErr.style.display = "none";
+      cityOK = true;
+
       const comps = {};
-      for (const c of cityAc.getPlace().address_components) {
+      for (const c of place.address_components) {
         comps[c.types[0]] = c.long_name;
         comps[c.types[0] + "_short"] = c.short_name;
       }
 
       // Grab just the city and the short state code
-      const cityName = comps.locality || comps.administrative_area_level_2 || "";
+      const cityName =
+        comps.locality || comps.administrative_area_level_2 || "";
       const stateCodeShort = comps.administrative_area_level_1_short || "";
       const fullStateName = comps.administrative_area_level_1 || "";
 
@@ -304,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- recompute fullFromCity every time ---
     let fullFromCity;
-   if (cityInput.value.includes(",")) {
+    if (cityInput.value.includes(",")) {
       const [, short] = cityInput.value.split(/\s*,\s*/);
       fullFromCity = STATE_CODES[short] || null;
     }
@@ -348,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         err.textContent = msg;
         err.style.display = "block";
       });
-      console.log('failed[0]', failed[0]);
+      console.log("failed[0]", failed[0]);
       failed[0].input.scrollIntoView({ behavior: "smooth", block: "top" });
     }
   });

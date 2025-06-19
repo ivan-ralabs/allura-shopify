@@ -18,11 +18,23 @@
   }
 
   .error-message {
-    color: red;
+    font-family: Nunito Sans;
+    font-weight: 400;
     font-size: 12px;
-    margin-top: 4px;
-    display: none; /* Initially hidden */
-    margin-top: 0.25em;
+    line-height: 16px;
+    letter-spacing: 0;
+    padding: 2px 4px;
+    vertical-align: middle;
+    color: #CC2121;
+  }
+
+  .form-floating-label:has(.error-message[style*="block"]) select,
+  .form-floating-label:has(.error-message[style*="block"]) input {
+    border-color: #CC2121;
+  }
+
+  .form-floating-label:has(.error-message[style*="block"]) label {
+    color: #CC2121;
   }
 {%- endstyle -%}
 
@@ -107,7 +119,6 @@
               <label for="AddressProvince_{{ form.id }}">
                 State
               </label>
-              <div id="province-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <!-- <div class="select"> -->
               <select
                 id="AddressProvince_{{ form.id }}"
@@ -117,6 +128,7 @@
                 autocomplete="address-level1"
                 required
               ></select>
+              <div id="province-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
             </div>
             <p>*Unfortunately, we are unable to ship orders to <b>Guam</b> and <b>Puerto Rico</b> at this time.</p>
             <!-- <div class="form-floating-label">
