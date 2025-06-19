@@ -1,3 +1,20 @@
+// at the top of your autocomplete.js (before any DOM‐ready handler):
+const STATE_CODES = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas",
+  CA: "California", CO: "Colorado", CT: "Connecticut", DE: "Delaware",
+  FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho",
+  IL: "Illinois", IN: "Indiana", IA: "Iowa", KS: "Kansas",
+  KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+  MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi",
+  MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada",
+  NH: "New Hampshire", NJ: "New Jersey", NM: "New Mexico", NY: "New York",
+  NC: "North Carolina", ND: "North Dakota", OH: "Ohio", OK: "Oklahoma",
+  OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+  SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah",
+  VT: "Vermont", VA: "Virginia", WA: "Washington",
+  WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // Grab elements
   const form = document.querySelector(
@@ -32,12 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let addressOK = false;
   let zipOK = false;
-  let stateOK = false;
   let cityOK = false;
   let expectedState = null;
-  let expectedCity = null;
 
-  const phonePattern = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+  const phonePattern = /^(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/;
+
+  addressOK = addressInput.value.trim() !== "";
+  zipOK = zipInput.value.trim() !== "";
+  cityOK = cityInput.value.trim() !== "";
+
+  const fromCity = cityInput.dataset.stateFull;  
+  stateOK = fromCity
+    ? stateSelect.value === fromCity
+    : stateSelect.value.trim() !== '';
 
   // --- Address Autocomplete (as before) ---
   function initAddressAutocomplete() {
@@ -58,13 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Autofill CITY
       if (comps.locality && comps.administrative_area_level_1) {
-        // Build “City, STATE” just like your city widget does
+        // after you pull out the Google components:
+        const fullStateName = comps.administrative_area_level_1.long;  // "New Mexico"
+        const stateCodeShort = comps.administrative_area_level_1.short; // "NM"
         const cityName = comps.locality.long;
-        const stateCode = comps.administrative_area_level_1.long; // “NM”
-        const fullCityValue = `${cityName}, ${stateCode}`;
 
-        expectedCity = fullCityValue;
-        cityInput.value = fullCityValue;
+        const fullCity = `${cityName}, ${stateCodeShort}`;
+        cityInput.value = fullCity;
+
+        // 2) stash the full state in a data-attribute for later validation
+        cityInput.dataset.stateFull = fullStateName;
+        
         cityOK = true;
         cityErr.style.display = "none";
         cityInput.dispatchEvent(new Event("change", { bubbles: true }));
@@ -136,34 +164,34 @@ document.addEventListener('DOMContentLoaded', () => {
   function initCityAutocomplete() {
     const cityAc = new google.maps.places.Autocomplete(cityInput, {
       componentRestrictions: { country: "US" },
-      fields: ["address_components", "formatted_address"],
+      fields: ["address_components"],
       types: ["(cities)"],
     });
 
     cityAc.addListener("place_changed", () => {
-      const place = cityAc.getPlace();
       const comps = {};
-      for (const c of place.address_components) {
+      for (const c of cityAc.getPlace().address_components) {
         comps[c.types[0]] = c.long_name;
         comps[c.types[0] + "_short"] = c.short_name;
       }
 
-      // Build exactly what was suggested: CITY + " " + STATE_CODE
-      const cityName =
-        comps.locality || comps.administrative_area_level_2 || "";
-      const stateCode = comps.administrative_area_level_1_long || "";
-      const fullCity =
-        place.formatted_address.split(",")[0] + // e.g. "Albuquerque"
-        ", " +
-        (comps.administrative_area_level_1_long || ""); // e.g. "NM"
+      // Grab just the city and the short state code
+      const cityName = comps.locality || comps.administrative_area_level_2 || "";
+      const stateCodeShort = comps.administrative_area_level_1_short || "";
+      const fullStateName = comps.administrative_area_level_1 || "";
 
-      // 1) Write it back verbatim
-      expectedCity = fullCity;
+      // 1) Write back exactly "Albuquerque, NM"
+      const fullCity = `${cityName}, ${stateCodeShort}`;
       cityInput.value = fullCity;
+
+      // 2) Stash the full state name for your later validation
+      cityInput.dataset.stateFull = fullStateName;
+
+      // 3) Mark valid & clear any error
       cityOK = true;
       cityErr.style.display = "none";
 
-      // 2) Fire an input event so your dirty-form logic picks it up
+      // 4) Fire a change so your Save/Cancel logic picks it up
       cityInput.dispatchEvent(new Event("change", { bubbles: true }));
     });
   }
@@ -194,46 +222,33 @@ document.addEventListener('DOMContentLoaded', () => {
     cityOK = false;
     cityErr.style.display = "none";
   });
+  phoneInput.addEventListener("input", () => {
+    phoneOK = false;
+    phoneErr.style.display = "none";
+  });
+
   cityInput.addEventListener("change", () => {
     cityErr.style.display = "none";
   });
   stateSelect.addEventListener("change", () => {
-    const val = stateSelect.value;
+    const picked = stateSelect.value; // e.g. “New Mexico”
+    const fullFromCity = cityInput.dataset.stateFull; // the “New Mexico” you stored
 
-    // ① Build in the new order: City, Address1, ZIP
-    const fields = [
-      { el: cityInput, err: cityErr, name: "city" },
-      { el: addressInput, err: addressErr, name: "address1" },
-      { el: zipInput, err: zipErr, name: "zip" },
-    ];
-
-    // ② Only keep the ones that are non-empty
-    const filled = fields.filter((f) => f.el.value.trim() !== "");
-
-    // hide any old state-level error
-    stateErr.style.display = "none";
-
-    // 1) If none of those three are filled, any state is OK
-    if (filled.length === 0) {
+    // if there’s no city yet, don’t block
+    if (!cityInput.value.trim()) {
       stateOK = true;
       return;
     }
 
-    // 2) If the picked state matches what Google gave us, clear per-field errors
-    if (val === expectedState) {
+    if (picked === fullFromCity) {
       stateOK = true;
-      filled.forEach((f) => (f.err.style.display = "none"));
-      return;
+      stateErr.style.display = "";
+      cityErr.style.display = "";
+    } else {
+      stateOK = false;
+      cityErr.textContent = "This city doesn’t match the selected state.";
+      cityErr.style.display = "block";
     }
-
-    // 3) Otherwise it’s invalid — don’t clear the inputs,
-    //     scroll to the first filled, and show its inline error
-    stateOK = false;
-    const first = filled[0];
-
-    first.el.scrollIntoView({ behavior: "smooth", block: "center" });
-    first.err.textContent = `This ${first.name} doesn’t match the selected state.`;
-    first.err.style.display = "block";
   });
 
   // --- Blur validations ---
@@ -261,18 +276,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   phoneInput.addEventListener("blur", () => {
-    if (phonePattern.test(phoneInput.value.trim())) {
+    const val = phoneInput.value.trim();
+    if (phonePattern.test(val)) {
+      phoneOK = true;
       phoneErr.style.display = "none";
     } else {
+      phoneOK = false;
       phoneErr.textContent =
         "Please enter a valid US phone (e.g. 123-456-7890).";
       phoneErr.style.display = "block";
     }
   });
 
-  // --- Final check on submit ---
   form.addEventListener("submit", (e) => {
-    // collect each field’s state
+    const match = cityInput.value.trim().match(/,\s*([A-Z]{2})$/);
+    if (match) {
+      const abbr = match[1]; // e.g. "NM"
+      const full = STATE_CODES[abbr]; // → "New Mexico"
+      // 2) If we have a valid full name and it doesn't match the <select> value, stop right here:
+      if (full && stateSelect.value !== full) {
+        e.preventDefault();
+        cityErr.textContent = "This city doesn’t match the selected state.";
+        stateErr.textContent = "Please select the correct state for your city.";
+        cityErr.style.display = stateErr.style.display = "block";
+        return; // bail out—nothing else runs
+      }
+    }
+    // --- recompute fullFromCity every time ---
+    let fullFromCity;
+   if (cityInput.value.includes(",")) {
+      const [, short] = cityInput.value.split(/\s*,\s*/);
+      fullFromCity = STATE_CODES[short] || null;
+    }
+
+    // --- the rest of your field checks ---
     const checks = [
       {
         ok: addressOK,
@@ -293,36 +330,26 @@ document.addEventListener('DOMContentLoaded', () => {
         msg: "Please select a city from the list.",
       },
       {
-        ok: stateOK,
-        input: stateSelect,
-        err: stateErr,
-        msg: "Please select the correct state for your ZIP code.",
-      },
-      {
-        ok: phonePattern.test(phoneInput.value.trim()),
+        ok: phoneOK,
         input: phoneInput,
         err: phoneErr,
         msg: "Please enter a valid phone number (e.g. 123-456-7890).",
       },
     ];
 
-    // reset all errors
-    checks.forEach(({ err }) => {
-      err.style.display = "none";
-    });
+    // hide any old messages
+    checks.forEach((c) => (c.err.style.display = "none"));
 
-    // gather the ones that failed
     const failed = checks.filter((c) => !c.ok);
 
     if (failed.length) {
       e.preventDefault();
-      // show errors for all failed fields
       failed.forEach(({ err, msg }) => {
         err.textContent = msg;
         err.style.display = "block";
       });
-      // focus the very first invalid field
-      failed[0].input.focus();
+      console.log('failed[0]', failed[0]);
+      failed[0].input.scrollIntoView({ behavior: "smooth", block: "top" });
     }
   });
 });

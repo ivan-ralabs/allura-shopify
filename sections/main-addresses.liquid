@@ -41,7 +41,7 @@
       
       <div class="shipping-details">
         <shipping-details>
-          {%- form 'customer_address', address_to_edit, data_parsley_validate: true -%}
+          {%- form 'customer_address', address_to_edit -%}
             <!-- <div class="form-floating-label">
               <input
                 type="text"
@@ -685,25 +685,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form[data_parsley_validate="true"]');
     console.log(typeof window.Parsley); // Check if Parsley.js is available
 
-    if (form) {
-        // Initialize Parsley manually using Factory
-        const parsleyInstance = new window.Parsley.Factory(form);
-        console.log('Parsley instance:', parsleyInstance);
-
-        // Add a submit event listener to the form
-        form.addEventListener('submit', (event) => {
-            // Prevent the default form submission only if the form is invalid
-            if (!parsleyInstance.isValid()) {
-                event.preventDefault(); // Stop form submission
-                console.log('Please fix the errors in the form.');
-            } else {
-                console.log('The form is valid. Submitting...');
-                // The form will be submitted as the default behavior
-            }
-        });
-    } else {
-        console.error('Form not found!');
+    if (!form) {
+        console.warn('Form with data_parsley_validate="true" not found!');
+        return;
     }
+
+    // Initialize Parsley manually using Factory
+    const parsleyInstance = new window.Parsley.Factory(form);
+    console.log('Parsley instance:', parsleyInstance);
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', (event) => {
+        // Prevent the default form submission only if the form is invalid
+        if (!parsleyInstance.isValid()) {
+            event.preventDefault(); // Stop form submission
+            console.log('Please fix the errors in the form.');
+        } else {
+            console.log('The form is valid. Submitting...');
+            // The form will be submitted as the default behavior
+        }
+    });
   });
 </script>
 

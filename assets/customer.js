@@ -92,9 +92,9 @@ class CustomerAddresses {
       phoneInput,
     ].filter(Boolean);
 
-    allFields.forEach((field) => {
-      const evt = field.tagName === "SELECT" ? "change" : "input";
-      field.addEventListener(evt, checkDirty, { passive: true });
+    allFields.forEach(field => {
+      field.addEventListener('input',  checkDirty, { passive: true });
+      field.addEventListener('change', checkDirty, { passive: true });
     });
 
     // 8) Initialize buttons
@@ -123,6 +123,8 @@ class CustomerAddresses {
     this.phoneInput = document.querySelector('input[name="address[phone]"]');
     this.saveButton = document.querySelector(selectors.saveButton);
     this.cancelButton = document.querySelector(selectors.cancelButton);
+
+    this.initialValues = this._getElementValues();
 
     // this._getElementValues();
     if (!this.saveButton) {
@@ -169,12 +171,12 @@ class CustomerAddresses {
 
   _getElementValues() {
     return {
-      address1: address1Input?.value || "",
-      address2: address2Input?.value || "",
-      city: cityInput?.value || "",
-      state: stateSelect?.value || "",
-      zip: zipInput?.value || "",
-      phone: phoneInput?.value || "",
+      address1: this.address1Input?.value || "",
+      address2: this.address2Input?.value || "",
+      city: this.cityInput?.value || "",
+      state: this.stateSelect?.value || "",
+      zip: this.zipInput?.value || "",
+      phone: this.phoneInput?.value || "",
     };
   }
 
