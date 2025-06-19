@@ -18,11 +18,23 @@
   }
 
   .error-message {
-    color: red;
+    font-family: Nunito Sans;
+    font-weight: 400;
     font-size: 12px;
-    margin-top: 4px;
-    display: none; /* Initially hidden */
-    margin-top: 0.25em;
+    line-height: 16px;
+    letter-spacing: 0;
+    padding: 2px 4px;
+    vertical-align: middle;
+    color: #CC2121;
+  }
+
+  .form-floating-label:has(.error-message[style*="block"]) select,
+  .form-floating-label:has(.error-message[style*="block"]) input {
+    border-color: #CC2121;
+  }
+
+  .form-floating-label:has(.error-message[style*="block"]) label {
+    color: #CC2121;
   }
 {%- endstyle -%}
 
@@ -41,7 +53,7 @@
       
       <div class="shipping-details">
         <shipping-details>
-          {%- form 'customer_address', address_to_edit, data_parsley_validate: true -%}
+          {%- form 'customer_address', address_to_edit -%}
             <!-- <div class="form-floating-label">
               <input
                 type="text"
@@ -107,7 +119,6 @@
               <label for="AddressProvince_{{ form.id }}">
                 State
               </label>
-              <div id="province-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
               <!-- <div class="select"> -->
               <select
                 id="AddressProvince_{{ form.id }}"
@@ -117,6 +128,7 @@
                 autocomplete="address-level1"
                 required
               ></select>
+              <div id="province-error" class="error-message" style="display:none;color:red;font-size:0.9em;margin-top:0.25em;"></div>
             </div>
             <p>*Unfortunately, we are unable to ship orders to <b>Guam</b> and <b>Puerto Rico</b> at this time.</p>
             <!-- <div class="form-floating-label">
@@ -685,25 +697,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form[data_parsley_validate="true"]');
     console.log(typeof window.Parsley); // Check if Parsley.js is available
 
-    if (form) {
-        // Initialize Parsley manually using Factory
-        const parsleyInstance = new window.Parsley.Factory(form);
-        console.log('Parsley instance:', parsleyInstance);
-
-        // Add a submit event listener to the form
-        form.addEventListener('submit', (event) => {
-            // Prevent the default form submission only if the form is invalid
-            if (!parsleyInstance.isValid()) {
-                event.preventDefault(); // Stop form submission
-                console.log('Please fix the errors in the form.');
-            } else {
-                console.log('The form is valid. Submitting...');
-                // The form will be submitted as the default behavior
-            }
-        });
-    } else {
-        console.error('Form not found!');
+    if (!form) {
+        console.warn('Form with data_parsley_validate="true" not found!');
+        return;
     }
+
+    // Initialize Parsley manually using Factory
+    const parsleyInstance = new window.Parsley.Factory(form);
+    console.log('Parsley instance:', parsleyInstance);
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', (event) => {
+        // Prevent the default form submission only if the form is invalid
+        if (!parsleyInstance.isValid()) {
+            event.preventDefault(); // Stop form submission
+            console.log('Please fix the errors in the form.');
+        } else {
+            console.log('The form is valid. Submitting...');
+            // The form will be submitted as the default behavior
+        }
+    });
   });
 </script>
 

@@ -46,6 +46,8 @@ class CustomerAddresses {
     const form = document.querySelector(
       '.shipping-details form[id^="address_form_"]'
     );
+    if (!form) return;
+
     const saveBtn = form.querySelector('button[type="submit"]');
     const cancelBtn = form.querySelector('button[type="button"].cancel');
 
@@ -56,6 +58,12 @@ class CustomerAddresses {
     const stateSelect = form.querySelector('select[name="address[province]"]');
     const zipInput = form.querySelector('input[name="address[zip]"]');
     const phoneInput = form.querySelector('input[name="address[phone]"]');
+
+    this.addressErr = form.querySelector("#address1-error");
+    this.zipErr = form.querySelector("#zip-error");
+    this.cityErr = form.querySelector("#city-error");
+    this.stateErr = form.querySelector("#province-error");
+    this.phoneErr = form.querySelector("#phone-error");
 
     if (!form || !saveBtn || !cancelBtn) return;
 
@@ -92,9 +100,9 @@ class CustomerAddresses {
       phoneInput,
     ].filter(Boolean);
 
-    allFields.forEach((field) => {
-      const evt = field.tagName === "SELECT" ? "change" : "input";
-      field.addEventListener(evt, checkDirty, { passive: true });
+    allFields.forEach(field => {
+      field.addEventListener('input',  checkDirty, { passive: true });
+      field.addEventListener('change', checkDirty, { passive: true });
     });
 
     // 8) Initialize buttons
@@ -123,6 +131,8 @@ class CustomerAddresses {
     this.phoneInput = document.querySelector('input[name="address[phone]"]');
     this.saveButton = document.querySelector(selectors.saveButton);
     this.cancelButton = document.querySelector(selectors.cancelButton);
+
+    this.initialValues = this._getElementValues();
 
     // this._getElementValues();
     if (!this.saveButton) {
@@ -163,18 +173,23 @@ class CustomerAddresses {
     this.stateSelect.value = this.initialValues.state || "";
     this.zipInput.value = this.initialValues.zip || "";
     this.phoneInput.value = this.initialValues.phone || "";
+
+    [this.addressErr, this.zipErr, this.cityErr, this.stateErr, this.phoneErr].forEach((err) => {
+      if (err) err.style.display = "none";
+    });
+
     this.saveButton.disabled = true;
     this.cancelButton.disabled = true;
   }
 
   _getElementValues() {
     return {
-      address1: address1Input?.value || "",
-      address2: address2Input?.value || "",
-      city: cityInput?.value || "",
-      state: stateSelect?.value || "",
-      zip: zipInput?.value || "",
-      phone: phoneInput?.value || "",
+      address1: this.address1Input?.value || "",
+      address2: this.address2Input?.value || "",
+      city: this.cityInput?.value || "",
+      state: this.stateSelect?.value || "",
+      zip: this.zipInput?.value || "",
+      phone: this.phoneInput?.value || "",
     };
   }
 
