@@ -279,7 +279,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   cityInput.addEventListener("change", () => {
-    cityErr.style.display = "none";
+    cityErr.style.display = stateErr.style.display = "none";
+
+    const full = cityInput.dataset.stateFull;
+
+    if (full) {
+      if (stateSelect.value !== full) {
+        cityOK = false;
+        cityErr.textContent = "This city doesn’t match the selected state.";
+        stateErr.textContent = "Please select the correct state for your city.";
+        cityErr.style.display = stateErr.style.display = "block";
+      } else {
+        cityOK = true;
+      }
+    }
   });
 
   stateSelect.addEventListener("change", () => {
@@ -333,6 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!cityOK) {
       cityErr.textContent = "Please select a city from the list.";
       cityErr.style.display = "block";
+    }
+
+    const full = cityInput.dataset.stateFull;
+    if (full && stateSelect.value !== full) {
+      cityErr.textContent = "This city doesn’t match the selected state.";
+      stateErr.textContent = "Please select the correct state for your city.";
+      cityErr.style.display = stateErr.style.display = "block";
     }
   });
   phoneInput.addEventListener("blur", () => {
