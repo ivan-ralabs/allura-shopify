@@ -684,5 +684,12 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    {% comment %} Google Maps JavaScript API {% endcomment %}
+  <script
+    async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ settings.google_api_key }}&libraries=places&language=en&region=US"">
+  </script>
+  <script src="{{ 'autocomplete.js' | asset_url }}" defer></script>
   </body>
 </html>
