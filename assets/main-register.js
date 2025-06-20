@@ -81,13 +81,11 @@ if (!customElements.get('main-register')) {
           wrapper.classList.add("is-valid");
           field.classList.remove("is-invalid");
           field.classList.add("is-valid");
-          feedbackEl?.classList.add("d-none");
         } else {
           wrapper.classList.remove("is-valid");
           wrapper.classList.add("is-invalid");
           field.classList.remove("is-valid");
           field.classList.add("is-invalid");
-          feedbackEl?.classList.remove("d-none");
         }
       }
 
@@ -126,9 +124,7 @@ if (!customElements.get('main-register')) {
             return;
           }
 
-          const wrapper = field.closest(
-            ".form-input-wrap"
-          );
+          const wrapper = field.closest(".form-input-wrap");
           const feedback = wrapper?.querySelector(".invalid-feedback");
           let ok = field.checkValidity() && this.validateInput(field);
           // special‐case DOB & password/confirmation just as before...
@@ -252,7 +248,16 @@ if (!customElements.get('main-register')) {
         const field = event.target;
         const wrapper = field.closest(".form-input-wrap");
         const fb = wrapper?.querySelector(".invalid-feedback");
-        let ok = field.checkValidity() && this.validateInput(field);
+
+        let ok;
+        if (field.id === "RegisterForm-password-confirmation") {
+          const pw = document.getElementById("RegisterForm-password").value;
+          ok = field.value === pw;
+          fb.textContent = ok ? "" : "Passwords do not match.";
+        }
+        else {
+          ok = field.checkValidity() && this.validateInput(field);
+        }
 
         this._markField(wrapper, field, fb, ok);
       }
@@ -260,52 +265,54 @@ if (!customElements.get('main-register')) {
       validateForm(event) {
         event.preventDefault();
 
-        const passwordField = document.getElementById("RegisterForm-password");
-        const passwordFieldWrapper = passwordField.closest(".form-input-wrap");
-        const passwordConfirmationField = document.getElementById(
+        const pwField = document.getElementById("RegisterForm-password");
+        const pwWrapper = pwField.closest(".form-input-wrap");
+        const confirmField = document.getElementById(
           "RegisterForm-password-confirmation"
         );
-        const passwordConfirmationFieldWrapper =
-          passwordConfirmationField.closest(".form-input-wrap");
+        const confirmWrapper = confirmField.closest(".form-input-wrap");
+
+        const pwFeedback = pwWrapper.querySelector(".invalid-feedback");
+        const confirmFeedback =
+          confirmWrapper.querySelector(".invalid-feedback");
+
+        // same regex as in validateStep
+        const pwRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
 
         let valid = true;
 
-        if (!passwordField.value || passwordField.value.length < 8) {
-          passwordField.setCustomValidity("");
-          const feedbackElement =
-            passwordFieldWrapper.querySelector(".invalid-feedback");
-
-          if (!passwordField.value) {
-            feedbackElement.textContent = "Please enter your password";
-          } else if (passwordField.value.length < 8) {
-            feedbackElement.textContent =
-              "Password must be at least 12 characters long, containing at least one uppercase letter, one lowercase letter, one number, and one special character.";
-          }
+        // ——— password field ———
+        if (!pwRe.test(pwField.value)) {
+          pwFeedback.textContent =
+            pwField.value.length === 0
+              ? "Please enter your password"
+              : "Password must be ≥12 chars, with upper/lower/number/special.";
+          pwWrapper.classList.add("is-invalid");
+          pwWrapper.classList.remove("is-valid");
+          pwField.classList.add("is-invalid");
+          pwField.classList.remove("is-valid");
           valid = false;
-          passwordFieldWrapper.classList.add("is-invalid");
-          passwordField.classList.add("is-invalid");
-          feedbackElement.style.display = "block";
         } else {
-          passwordFieldWrapper.classList.remove("is-invalid");
-          passwordField.classList.remove("is-invalid");
-          passwordFieldWrapper.querySelector(
-            ".invalid-feedback"
-          ).style.display = "none";
+          pwWrapper.classList.remove("is-invalid");
+          pwWrapper.classList.add("is-valid");
+          pwField.classList.remove("is-invalid");
+          pwField.classList.add("is-valid");
         }
 
-        if (passwordConfirmationField.value !== passwordField.value) {
+        // ——— confirmation ———
+        if (confirmField.value !== pwField.value) {
+          confirmFeedback.textContent = "Passwords do not match.";
+          confirmWrapper.classList.add("is-invalid");
+          confirmWrapper.classList.remove("is-valid");
+          confirmField.classList.add("is-invalid");
+          confirmField.classList.remove("is-valid");
           valid = false;
-          passwordConfirmationFieldWrapper.classList.add("is-invalid");
-          passwordConfirmationField.classList.add("is-invalid");
-          passwordConfirmationFieldWrapper.querySelector(
-            ".invalid-feedback"
-          ).style.display = "block";
-        } else {
-          passwordConfirmationFieldWrapper.classList.remove("is-invalid");
-          passwordConfirmationField.classList.remove("is-invalid");
-          passwordConfirmationFieldWrapper.querySelector(
-            ".invalid-feedback"
-          ).style.display = "none";
+        } else if (pwRe.test(pwField.value)) {
+          // only mark valid if the main password itself is valid
+          confirmWrapper.classList.remove("is-invalid");
+          confirmWrapper.classList.add("is-valid");
+          confirmField.classList.remove("is-invalid");
+          confirmField.classList.add("is-valid");
         }
 
         if (valid) {
