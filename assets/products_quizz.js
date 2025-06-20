@@ -51,10 +51,7 @@ function updateSelectionStatus() {
     selectionStatus.isSubscribed = subscribeCheckbox ? subscribeCheckbox.checked : false;
 
     if (bundleRadio && bundleRadio.checked) {
-        // const shampooValue = shampooRadio ? shampooRadio.value : null;
-        // const serumValue = serumRadio ? serumRadio.value : null;
-        // selectionStatus.selectedIds = [shampooValue, serumValue].filter(Boolean); 
-      
+     
         const shampooValue = shampooRadio ? shampooRadio.value : null;
         const serumValue = serumRadio ? serumRadio.value : null;
   
@@ -77,7 +74,7 @@ function updateSelectionStatus() {
   
         selectionStatus.selectedIds = serumValue ? [{ scalp_serum: serumValue }] : [];
     } else {
-        selectionStatus.selectedIds = []; 
+        selectionStatus.selectedIds = [];
     }
     applySubscriptionDiscount();
     console.log('Updated Selection Status:', selectionStatus);
@@ -384,7 +381,7 @@ function getFilteredProducts() {
 
     if (productType === "shampoo") {
       if (group1.every(tag => productTags.includes(tag))) {
-        product.style.display = 'block';  
+        product.style.display = 'block';
         
         const shampooElement = document.querySelector('#add-only-shampoo');
         if (shampooElement) {
@@ -393,7 +390,7 @@ function getFilteredProducts() {
           foundProducts.push(productId);
         }
       } else {
-        product.style.display = 'none';  
+        product.style.display = 'none';
       }
     } else if (productType === "scalp serum") {
       if (group2.every(tag => productTags.includes(tag))) {
@@ -526,24 +523,24 @@ function updateQuestion(direction, questionIndex) {
 }
 
 function processProductPrice(productPrice) {
-  console.log('productPrice:', productPrice)
-  // Remove the dollar sign and trim any whitespace
-  const priceWithoutDollar = productPrice.replace('$', '').trim();
+console.log('productPrice:', productPrice)
+// Remove the dollar sign and trim any whitespace
+const priceWithoutDollar = productPrice.replace('$', '').trim();
 
-  // Convert the string to a float number
-  const priceInUSD = parseFloat(priceWithoutDollar);
+// Convert the string to a float number
+const priceInUSD = parseFloat(priceWithoutDollar);
 
-  // Convert the price to cents (multiply by 100)
-  const priceInCents = Math.round(priceInUSD * 100);
+// Convert the price to cents (multiply by 100)
+const priceInCents = Math.round(priceInUSD * 100);
 
-  // Calculate 10% discount
-  const priceAfterDiscountInCents = priceInCents * 0.9;
+// Calculate 10% discount
+const priceAfterDiscountInCents = priceInCents * 0.9;
 
-  // // Convert back to float and format with two decimals
-  // const finalPrice = (priceAfterDiscountInCents / 100).toFixed(2);
+// // Convert back to float and format with two decimals
+// const finalPrice = (priceAfterDiscountInCents / 100).toFixed(2);
 
-  // return parseFloat(finalPrice); // Return the final price as a float
-  return priceAfterDiscountInCents
+// return parseFloat(finalPrice); // Return the final price as a float
+return priceAfterDiscountInCents
 }
 
 function applySubscriptionDiscount() {
@@ -838,7 +835,7 @@ function showResult() {
   filterTabletProducts();
 
   applyPurchaseParams();
-} 
+}
 
 function applyPurchaseParams() {
     // Get the current URL and parameters
@@ -973,35 +970,6 @@ const CartStorage = {
   }
 };
 
-
-// function canAddToCart(items) {
-//   console.log('canAddToCart');
-//   console.log('items:', items);
-//   // getCartItems();
-
-//   const cart = CartStorage.load();
-
-//   function getProductIds(items) {
-//     return items.map(item => Object.values(item)[0]);
-//   }
-
-//   // If the cart is empty, any product or bundle can be added.
-//   if (cart.products.length === 0 && cart.bundles.length === 0) {
-//     return true;
-//   }
-
-//   const ids = Array.isArray(items) ? getProductIds(items) : [items];
-//   const numericIds = ids.map(id => Number(id));
-
-//   const isInBundles = numericIds.every(id => cart.bundles.includes(id));
-//   const isInProducts = numericIds.some(id => cart.products.includes(id));
-
-//   return isInBundles 
-//     ? (console.log('Items are already in a bundle'), false)
-//     : isInProducts
-//     ? (console.log('Some items are already in products'), false)
-//     : (console.log('Items can be added to the cart'), true);
-// }
 
 function canAddToCart(items) {
   console.log('canAddToCart');
