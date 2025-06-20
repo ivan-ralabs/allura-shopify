@@ -1,5 +1,5 @@
 function testingBundler (e) {
-    console.log(e.type, JSON.parse(JSON.stringify(arguments)));
+  console.log(e.type, JSON.parse(JSON.stringify(arguments)));
 }
 // This event will be fired whenever the Bundler app is loaded
 document.addEventListener('bundler:loaded', testingBundler);
@@ -10,12 +10,12 @@ document.addEventListener('bundler:bundle_widget_created', testingBundler);
 
 // This event will be fired when the cart values are recalculated
 var event = new CustomEvent("bundler:total_cart_values", {
-    detail: {
-        total_amount_original    	: originalAmount,
-        total_amount_discounted    	: discountedAmount,
-        discount_amount            	: discountAmount,
-        original_cart_object   		: originalCartData
-    }
+  detail: {
+    total_amount_original: originalAmount,
+    total_amount_discounted: discountedAmount,
+    discount_amount: discountAmount,
+    original_cart_object: originalCartData,
+  },
 });
 document.dispatchEvent(event);
 
