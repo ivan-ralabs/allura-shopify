@@ -15,9 +15,7 @@ if (!customElements.get('main-register')) {
           "progress-bar-container"
         );
         this.form = document.querySelector("form#create_customer");
-        this.buttons = document.querySelectorAll(
-          "button[type='button']"
-        );
+        this.buttons = document.querySelectorAll("button[type='button']");
         this.buttons.forEach((button) => {
           button.addEventListener("click", (event) => {
             event.preventDefault();
@@ -26,7 +24,7 @@ if (!customElements.get('main-register')) {
             if (direction === "next") {
               this.nextStep(step);
             } else if (direction === "prev") {
-              this.previousStep(step); 
+              this.previousStep(step);
             }
           });
         });
@@ -57,7 +55,7 @@ if (!customElements.get('main-register')) {
         const minDate = today.setFullYear(today.getFullYear() - 13);
         const maxDate = today.setFullYear(today.getFullYear() - 110);
 
-        flatpickr("#dateOfBirth", {
+        flatpickr("#RegisterForm-dateOfBirth", {
           dateFormat: "Y-m-d",
           defaultDate: "today",
           altInput: true,
@@ -73,40 +71,82 @@ if (!customElements.get('main-register')) {
         });
       }
 
+      _markField(wrapper, field, feedbackEl, ok) {
+        if (!wrapper || !field) {
+          console.error("markField: missing wrapper or field element");
+          return;
+        }
+        if (ok) {
+          wrapper.classList.remove("is-invalid");
+          wrapper.classList.add("is-valid");
+          field.classList.remove("is-invalid");
+          field.classList.add("is-valid");
+        } else {
+          wrapper.classList.remove("is-valid");
+          wrapper.classList.add("is-invalid");
+          field.classList.remove("is-valid");
+          field.classList.add("is-invalid");
+        }
+      }
+
       validateStep(step) {
         let valid = true;
+        const seenRadioGroups = new Set();
         const fields = document.querySelectorAll(
           `#step-${step} input, #step-${step} select, #step-${step} textarea`
         );
         fields.forEach((field) => {
-          if (field.type === "checkbox" || !field.required) {
-            return; // Пропускаємо необов'язкові поля
-          }
+          if (field.type === "checkbox") return;
 
-          let formFloatingWrapper = undefined;
+          if (
+            (field.type === "hidden" || field.readOnly) &&
+            field.id !== "RegisterForm-dateOfBirth"
+          ) {
+            return;
+          }
 
           if (field.type === "radio") {
-            formFloatingWrapper = field.closest("fieldset.custom-radio-group");
-          } else {
-            formFloatingWrapper = field.closest(".form-floating-label");
+            const groupName = field.name;
+            if (seenRadioGroups.has(groupName)) return;
+            seenRadioGroups.add(groupName);
+
+            // find the fieldset wrapper
+            const wrapper = field.closest("fieldset.custom-radio-group");
+            const feedback = wrapper?.querySelector(".invalid-feedback");
+
+            // are any in this group checked?
+            const anyChecked = Array.from(
+              document.querySelectorAll(`input[name="${groupName}"]`)
+            ).some((r) => r.checked);
+
+            this._markField(wrapper, wrapper, feedback, anyChecked);
+            if (!anyChecked) valid = false;
+            return;
           }
 
-          const feedbackElement =
-            formFloatingWrapper.querySelector(".invalid-feedback");
-
-          if (!field.checkValidity() || !this.validateInput(field)) {
+          const wrapper = field.closest(".form-input-wrap");
+          const feedback = wrapper?.querySelector(".invalid-feedback");
+          let ok = field.checkValidity() && this.validateInput(field);
+          // special‐case DOB & password/confirmation just as before...
+          if (field.id === "RegisterForm-dateOfBirth") {
+            ok = !!field.value.trim();
+            feedback.textContent = ok
+              ? ""
+              : "Please select your date of birth.";
+          } else if (field.id === "RegisterForm-password") {
+            const pwRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+            ok = pwRe.test(field.value);
+            feedback.textContent = ok
+              ? ""
+              : "Password must be ≥12 chars, with upper/lower/number/special.";
+          } else if (field.id === "RegisterForm-password-confirmation") {
+            const pw = document.getElementById("RegisterForm-password").value;
+            ok = field.value === pw;
+            feedback.textContent = ok ? "" : "Passwords do not match.";
+          }
+          this._markField(wrapper, field, feedback, ok);
+          if (!ok) {
             valid = false;
-            formFloatingWrapper.classList.add("is-invalid");
-            field.classList.add("is-invalid");
-            if (feedbackElement) {
-              feedbackElement.style.display = "block";
-            }
-          } else {
-            formFloatingWrapper.classList.remove("is-invalid");
-            field.classList.remove("is-invalid");
-            if (feedbackElement) {
-              feedbackElement.style.display = "none";
-            }
           }
         });
         return valid;
@@ -114,15 +154,20 @@ if (!customElements.get('main-register')) {
 
       validateInput(input) {
         let nameRegex;
-        input.id === "preferredName" ? /^[\p{L}\p{Nd}.\- '\u2019]{1,50}$/u : /^[\p{L}.'\- ]{1,50}$/u;
+        input.id === "preferredName"
+          ? /^[\p{L}\p{Nd}.\- '\u2019]{1,50}$/u
+          : /^[\p{L}.'\- ]{1,50}$/u;
 
         switch (input.id) {
           case "RegisterForm-FirstName":
           case "RegisterForm-LastName":
             nameRegex = /^[\p{L}.'\- ]{1,50}$/u;
             break;
-            case "RegisterForm-PreferredName":
+          case "RegisterForm-PreferredName":
             nameRegex = /^(?:[\p{L}\p{Nd}.'\-\u2019]{1,50})?$/u;
+            break;
+          case "RegisterForm-password":
+            nameRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
             break;
           default:
             return true;
@@ -146,10 +191,14 @@ if (!customElements.get('main-register')) {
           return;
         }
 
-        const currentStepElement = document.getElementById(`step-${this.currentStep}`);
+        const currentStepElement = document.getElementById(
+          `step-${this.currentStep}`
+        );
         currentStepElement.style.display = "none";
         this.currentStep = step;
-        const nextStepElement = document.getElementById(`step-${this.currentStep}`);
+        const nextStepElement = document.getElementById(
+          `step-${this.currentStep}`
+        );
         nextStepElement.style.display = "block";
 
         if (this.currentStep > 0) {
@@ -162,11 +211,15 @@ if (!customElements.get('main-register')) {
       }
 
       previousStep(step) {
-        console.log('previousStep:', step);
-        const currentStepElement = document.getElementById(`step-${this.currentStep}`);
+        console.log("previousStep:", step);
+        const currentStepElement = document.getElementById(
+          `step-${this.currentStep}`
+        );
         currentStepElement.style.display = "none";
         this.currentStep = step;
-        const prevStepElement = document.getElementById(`step-${this.currentStep}`);
+        const prevStepElement = document.getElementById(
+          `step-${this.currentStep}`
+        );
         prevStepElement.style.display = "block";
 
         if (this.currentStep === 0) {
@@ -184,96 +237,82 @@ if (!customElements.get('main-register')) {
 
         fields.forEach((field) => {
           console.log(`Setting up validation for field: ${field.id}`);
-          field.removeEventListener("input", this.handleInputValidation);
-          field.addEventListener("input", this.handleInputValidation);
+          ["input", "change", "blur"].forEach((eventType) => {
+            field.removeEventListener(eventType, this.handleInputValidation);
+            field.addEventListener(eventType, this.handleInputValidation);
+          });
         });
       }
 
       handleInputValidation(event) {
         const field = event.target;
-        const formFloatingWrapper = field.closest(".form-input-wrap");
-        const feedbackElement =
-          formFloatingWrapper?.querySelector(".invalid-feedback");
-        const minLengthFeedback =
-          formFloatingWrapper?.querySelector(".min-length-feedback");
+        const wrapper = field.closest(".form-input-wrap");
+        const fb = wrapper?.querySelector(".invalid-feedback");
 
-        const fields = formFloatingWrapper.querySelectorAll(
-          "input, select, textarea"
-        );
-
-        if (field.checkValidity() && this.validateInput(event.target)) {
-          formFloatingWrapper?.classList.remove("is-invalid");
-          field.classList.remove("is-invalid");
-          fields.forEach((input) => {
-            input.classList.remove("is-invalid");
-          });
-          if (feedbackElement) {
-            feedbackElement.style.display = "none";
-          }
-          if (minLengthFeedback) {
-            minLengthFeedback.style.display = "none";
-          }
-        } else {
-          formFloatingWrapper?.classList.add("is-invalid");
-          field.classList.add("is-invalid");
-          if (feedbackElement) {
-            feedbackElement.style.display = "block";
-          }
-
-          if (field.validity.tooShort && minLengthFeedback) {
-            minLengthFeedback.style.display = "block";
-          }
+        let ok;
+        if (field.id === "RegisterForm-password-confirmation") {
+          const pw = document.getElementById("RegisterForm-password").value;
+          ok = field.value === pw;
+          fb.textContent = ok ? "" : "Passwords do not match.";
         }
+        else {
+          ok = field.checkValidity() && this.validateInput(field);
+        }
+
+        this._markField(wrapper, field, fb, ok);
       }
 
       validateForm(event) {
         event.preventDefault();
 
-        const passwordField = document.getElementById("RegisterForm-password");
-        const passwordFieldWrapper = passwordField.closest(".form-input-wrap");
-        const passwordConfirmationField = document.getElementById(
+        const pwField = document.getElementById("RegisterForm-password");
+        const pwWrapper = pwField.closest(".form-input-wrap");
+        const confirmField = document.getElementById(
           "RegisterForm-password-confirmation"
         );
-        const passwordConfirmationFieldWrapper =
-          passwordConfirmationField.closest(".form-input-wrap");
+        const confirmWrapper = confirmField.closest(".form-input-wrap");
+
+        const pwFeedback = pwWrapper.querySelector(".invalid-feedback");
+        const confirmFeedback =
+          confirmWrapper.querySelector(".invalid-feedback");
+
+        // same regex as in validateStep
+        const pwRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
 
         let valid = true;
 
-        if (!passwordField.value || passwordField.value.length < 8) {
-          passwordField.setCustomValidity("");
-          const feedbackElement =
-            passwordFieldWrapper.querySelector(".invalid-feedback");
-
-          if (!passwordField.value) {
-            feedbackElement.textContent = "Please enter your password";
-          } else if (passwordField.value.length < 8) {
-            feedbackElement.textContent =
-              "Password must be at least 8 characters long.";
-          }
+        // ——— password field ———
+        if (!pwRe.test(pwField.value)) {
+          pwFeedback.textContent =
+            pwField.value.length === 0
+              ? "Please enter your password"
+              : "Password must be ≥12 chars, with upper/lower/number/special.";
+          pwWrapper.classList.add("is-invalid");
+          pwWrapper.classList.remove("is-valid");
+          pwField.classList.add("is-invalid");
+          pwField.classList.remove("is-valid");
           valid = false;
-          passwordFieldWrapper.classList.add("is-invalid");
-          passwordField.classList.add("is-invalid");
-          feedbackElement.style.display = "block";
         } else {
-          passwordFieldWrapper.classList.remove("is-invalid");
-          passwordField.classList.remove("is-invalid");
-          passwordFieldWrapper.querySelector(".invalid-feedback").style.display =
-            "none";
+          pwWrapper.classList.remove("is-invalid");
+          pwWrapper.classList.add("is-valid");
+          pwField.classList.remove("is-invalid");
+          pwField.classList.add("is-valid");
         }
 
-        if (passwordConfirmationField.value !== passwordField.value) {
+        // ——— confirmation ———
+        if (confirmField.value !== pwField.value) {
+          confirmFeedback.textContent = "Passwords do not match.";
+          confirmWrapper.classList.add("is-invalid");
+          confirmWrapper.classList.remove("is-valid");
+          confirmField.classList.add("is-invalid");
+          confirmField.classList.remove("is-valid");
           valid = false;
-          passwordConfirmationFieldWrapper.classList.add("is-invalid");
-          passwordConfirmationField.classList.add("is-invalid");
-          passwordConfirmationFieldWrapper
-            .querySelector(".invalid-feedback")
-            .style.display = "block";
-        } else {
-          passwordConfirmationFieldWrapper.classList.remove("is-invalid");
-          passwordConfirmationField.classList.remove("is-invalid");
-          passwordConfirmationFieldWrapper
-            .querySelector(".invalid-feedback")
-            .style.display = "none";
+        } else if (pwRe.test(pwField.value)) {
+          // only mark valid if the main password itself is valid
+          confirmWrapper.classList.remove("is-invalid");
+          confirmWrapper.classList.add("is-valid");
+          confirmField.classList.remove("is-invalid");
+          confirmField.classList.add("is-valid");
         }
 
         if (valid) {

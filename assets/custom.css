@@ -60,8 +60,8 @@ body .flatpickr-calendar .flatpickr-monthDropdown-months, body .flatpickr-calend
   color: #BABABA;
 }
 
-.flatpickr-days .dayContainer .flatpickr-day.flatpickr-disabled, {
-  opacity: 0.3
+.flatpickr-days .dayContainer .flatpickr-day.flatpickr-disabled {
+  opacity: 0.3;
 }
 
 .form-floating-label input.form-control.input.active {
@@ -73,6 +73,7 @@ body .flatpickr-calendar .flatpickr-monthDropdown-months, body .flatpickr-calend
     top: 14px;
     right: 14px;
     z-index: 0;
+    pointer-events: none;
 }
 
 .form-floating-label svg path {
@@ -1881,7 +1882,8 @@ h2 {
     bottom: 0;
 }
 
-.form-floating-label.is-invalid .invalid-feedback {
+.form-floating-label.is-invalid .invalid-feedback,
+.form-input-wrap.is-invalid .invalid-feedback {
   font-family: Nunito Sans;
   font-size: 12px;
   font-weight: 400;
