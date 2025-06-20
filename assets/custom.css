@@ -223,8 +223,12 @@ header .row {
 }
 
 header .logo-short {
-    /* width: 40px; */
-    height: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+header .header-logo-link .cls-1 {
+  fill: #c79662;
 }
 
 header nav {
@@ -255,6 +259,7 @@ main {
 
 footer .logo-short {
   height: 40px;
+  width: 40px;
 }
 
 footer .footer-menu {
@@ -440,6 +445,10 @@ footer .footer__copyright.caption .copyright__content, footer .footer__copyright
 
 header a.header__heading-link svg, .logo-expanded {
   width: 190px;
+}
+
+header a.header__heading-link  span.logo-expanded {
+  display: block;
 }
 
 footer {

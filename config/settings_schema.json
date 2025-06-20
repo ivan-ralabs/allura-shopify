@@ -1480,5 +1480,15 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Google Maps & Places",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_api_key",
+        "label": "Google API key"
+      }
+    ]
   }
 ]

@@ -69,9 +69,6 @@
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
-        "coming_soon_button_text": "",
-        "quiz_button_text": "",
-        "quiz_button_url": "",
         "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
